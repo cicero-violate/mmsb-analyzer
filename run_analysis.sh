@@ -17,10 +17,13 @@ cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
     --skip-julia \
     --dead-code \
     --dead-code-filter \
-    --dead-code-json "$OUTPUT_DIR/dead_code_full.json" \
-    --dead-code-summary "$OUTPUT_DIR/dead_code_summary.md" \
+    --dead-code-json "$OUTPUT_DIR/98_dead_code/dead_code_full.json" \
+    --dead-code-summary "$OUTPUT_DIR/98_dead_code/dead_code_summary.md" \
     --dead-code-summary-limit 50 \
-    --dead-code-policy "$OUTPUT_DIR/dead_code_policy.txt" \
+    --dead-code-policy "$OUTPUT_DIR/98_dead_code/dead_code_policy.txt" \
+    --correction-intelligence \
+    --correction-json "$OUTPUT_DIR/97_correction_intelligence/correction_intelligence.json" \
+    --verification-policy-json "$OUTPUT_DIR/97_correction_intelligence/verification_policy.json" \
     "$@" | tee "$ROOT_DIR/report_check.txt"
 
 # 2) Analyze only (regenerate docs, no TODO report)
@@ -31,10 +34,13 @@ cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
 #     --skip-julia \
 #     --dead-code \
 #     --dead-code-filter \
-#     --dead-code-json "$OUTPUT_DIR/dead_code_full.json" \
-#     --dead-code-summary "$OUTPUT_DIR/dead_code_summary.md" \
+#     --dead-code-json "$OUTPUT_DIR/98_dead_code/dead_code_full.json" \
+#     --dead-code-summary "$OUTPUT_DIR/98_dead_code/dead_code_summary.md" \
 #     --dead-code-summary-limit 50 \
-#     --dead-code-policy "$OUTPUT_DIR/dead_code_policy.txt" \
+#     --dead-code-policy "$OUTPUT_DIR/98_dead_code/dead_code_policy.txt" \
+#     --correction-intelligence \
+#     --correction-json "$OUTPUT_DIR/97_correction_intelligence/correction_intelligence.json" \
+#     --verification-policy-json "$OUTPUT_DIR/97_correction_intelligence/verification_policy.json" \
 #     "$@" | tee "$ROOT_DIR/report_analyze.txt"
 
 # 3) Report only (parse existing docs, no re-analysis)
