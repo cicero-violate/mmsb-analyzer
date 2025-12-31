@@ -1,0 +1,177 @@
+Building analyzer...
+Running analysis...
+MMSB Intelligence Substrate Analyzer
+=====================================
+
+Root directory: "/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer"
+Output directory: "/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs"
+Julia script: "/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/src/000_main.jl"
+
+Scanning Rust files (dependency-ordered)...
+  Analyzed 35 Rust files
+
+Building call graph...
+  Call graph progress: 50/236 functions
+  Call graph progress: 100/236 functions
+  Call graph progress: 150/236 functions
+  Call graph progress: 200/236 functions
+  Call graph progress: 236/236 functions
+Detecting invariants...
+🔍 Detecting invariants...
+  ├─ Detecting structural invariants (graph-based)...
+     Found 0 structural invariants (from call graph)
+  ├─ Enhanced structural detection (call graph from analysis)...
+     Found 1007 enhanced structural invariants
+  ├─ Detecting semantic invariants...
+     Found 201 semantic invariants
+  ├─ Detecting path-intersection invariants...
+     Found 0 path-intersection invariants
+  ├─ Inferring layers from call graph...
+     Inferred 0 layer assignments
+  └─ Checking for violations...
+
+✅ Invariants: 1208 (proven: 997, empirical: 190, heuristic: 21)
+✅ Violations: 0
+Analyzing function cohesion...
+  Louvain pass 1...
+  Louvain pass 6...
+  Louvain pass 11...
+  Louvain pass 16...
+  Louvain pass 21...
+Analyzing directory structure...
+
+Generating reports...
+  Report: structure
+  Report: call_graph
+  Report: cfg
+  Report: module_dependencies
+  Report: function_analysis
+  Report: layer_dependencies
+  Report: file_ordering
+  Report: cohesion_analysis
+  Report: refactoring_plan
+Baseline deltas:
+  directory_cohesion: 1.00 -> 1.00 (delta +0.00)
+  ordering_correctness: 100.0% -> 100.0% (delta +0.0%)
+  avg_function_cohesion: 0.77 -> 0.76 (delta -0.01)
+  rename_ops_needed: 0 -> 34 (delta +34)
+  function_relocations: 20 -> 17 (delta -3)
+  Report: file_organization
+
+Exporting program CFG...
+Complete program CFG exported to /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs/30_cfg/complete_program.dot
+
+Generating invariant report...
+📄 Invariant report written to: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs/95_invariants/index.md
+📄 JSON export written to: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs/95_invariants/invariants.json
+📄 Conscience map written to: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs/95_invariants/conscience_map.md
+📄 Constraints written to: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs/96_constraints/refactor_constraints.json
+
+✓ Analysis complete!
+  Total elements: 443
+  Rust files: 35
+  Julia files: 0
+  Output: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs
+
+REFACTORING TODO LIST
+
+SUMMARY:
+  Phase 1 (Correctness blockers): 0
+  Phase 2 (Cluster extractions): 24
+  Phase 3 (Structural constraints): 20
+  Phase 4 (Cohesion improvements): 7
+  Phase 5 (Ordering & renames): 34
+
+PHASE 2: CLUSTER EXTRACTION
+  1. Create cluster file `src/070_layer_utilities.rs` with 4 functions (cohesion 1.00)
+  2. Create cluster file `src/010_cluster_008.rs` with 2 functions (cohesion 0.78)
+  3. Create cluster file `src/000_cluster_001.rs` with 2 functions (cohesion 0.48)
+  4. Create cluster file `src/083_action_validator.rs` with 2 functions (cohesion 0.40)
+  5. Create cluster file `src/010_cluster_008.rs` with 6 functions (cohesion 0.14)
+  6. Create cluster file `src/000_cluster_001.rs` with 2 functions (cohesion 0.12)
+  7. Move `gather_julia_files` from `src/000_cluster_001.rs`
+  8. Move `generate_constraints` from `src/005_refactor_constraints.rs`
+  9. Move `resolve_source_root` from `src/020_cluster_010.rs`
+  10. Move `export_program_cfg_to_path` from `src/030_cluster_011.rs`
+  11. Move `test_detect_layer_violations_none` from `src/020_layer_inference.rs`
+  12. Move `layer_prefix_value` from `src/050_cluster_006.rs`
+  13. Move `build_module_map` from `src/030_cluster_011.rs`
+  14. Move `build_file_dag` from `src/030_cluster_011.rs`
+  15. Move `test_check_move_allowed_blocking` from `src/005_refactor_constraints.rs`
+  16. Move `test_check_move_allowed_non_blocking` from `src/005_refactor_constraints.rs`
+  17. Move `layer_constrained_sort` from `src/000_cluster_001.rs`
+  18. Move `topo_sort_within` from `src/000_cluster_001.rs`
+  19. Move `infer_layers` from `src/020_layer_inference.rs`
+  20. Move `detect_layer_violations` from `src/020_layer_inference.rs`
+  21. Move `test_layer_inference_simple_dag` from `src/020_layer_inference.rs`
+  22. Move `test_layer_inference_diamond` from `src/020_layer_inference.rs`
+  23. Move `build_directory_dag` from `src/030_cluster_011.rs`
+  24. Move `build_file_dependency_graph` from `src/030_cluster_011.rs`
+
+PHASE 3: STRUCTURAL CONSTRAINTS
+  1. `order_julia_files_by_dependency` from `src/020_cluster_010.rs` to `src/000_cluster_001.rs`: layer violation 020_cluster_010.rs -> 000_cluster_001.rs
+  2. `run_analysis` from `src/070_layer_utilities.rs` to `src/000_cluster_001.rs`: layer violation 070_layer_utilities.rs -> 000_cluster_001.rs
+  3. `test_check_move_allowed` from `src/083_action_validator.rs` to `src/005_refactor_constraints.rs`: layer violation 083_action_validator.rs -> 005_refactor_constraints.rs
+  4. `sort_structural_items` from `src/060_layer_core.rs` to `src/010_cluster_008.rs`: layer violation 060_layer_core.rs -> 010_cluster_008.rs
+  5. `structural_cmp` from `src/060_layer_core.rs` to `src/010_cluster_008.rs`: layer violation 060_layer_core.rs -> 010_cluster_008.rs
+  6. `test_detect_layer_violations_none` from `src/020_layer_inference.rs` to `src/010_cluster_008.rs`: layer violation 020_layer_inference.rs -> 010_cluster_008.rs
+  7. `gather_rust_files` from `src/070_layer_utilities.rs` to `src/020_cluster_010.rs`: layer violation 070_layer_utilities.rs -> 020_cluster_010.rs
+  8. `test_query_allowed_actions` from `src/085_agent_conscience.rs` to `src/082_conscience_graph.rs`: layer violation 085_agent_conscience.rs -> 082_conscience_graph.rs
+  9. `test_conscience_allows_valid_action` from `src/085_agent_conscience.rs` to `src/082_conscience_graph.rs`: layer violation 085_agent_conscience.rs -> 082_conscience_graph.rs
+  10. `test_conscience_blocks_invalid_move` from `src/085_agent_conscience.rs` to `src/082_conscience_graph.rs`: layer violation 085_agent_conscience.rs -> 082_conscience_graph.rs
+  11. Move `order_julia_files_by_dependency` from `src/020_cluster_010.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  12. Move `run_analysis` from `src/070_layer_utilities.rs` (impact 0, benefit/cost 0.25, touches 4 files; no external callers)
+  13. Move `test_check_move_allowed` from `src/083_action_validator.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  14. Move `sort_structural_items` from `src/060_layer_core.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  15. Move `structural_cmp` from `src/060_layer_core.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  16. Move `test_detect_layer_violations_none` from `src/020_layer_inference.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  17. Move `gather_rust_files` from `src/070_layer_utilities.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  18. Move `test_query_allowed_actions` from `src/085_agent_conscience.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
+  19. Move `test_conscience_allows_valid_action` from `src/085_agent_conscience.rs` (impact 0, benefit/cost 0.33, touches 3 files; no external callers)
+  20. Move `test_conscience_blocks_invalid_move` from `src/085_agent_conscience.rs` (impact 0, benefit/cost 0.33, touches 3 files; no external callers)
+
+PHASE 4: COHESION IMPROVEMENTS
+  1. `detect_layer_violations` from `src/010_cluster_008.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
+  2. `test_strength_emoji` from `src/082_conscience_graph.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
+  3. `build_directory_entry_map` from `src/000_cluster_001.rs` to `-`: cohesion 0.49 below threshold 0.60 (impact 0.11)
+  4. `cluster_target_path` from `src/010_cluster_008.rs` to `-`: cohesion 0.43 below threshold 0.60 (impact 0.17)
+  5. `layer_constrained_sort` from `src/000_cluster_001.rs` to `-`: cohesion 0.57 below threshold 0.60 (impact 0.03)
+  6. `test_check_move_allowed_blocking` from `src/005_refactor_constraints.rs` to `-`: cohesion 0.50 below threshold 0.60 (impact 0.10)
+  7. `test_check_move_allowed_non_blocking` from `src/005_refactor_constraints.rs` to `-`: cohesion 0.50 below threshold 0.60 (impact 0.10)
+
+PHASE 5: ORDERING & RENAMES
+  1. [Rust] `MMSB/tools/mmsb-analyzer/src/010_cluster_008.rs` -> `MMSB/tools/mmsb-analyzer/src/030_cluster_008.rs`
+  2. [Rust] `MMSB/tools/mmsb-analyzer/src/020_cluster_010.rs` -> `MMSB/tools/mmsb-analyzer/src/050_cluster_010.rs`
+  3. [Rust] `MMSB/tools/mmsb-analyzer/src/030_cluster_011.rs` -> `MMSB/tools/mmsb-analyzer/src/070_cluster_011.rs`
+  4. [Rust] `MMSB/tools/mmsb-analyzer/src/040_structural_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/100_structural_detector.rs`
+  5. [Rust] `MMSB/tools/mmsb-analyzer/src/050_semantic_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/120_semantic_detector.rs`
+  6. [Rust] `MMSB/tools/mmsb-analyzer/src/070_invariant_integrator.rs` -> `MMSB/tools/mmsb-analyzer/src/150_invariant_integrator.rs`
+  7. [Rust] `MMSB/tools/mmsb-analyzer/src/070_layer_utilities.rs` -> `MMSB/tools/mmsb-analyzer/src/160_layer_utilities.rs`
+  8. [Rust] `MMSB/tools/mmsb-analyzer/src/090_utilities.rs` -> `MMSB/tools/mmsb-analyzer/src/220_utilities.rs`
+  9. [Rust] `MMSB/tools/mmsb-analyzer/src/190_main.rs` -> `MMSB/tools/mmsb-analyzer/src/320_main.rs`
+  10. [Rust] `MMSB/tools/mmsb-analyzer/src/000_invariant_types.rs` -> `MMSB/tools/mmsb-analyzer/src/010_invariant_types.rs`
+  11. [Rust] `MMSB/tools/mmsb-analyzer/src/005_refactor_constraints.rs` -> `MMSB/tools/mmsb-analyzer/src/020_refactor_constraints.rs`
+  12. [Rust] `MMSB/tools/mmsb-analyzer/src/010_scc_compressor.rs` -> `MMSB/tools/mmsb-analyzer/src/040_scc_compressor.rs`
+  13. [Rust] `MMSB/tools/mmsb-analyzer/src/020_layer_inference.rs` -> `MMSB/tools/mmsb-analyzer/src/060_layer_inference.rs`
+  14. [Rust] `MMSB/tools/mmsb-analyzer/src/030_fixpoint_solver.rs` -> `MMSB/tools/mmsb-analyzer/src/080_fixpoint_solver.rs`
+  15. [Rust] `MMSB/tools/mmsb-analyzer/src/040_dependency.rs` -> `MMSB/tools/mmsb-analyzer/src/090_dependency.rs`
+  16. [Rust] `MMSB/tools/mmsb-analyzer/src/050_cluster_006.rs` -> `MMSB/tools/mmsb-analyzer/src/110_cluster_006.rs`
+  17. [Rust] `MMSB/tools/mmsb-analyzer/src/060_layer_core.rs` -> `MMSB/tools/mmsb-analyzer/src/130_layer_core.rs`
+  18. [Rust] `MMSB/tools/mmsb-analyzer/src/060_path_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/140_path_detector.rs`
+  19. [Rust] `MMSB/tools/mmsb-analyzer/src/080_file_gathering.rs` -> `MMSB/tools/mmsb-analyzer/src/170_file_gathering.rs`
+  20. [Rust] `MMSB/tools/mmsb-analyzer/src/080_invariant_reporter.rs` -> `MMSB/tools/mmsb-analyzer/src/180_invariant_reporter.rs`
+  21. [Rust] `MMSB/tools/mmsb-analyzer/src/082_conscience_graph.rs` -> `MMSB/tools/mmsb-analyzer/src/190_conscience_graph.rs`
+  22. [Rust] `MMSB/tools/mmsb-analyzer/src/083_action_validator.rs` -> `MMSB/tools/mmsb-analyzer/src/200_action_validator.rs`
+  23. [Rust] `MMSB/tools/mmsb-analyzer/src/085_agent_conscience.rs` -> `MMSB/tools/mmsb-analyzer/src/210_agent_conscience.rs`
+  24. [Rust] `MMSB/tools/mmsb-analyzer/src/100_types.rs` -> `MMSB/tools/mmsb-analyzer/src/230_types.rs`
+  25. [Rust] `MMSB/tools/mmsb-analyzer/src/110_cohesion_analyzer.rs` -> `MMSB/tools/mmsb-analyzer/src/240_cohesion_analyzer.rs`
+  26. [Rust] `MMSB/tools/mmsb-analyzer/src/120_directory_analyzer.rs` -> `MMSB/tools/mmsb-analyzer/src/250_directory_analyzer.rs`
+  27. [Rust] `MMSB/tools/mmsb-analyzer/src/130_control_flow.rs` -> `MMSB/tools/mmsb-analyzer/src/260_control_flow.rs`
+  28. [Rust] `MMSB/tools/mmsb-analyzer/src/140_file_ordering.rs` -> `MMSB/tools/mmsb-analyzer/src/270_file_ordering.rs`
+  29. [Rust] `MMSB/tools/mmsb-analyzer/src/150_julia_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/280_julia_parser.rs`
+  30. [Rust] `MMSB/tools/mmsb-analyzer/src/160_rust_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/290_rust_parser.rs`
+  31. [Rust] `MMSB/tools/mmsb-analyzer/src/170_dot_exporter.rs` -> `MMSB/tools/mmsb-analyzer/src/300_dot_exporter.rs`
+  32. [Rust] `MMSB/tools/mmsb-analyzer/src/180_report.rs` -> `MMSB/tools/mmsb-analyzer/src/310_report.rs`
+  33. [Rust] `MMSB/tools/mmsb-analyzer/src/191_agent_cli.rs` -> `MMSB/tools/mmsb-analyzer/src/330_agent_cli.rs`
+  34. [Rust] `MMSB/tools/mmsb-analyzer/src/200_lib.rs` -> `MMSB/tools/mmsb-analyzer/src/340_lib.rs`
+

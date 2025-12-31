@@ -1,0 +1,407 @@
+    Checking mmsb-analyzer v0.1.0 (/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer)
+warning: unused import: `petgraph::algo::is_cyclic_directed`
+  --> src/040_structural_detector.rs:11:5
+   |
+11 | use petgraph::algo::is_cyclic_directed;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::collections::HashSet`
+  --> src/040_structural_detector.rs:15:5
+   |
+15 | use std::collections::HashSet;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashSet`
+  --> src/050_semantic_detector.rs:10:5
+   |
+10 | use std::collections::HashSet;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `HashMap`
+  --> src/060_path_detector.rs:11:24
+   |
+11 | use std::collections::{HashMap, HashSet};
+   |                        ^^^^^^^
+
+warning: unused import: `std::io::Write`
+ --> src/082_conscience_graph.rs:7:5
+  |
+7 | use std::io::Write;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused variable: `original_move_count`
+    --> src/180_report.rs:1617:13
+     |
+1617 |         let original_move_count = moves.len();
+     |             ^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_original_move_count`
+     |
+     = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `matches_function` is never used
+  --> src/083_action_validator.rs:80:4
+   |
+80 | fn matches_function(action_name: &str, constraint: &RefactorConstraint) -> bool {
+   |    ^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `mmsb-analyzer` (lib) generated 7 warnings (run `cargo fix --lib -p mmsb-analyzer` to apply 6 suggestions)
+warning: method `get_blocking_invariants` is never used
+   --> src/000_invariant_types.rs:324:12
+    |
+288 | impl InvariantAnalysisResult {
+    | ---------------------------- method in this implementation
+...
+324 |     pub fn get_blocking_invariants(&self, target: &str) -> Vec<&Invariant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `target`, `strength`, and `is_blocking` are never used
+   --> src/005_refactor_constraints.rs:95:12
+    |
+ 93 | impl RefactorConstraint {
+    | ----------------------- methods in this implementation
+ 94 |     /// Get the target of this constraint
+ 95 |     pub fn target(&self) -> &str {
+    |            ^^^^^^
+...
+108 |     pub fn strength(&self) -> &InvariantStrength {
+    |            ^^^^^^^^
+...
+121 |     pub fn is_blocking(&self) -> bool {
+    |            ^^^^^^^^^^^
+
+warning: function `check_move_allowed` is never used
+   --> src/005_refactor_constraints.rs:203:8
+    |
+203 | pub fn check_move_allowed(
+    |        ^^^^^^^^^^^^^^^^^^
+
+warning: fields `original_graph`, `node_to_scc`, and `scc_to_node` are never read
+  --> src/010_scc_compressor.rs:16:9
+   |
+14 | pub struct SccCompression {
+   |            -------------- fields in this struct
+15 |     /// Original graph
+16 |     pub original_graph: DiGraph<String, ()>,
+   |         ^^^^^^^^^^^^^^
+...
+22 |     pub node_to_scc: HashMap<NodeIndex, usize>,
+   |         ^^^^^^^^^^^
+...
+25 |     pub scc_to_node: HashMap<usize, NodeIndex>,
+   |         ^^^^^^^^^^^
+   |
+   = note: `SccCompression` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: methods `is_dag`, `get_scc_for_node`, `get_scc_members`, `count_trivial_sccs`, `count_nontrivial_sccs`, and `stats` are never used
+   --> src/010_scc_compressor.rs:94:12
+    |
+ 31 | impl SccCompression {
+    | ------------------- methods in this implementation
+...
+ 94 |     pub fn is_dag(&self) -> bool {
+    |            ^^^^^^
+...
+ 99 |     pub fn get_scc_for_node(&self, node_name: &str) -> Option<usize> {
+    |            ^^^^^^^^^^^^^^^^
+...
+110 |     pub fn get_scc_members(&self, scc_id: usize) -> Vec<String> {
+    |            ^^^^^^^^^^^^^^^
+...
+121 |     pub fn count_trivial_sccs(&self) -> usize {
+    |            ^^^^^^^^^^^^^^^^^^
+...
+126 |     pub fn count_nontrivial_sccs(&self) -> usize {
+    |            ^^^^^^^^^^^^^^^^^^^^^
+...
+131 |     pub fn stats(&self) -> SccStats {
+    |            ^^^^^
+
+warning: struct `SccStats` is never constructed
+   --> src/010_scc_compressor.rs:144:12
+    |
+144 | pub struct SccStats {
+    |            ^^^^^^^^
+
+warning: struct `SymbolicAbstraction` is never constructed
+  --> src/030_fixpoint_solver.rs:13:12
+   |
+13 | pub struct SymbolicAbstraction {
+   |            ^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `new`, `approx_eq`, and `merge` are never used
+  --> src/030_fixpoint_solver.rs:31:12
+   |
+30 | impl SymbolicAbstraction {
+   | ------------------------ associated items in this implementation
+31 |     pub fn new() -> Self {
+   |            ^^^
+...
+42 |     pub fn approx_eq(&self, other: &Self) -> bool {
+   |            ^^^^^^^^^
+...
+51 |     pub fn merge(&mut self, other: &Self) {
+   |            ^^^^^
+
+warning: struct `FixpointResult` is never constructed
+  --> src/030_fixpoint_solver.rs:85:12
+   |
+85 | pub struct FixpointResult {
+   |            ^^^^^^^^^^^^^^
+
+warning: function `propagate_to_fixpoint` is never used
+   --> src/030_fixpoint_solver.rs:108:8
+    |
+108 | pub fn propagate_to_fixpoint(
+    |        ^^^^^^^^^^^^^^^^^^^^^
+
+warning: method `get_stats` is never used
+   --> src/060_path_detector.rs:179:12
+    |
+ 19 | impl PathDetector {
+    | ----------------- method in this implementation
+...
+179 |     pub fn get_stats(&self) -> PathStats {
+    |            ^^^^^^^^^
+
+warning: struct `PathStats` is never constructed
+   --> src/060_path_detector.rs:192:12
+    |
+192 | pub struct PathStats {
+    |            ^^^^^^^^^
+
+warning: method `check_violations` is never used
+   --> src/070_invariant_integrator.rs:144:12
+    |
+ 21 | impl<'a> InvariantDetector<'a> {
+    | ------------------------------ method in this implementation
+...
+144 |     pub fn check_violations(&self, invariants: &[Invariant]) -> Vec<InvariantViolation> {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: function `generate_conscience_stats` is never used
+   --> src/082_conscience_graph.rs:141:8
+    |
+141 | pub fn generate_conscience_stats(invariants: &[Invariant]) -> ConscienceStats {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ConscienceStats` is never constructed
+   --> src/082_conscience_graph.rs:183:12
+    |
+183 | pub struct ConscienceStats {
+    |            ^^^^^^^^^^^^^^^
+
+warning: function `matches_function` is never used
+  --> src/083_action_validator.rs:80:4
+   |
+80 | fn matches_function(action_name: &str, constraint: &RefactorConstraint) -> bool {
+   |    ^^^^^^^^^^^^^^^^
+
+warning: associated items `load` and `export_json` are never used
+   --> src/085_agent_conscience.rs:43:12
+    |
+ 28 | impl AgentConscience {
+    | -------------------- associated items in this implementation
+...
+ 43 |     pub fn load(path: &Path) -> Result<Self, Box<dyn std::error::Error>> {
+    |            ^^^^
+...
+144 |     pub fn export_json(&self, path: &Path) -> std::io::Result<()> {
+    |            ^^^^^^^^^^^
+
+warning: `mmsb-analyzer` (bin "mmsb-analyzer") generated 23 warnings (6 duplicates)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.00s
+   Compiling mmsb-analyzer v0.1.0 (/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer)
+warning: unused import: `std::collections::HashSet`
+   --> src/005_refactor_constraints.rs:243:9
+    |
+243 |     use std::collections::HashSet;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `petgraph::algo::is_cyclic_directed`
+  --> src/040_structural_detector.rs:11:5
+   |
+11 | use petgraph::algo::is_cyclic_directed;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashSet`
+  --> src/040_structural_detector.rs:15:5
+   |
+15 | use std::collections::HashSet;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashSet`
+  --> src/050_semantic_detector.rs:10:5
+   |
+10 | use std::collections::HashSet;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `HashMap`
+  --> src/060_path_detector.rs:11:24
+   |
+11 | use std::collections::{HashMap, HashSet};
+   |                        ^^^^^^^
+
+warning: unused import: `std::io::Write`
+ --> src/082_conscience_graph.rs:7:5
+  |
+7 | use std::io::Write;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `petgraph::algo::is_cyclic_directed`
+  --> src/040_structural_detector.rs:11:5
+   |
+11 | use petgraph::algo::is_cyclic_directed;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `original_move_count`
+    --> src/180_report.rs:1617:13
+     |
+1617 |         let original_move_count = moves.len();
+     |             ^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_original_move_count`
+     |
+     = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `matches_function` is never used
+  --> src/083_action_validator.rs:80:4
+   |
+80 | fn matches_function(action_name: &str, constraint: &RefactorConstraint) -> bool {
+   |    ^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: comparison is useless due to type limits
+   --> src/060_path_detector.rs:217:17
+    |
+217 |         assert!(invariants.len() >= 0);
+    |                 ^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_comparisons)]` on by default
+
+warning: `mmsb-analyzer` (lib test) generated 9 warnings (run `cargo fix --lib -p mmsb-analyzer --tests` to apply 7 suggestions)
+warning: `mmsb-analyzer` (lib) generated 7 warnings (6 duplicates) (run `cargo fix --lib -p mmsb-analyzer` to apply 1 suggestion)
+warning: method `get_blocking_invariants` is never used
+   --> src/000_invariant_types.rs:324:12
+    |
+288 | impl InvariantAnalysisResult {
+    | ---------------------------- method in this implementation
+...
+324 |     pub fn get_blocking_invariants(&self, target: &str) -> Vec<&Invariant> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `original_graph`, `node_to_scc`, and `scc_to_node` are never read
+  --> src/010_scc_compressor.rs:16:9
+   |
+14 | pub struct SccCompression {
+   |            -------------- fields in this struct
+15 |     /// Original graph
+16 |     pub original_graph: DiGraph<String, ()>,
+   |         ^^^^^^^^^^^^^^
+...
+22 |     pub node_to_scc: HashMap<NodeIndex, usize>,
+   |         ^^^^^^^^^^^
+...
+25 |     pub scc_to_node: HashMap<usize, NodeIndex>,
+   |         ^^^^^^^^^^^
+   |
+   = note: `SccCompression` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: methods `get_scc_for_node`, `get_scc_members`, and `stats` are never used
+   --> src/010_scc_compressor.rs:99:12
+    |
+ 31 | impl SccCompression {
+    | ------------------- methods in this implementation
+...
+ 99 |     pub fn get_scc_for_node(&self, node_name: &str) -> Option<usize> {
+    |            ^^^^^^^^^^^^^^^^
+...
+110 |     pub fn get_scc_members(&self, scc_id: usize) -> Vec<String> {
+    |            ^^^^^^^^^^^^^^^
+...
+131 |     pub fn stats(&self) -> SccStats {
+    |            ^^^^^
+
+warning: struct `SccStats` is never constructed
+   --> src/010_scc_compressor.rs:144:12
+    |
+144 | pub struct SccStats {
+    |            ^^^^^^^^
+
+warning: field `stable_nodes` is never read
+  --> src/030_fixpoint_solver.rs:96:9
+   |
+85 | pub struct FixpointResult {
+   |            -------------- field in this struct
+...
+96 |     pub stable_nodes: Vec<String>,
+   |         ^^^^^^^^^^^^
+   |
+   = note: `FixpointResult` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: field `compressed_nodes` is never read
+   --> src/060_path_detector.rs:194:9
+    |
+192 | pub struct PathStats {
+    |            --------- field in this struct
+193 |     pub original_nodes: usize,
+194 |     pub compressed_nodes: usize,
+    |         ^^^^^^^^^^^^^^^^
+    |
+    = note: `PathStats` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: method `check_violations` is never used
+   --> src/070_invariant_integrator.rs:144:12
+    |
+ 21 | impl<'a> InvariantDetector<'a> {
+    | ------------------------------ method in this implementation
+...
+144 |     pub fn check_violations(&self, invariants: &[Invariant]) -> Vec<InvariantViolation> {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: fields `protected_functions`, `blocking_invariants`, and `empirical_count` are never read
+   --> src/082_conscience_graph.rs:185:9
+    |
+183 | pub struct ConscienceStats {
+    |            --------------- fields in this struct
+184 |     pub total_functions: usize,
+185 |     pub protected_functions: usize,
+    |         ^^^^^^^^^^^^^^^^^^^
+186 |     pub total_invariants: usize,
+187 |     pub blocking_invariants: usize,
+    |         ^^^^^^^^^^^^^^^^^^^
+188 |     pub proven_count: usize,
+189 |     pub empirical_count: usize,
+    |         ^^^^^^^^^^^^^^^
+
+warning: function `matches_function` is never used
+  --> src/083_action_validator.rs:80:4
+   |
+80 | fn matches_function(action_name: &str, constraint: &RefactorConstraint) -> bool {
+   |    ^^^^^^^^^^^^^^^^
+
+warning: associated items `load` and `export_json` are never used
+   --> src/085_agent_conscience.rs:43:12
+    |
+ 28 | impl AgentConscience {
+    | -------------------- associated items in this implementation
+...
+ 43 |     pub fn load(path: &Path) -> Result<Self, Box<dyn std::error::Error>> {
+    |            ^^^^
+...
+144 |     pub fn export_json(&self, path: &Path) -> std::io::Result<()> {
+    |            ^^^^^^^^^^^
+
+warning: `mmsb-analyzer` (bin "mmsb-analyzer" test) generated 18 warnings (8 duplicates)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.97s
+  Executable unittests src/200_lib.rs (target/debug/deps/mmsb_analyzer-c07b06d80c15a2f1)
+  Executable unittests src/190_main.rs (target/debug/deps/mmsb_analyzer-53a5352556fc2668)

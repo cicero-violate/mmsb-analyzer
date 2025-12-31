@@ -1,0 +1,203 @@
+# MMSB Analyzer: Consolidated Requirements
+
+## Functional Requirements
+
+### FR1: Directory Structure Analysis
+- [x] FR1.1: Traverse entire project directory tree
+- [x] FR1.2: Identify all directories containing source files (.rs, .jl)
+- [x] FR1.3: Extract layer information from directory paths
+- [x] FR1.4: Build hierarchical directory structure representation
+- [x] FR1.5: Track parent-child relationships between directories
+- [x] FR1.6: Deterministic traversal order and basename-based skip rules
+
+### FR2: File Dependency Ordering
+- [x] FR2.1: Compute topological order of files within each directory
+- [x] FR2.2: Detect circular dependencies within directory scope
+- [x] FR2.3: Assign canonical ordering numbers (000, 010, 020, ...)
+- [x] FR2.4: Generate suggested file names based on dependency order
+- [x] FR2.5: Identify files that violate dependency order
+- [x] FR2.6: Recursive per-directory ordering with rename suggestions
+- [x] FR2.7: Folder-level dependency ordering (order directories by inter-directory dependencies)
+
+### FR3: Function Cohesion Analysis
+- [x] FR3.1: Track all function calls within each file
+- [x] FR3.2: Compute intra-file call frequency
+- [x] FR3.3: Compute inter-file call patterns
+- [x] FR3.4: Identify data coupling (shared struct/type usage)
+- [x] FR3.5: Calculate cohesion score per function
+- [x] FR3.6: Detect orphaned utility functions
+- [x] FR3.7: Identify layer violation patterns in function calls
+
+### FR4: Relocation Suggestions
+- [x] FR4.1: Suggest optimal file for each misplaced function
+- [x] FR4.2: Provide reasoning for relocation suggestions
+- [x] FR4.3: Rank relocations by impact (cohesion gain)
+- [x] FR4.4: Detect function clusters that should form new files
+- [x] FR4.5: Identify utility modules that should be created
+
+### FR5: Report Generation
+- [x] FR5.1: Generate per-directory file organization report
+- [x] FR5.2: Generate refactoring plan with actionable steps
+- [x] FR5.3: Include directory-level dependency graphs (DOT/Mermaid)
+- [x] FR5.4: Show before/after file naming suggestions
+- [x] FR5.5: Display metrics: cohesion scores, violation counts
+- [x] FR5.6: Provide shell commands for automated refactoring
+- [x] FR5.7: Include correctness blockers (build/test failures) as Phase 1 plan items
+- [x] FR5.8: Include size warnings for large files/directories
+- [x] FR5.9: Include naming score warnings with identifier overlap
+- [x] FR5.10: Include cargo warning output in refactoring plan
+- [x] FR5.11: Support report configuration via docs/analyzer_config.toml
+- [x] FR5.12: Support baseline metrics file with regression warnings
+- [ ] FR5.13: Generate JSON-formatted dead code analysis report
+- [ ] FR5.14: Export dead code report separately from refactoring plan
+- [ ] FR5.13: Detect duplicated functions and list them as warnings
+- [ ] FR5.14: Weight edges using call-graph impact when ordering moves
+- [ ] FR5.15: Add cost/benefit scores (reduces N violations vs touches M files)
+- [ ] FR5.16: Treat utility/shared helpers as roots for plan ordering
+- [ ] FR5.17: Formalize refactors as invariants, transformation rules, and verification gates
+- [ ] FR5.18: Support phase-by-phase re-analysis (apply Phase 2 -> re-analyze -> regenerate Phase 3)
+
+### FR6: Metrics and Validation
+- [x] FR6.1: Calculate directory cohesion score
+- [x] FR6.2: Measure file ordering correctness percentage
+- [x] FR6.3: Compute average function placement score
+- [x] FR6.4: Track number of rename operations needed
+- [x] FR6.5: Track number of function relocations suggested
+- [x] FR6.6: Generate summary statistics
+- [x] FR6.7: Persist baseline metrics for future comparisons
+- [x] FR6.8: Report baseline deltas to console on each run
+- [x] FR6.9: Emit baseline regression warnings in report
+
+### FR7: Invariant Detection and Constraints
+- [x] FR7.1: Detect structural invariants from call graph topology
+- [x] FR7.2: Detect semantic invariants (type/effect/purity/idempotence)
+- [x] FR7.3: Detect path-intersection invariants via SCC-compressed DAG
+- [x] FR7.4: Classify invariants by strength (Proven/Empirical/Heuristic)
+- [x] FR7.5: Convert blocking invariants into refactor constraints
+- [x] FR7.6: Enforce constraints when generating refactoring suggestions
+- [x] FR7.7: Export invariants as JSON for agent consumption
+- [x] FR7.8: Export constraints as JSON for agent consumption
+- [x] FR7.9: Generate conscience map markdown
+
+### FR8: Agent Conscience Interface
+- [x] FR8.1: Provide AgentConscience API for action validation
+- [x] FR8.2: Validate Move/Rename/ChangeSignature/Delete/Create actions
+- [x] FR8.3: Return blocking violations with severity and reasons
+- [x] FR8.4: CLI for agent checks and queries
+
+### FR9: Workflow Automation (xtask)
+- [x] FR9.1: `xtask analyze` runs analyzer and generates reports
+- [x] FR9.2: `xtask report` parses existing reports without re-analysis
+- [x] FR9.3: `xtask check` runs analyze + report and exits by severity
+- [x] FR9.4: Capture cargo warnings into docs/cargo_warnings.txt
+
+### FR10: Dead Code Analysis
+- [ ] FR10.1: Classify code into Unreachable (U), Reachable-but-Unused (R), Test-Only (T), Latent/Planned (H)
+- [ ] FR10.2: Construct explicit call graph from AST for reachability analysis
+- [ ] FR10.3: Parse #[mmsb_latent(...)] attributes to detect intent-tagged code
+- [ ] FR10.4: Parse doc comments for @latent, @planned, @future markers
+- [ ] FR10.5: Support directory-based intent detection (e.g., src/planned/)
+- [ ] FR10.6: Detect #[cfg(test)] and test module boundaries for Test-Only classification
+- [ ] FR10.7: Assign confidence levels (call_graph, test_reference, intent_tag, heuristic)
+- [ ] FR10.8: Generate graduated action recommendations (delete_safe, quarantine, relocate_tests, keep, manual_review)
+- [ ] FR10.9: Export structured JSON report with summary and per-item details
+- [ ] FR10.10: Provide CLI flags --dead-code and --dead-code-json for analysis control
+- [ ] FR10.11: Filter dead code from cohesion/cluster/layer analysis pipeline
+- [ ] FR10.12: Never delete or mark latent code (H category) as dead
+- [ ] FR10.13: Preserve all code with explicit intent signals
+- [ ] FR10.14: Support policy files for aging rules and protection scopes
+- [ ] FR10.15: Integrate with test coverage data when available (optional)
+
+## Non-Functional Requirements
+
+### NFR1: Performance
+- NFR1.1: Analyze projects with 1000+ files within 60 seconds
+- NFR1.2: Memory usage < 500MB for typical projects
+- [x] NFR1.3: Incremental analysis support (analyze changed files only)
+
+### NFR2: Accuracy
+- NFR2.1: Correctly identify 95%+ of dependency relationships
+- NFR2.2: Minimize false positive relocation suggestions (<10%)
+- NFR2.3: Handle both Rust and Julia idioms correctly
+
+### NFR3: Usability
+- [x] NFR3.1: Reports must be human-readable markdown
+- NFR3.2: Include visual diagrams (Mermaid/DOT)
+- [x] NFR3.3: Provide copy-paste shell commands
+- NFR3.4: Clear explanation for each suggestion
+- [x] NFR3.5: Prioritize suggestions by impact
+- [x] NFR3.6: Highlight naming quality warnings
+- [x] NFR3.7: Highlight oversized files/directories
+- [x] NFR3.8: Surface build/test warnings in the refactoring plan
+
+### NFR4: Extensibility
+- NFR4.1: Plugin architecture for custom cohesion metrics
+- NFR4.2: Configurable naming schemes (not just numeric prefixes)
+- NFR4.3: Support for custom refactoring rules
+- NFR4.4: AST-backed auto-refactor capability (syn/quote)
+- [ ] NFR4.5: Dead code analysis must not affect downstream analysis accuracy
+- [ ] NFR4.6: Support pluggable intent detection strategies
+
+### NFR5: Robustness
+- NFR5.1: Gracefully handle malformed source files
+- NFR5.2: Continue analysis if individual files fail
+- NFR5.3: Provide warnings for ambiguous cases
+- NFR5.4: Handle circular dependencies without crashing
+
+## Data Requirements
+
+### DR1: Input Data
+- DR1.1: Source file paths (absolute or relative)
+- DR1.2: Existing analysis results (CodeElement, CFG)
+- DR1.3: Layer configuration (if available)
+- DR1.4: Custom refactoring rules (optional)
+
+### DR2: Output Data
+- DR2.1: DirectoryAnalysis structures
+- DR2.2: FileAnalysis with suggested names
+- DR2.3: FunctionPlacement suggestions
+- DR2.4: Metrics and statistics
+- DR2.5: Markdown reports
+- DR2.6: DOT/Mermaid graph files
+
+### DR3: Intermediate Data
+- DR3.1: Dependency graph per directory
+- DR3.2: Call frequency matrix
+- DR3.3: Type usage matrix
+- DR3.4: Cohesion score cache
+
+## Constraints
+
+### C1: Compatibility
+- C1.1: Must integrate with existing MMSB analyzer codebase
+- C1.2: Preserve backward compatibility with current reports
+- C1.3: Use existing dependency resolution infrastructure
+
+### C2: Configuration
+- C2.1: Allow skipping directories (e.g., target/, tests/)
+- C2.2: Configurable step size for file numbering (default: 10)
+- C2.3: Configurable cohesion thresholds
+
+### C3: Language Support
+- C3.1: Full support for Rust syntax via syn crate
+- C3.2: Full support for Julia via external script or regex fallback
+- C3.3: Handle language-specific module systems
+
+## Success Criteria
+
+1. Correctly identifies 90%+ of files needing renaming
+2. Relocation suggestions improve cohesion by 20%+ when applied
+3. Reports are actionable without manual investigation
+4. Analysis completes in under 2 minutes for MMSB project
+5. Zero crashes on valid Rust/Julia projects
+6. >80% of structural invariants are PROVEN
+7. Constraints block unsafe refactorings
+8. Agent CLI returns deterministic allow/deny results
+9. Dead code analysis preserves 100% of latent/planned code
+10. Zero false positives in Unreachable classification when intent tags present
+11. JSON output is machine-actionable by automated tooling
+
+## Correctness Blockers (Pending)
+
+- [ ] Establish a single source-root resolution for reports and dependency graphs
+- [ ] Ensure Julia analysis is either reliable end-to-end or fully disabled when skipped

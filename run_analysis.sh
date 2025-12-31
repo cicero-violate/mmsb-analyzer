@@ -1,0 +1,32 @@
+#!/bin/bash
+# Run MMSB analyzer on this project
+
+set -euo pipefail
+
+ROOT_DIR="/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer"
+OUTPUT_DIR="$ROOT_DIR/docs"
+
+cd "$ROOT_DIR"
+
+# Pick one (uncomment the block you want):
+# 1) Full workflow: build + analyze + TODO report with severity exit codes
+cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
+    check \
+    --root "$ROOT_DIR" \
+    --output "$OUTPUT_DIR" \
+    --skip-julia \
+    "$@" | tee "$ROOT_DIR/report_check.txt"
+
+# 2) Analyze only (regenerate docs, no TODO report)
+# cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
+#     analyze \
+#     --root "$ROOT_DIR" \
+#     --output "$OUTPUT_DIR" \
+#     --skip-julia \
+#     "$@" | tee "$ROOT_DIR/report_analyze.txt"
+
+# 3) Report only (parse existing docs, no re-analysis)
+# cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
+#     report \
+#     --docs-dir "$OUTPUT_DIR" \
+#     "$@" | tee "$ROOT_DIR/report_only.txt"
