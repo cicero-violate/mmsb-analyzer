@@ -5,14 +5,28 @@
 Module `000_cluster_001`
 
 - `anyhow :: { Context , Result }`
+- `crate :: cluster_001 :: { collect_julia_dependencies , JuliaTarget }`
 - `crate :: cluster_006 :: layer_prefix_value`
+- `crate :: cluster_010 :: { gather_rust_files , LayerResolver }`
+- `crate :: cohesion_analyzer :: FunctionCohesionAnalyzer`
+- `crate :: control_flow :: ControlFlowAnalyzer`
+- `crate :: dependency :: LayerGraph`
+- `crate :: dependency :: ReferenceDetail`
 - `crate :: dependency :: analyze_file_ordering`
 - `crate :: dependency :: naming_score_for_file`
 - `crate :: dependency :: { LayerGraph , ReferenceDetail , UnresolvedDependency }`
+- `crate :: directory_analyzer :: DirectoryAnalyzer`
+- `crate :: dot_exporter :: export_program_cfg_to_path`
 - `crate :: file_ordering :: { build_dependency_map , build_entries , build_file_dag , detect_cycles , ordered_by_name , topological_sort , }`
+- `crate :: invariant_integrator :: InvariantDetector`
+- `crate :: invariant_reporter`
+- `crate :: julia_parser :: JuliaAnalyzer`
 - `crate :: layer_core :: layer_constrained_sort`
 - `crate :: layer_utilities :: build_file_layers`
+- `crate :: report :: ReportGenerator`
+- `crate :: rust_parser :: RustAnalyzer`
 - `crate :: types :: FileOrderingResult`
+- `crate :: types :: { AnalysisResult , FileOrderingResult }`
 - `crate :: utilities :: compress_path`
 - `once_cell :: sync :: Lazy`
 - `petgraph :: Direction`
@@ -32,25 +46,6 @@ Module `000_cluster_001`
 - `syn :: { ItemUse , UseTree }`
 - `walkdir :: WalkDir`
 
-## src/000_invariant_types.rs (000_invariant_types.rs)
-
-Module `000_invariant_types`
-
-- `serde :: { Deserialize , Serialize }`
-- `std :: collections :: { HashMap , HashSet }`
-- `std :: fmt`
-- `super :: *`
-
-## src/005_refactor_constraints.rs (005_refactor_constraints.rs)
-
-Module `005_refactor_constraints`
-
-- `crate :: invariant_types :: *`
-- `serde :: { Deserialize , Serialize }`
-- `std :: collections :: HashSet`
-- `std :: fmt`
-- `super :: *`
-
 ## src/010_cluster_008.rs (010_cluster_008.rs)
 
 Module `010_cluster_008`
@@ -61,12 +56,42 @@ Module `010_cluster_008`
 - `petgraph :: graph :: DiGraph`
 - `petgraph :: visit :: EdgeRef`
 - `std :: cmp :: Ordering`
+- `std :: collections :: HashMap`
 - `std :: collections :: { BTreeMap , BTreeSet , HashMap , VecDeque }`
+- `std :: path :: PathBuf`
 - `std :: path :: { Path , PathBuf }`
 
-## src/010_scc_compressor.rs (010_scc_compressor.rs)
+## src/020_cluster_010.rs (020_cluster_010.rs)
 
-Module `010_scc_compressor`
+Module `020_cluster_010`
+
+- `crate :: layer_utilities :: allow_analysis_dir`
+- `crate :: layer_utilities :: resolve_source_root`
+- `std :: path :: Path`
+- `std :: path :: PathBuf`
+- `walkdir :: WalkDir`
+
+## src/020_invariant_types.rs (020_invariant_types.rs)
+
+Module `020_invariant_types`
+
+- `serde :: { Deserialize , Serialize }`
+- `std :: collections :: { HashMap , HashSet }`
+- `std :: fmt`
+- `super :: *`
+
+## src/030_refactor_constraints.rs (030_refactor_constraints.rs)
+
+Module `030_refactor_constraints`
+
+- `crate :: invariant_types :: *`
+- `serde :: { Deserialize , Serialize }`
+- `std :: fmt`
+- `super :: *`
+
+## src/040_scc_compressor.rs (040_scc_compressor.rs)
+
+Module `040_scc_compressor`
 
 - `petgraph :: algo :: tarjan_scc`
 - `petgraph :: graph :: { DiGraph , NodeIndex }`
@@ -74,26 +99,25 @@ Module `010_scc_compressor`
 - `std :: collections :: HashMap`
 - `super :: *`
 
-## src/020_cluster_010.rs (020_cluster_010.rs)
+## src/050_cluster_010.rs (050_cluster_010.rs)
 
-Module `020_cluster_010`
+Module `050_cluster_010`
 
 - `anyhow :: { Context , Result }`
-- `crate :: cluster_001 :: { collect_julia_dependencies , JuliaTarget }`
-- `crate :: dependency :: ReferenceDetail`
 - `crate :: dependency :: RootState`
+- `crate :: layer_utilities :: resolve_source_root`
 - `once_cell :: sync :: Lazy`
 - `regex :: Regex`
-- `std :: collections :: { BTreeMap , BTreeSet , HashMap , HashSet }`
+- `std :: collections :: { BTreeSet , HashMap , HashSet }`
 - `std :: fs`
 - `std :: path :: { Path , PathBuf }`
 - `syn :: ItemUse`
 - `syn :: visit :: Visit`
 - `walkdir :: WalkDir`
 
-## src/020_layer_inference.rs (020_layer_inference.rs)
+## src/060_layer_inference.rs (060_layer_inference.rs)
 
-Module `020_layer_inference`
+Module `060_layer_inference`
 
 - `crate :: invariant_types :: LayerInfo`
 - `petgraph :: Direction`
@@ -102,9 +126,9 @@ Module `020_layer_inference`
 - `std :: collections :: HashMap`
 - `super :: *`
 
-## src/030_cluster_011.rs (030_cluster_011.rs)
+## src/070_cluster_011.rs (070_cluster_011.rs)
 
-Module `030_cluster_011`
+Module `070_cluster_011`
 
 - `anyhow :: Result`
 - `crate :: types :: ProgramCFG`
@@ -112,41 +136,39 @@ Module `030_cluster_011`
 - `std :: collections :: { HashMap , HashSet }`
 - `std :: path :: { Path , PathBuf }`
 
-## src/030_fixpoint_solver.rs (030_fixpoint_solver.rs)
+## src/080_fixpoint_solver.rs (080_fixpoint_solver.rs)
 
-Module `030_fixpoint_solver`
+Module `080_fixpoint_solver`
 
 - `petgraph :: Direction`
 - `petgraph :: graph :: { DiGraph , NodeIndex }`
 - `std :: collections :: { HashMap , HashSet }`
 - `super :: *`
 
-## src/040_dependency.rs (040_dependency.rs)
+## src/090_dependency.rs (090_dependency.rs)
 
-Module `040_dependency`
+Module `090_dependency`
 
 - `std :: collections :: BTreeSet`
 - `std :: path :: PathBuf`
 - `syn :: UseTree`
 
-## src/040_structural_detector.rs (040_structural_detector.rs)
+## src/100_structural_detector.rs (100_structural_detector.rs)
 
-Module `040_structural_detector`
+Module `100_structural_detector`
 
 - `crate :: invariant_types :: *`
 - `crate :: layer_inference :: infer_layers`
 - `crate :: scc_compressor :: SccCompression`
 - `crate :: types :: { AnalysisResult , ElementType }`
 - `petgraph :: Direction`
-- `petgraph :: algo :: is_cyclic_directed`
 - `petgraph :: graph :: { DiGraph , NodeIndex }`
 - `std :: collections :: HashMap`
-- `std :: collections :: HashSet`
 - `super :: *`
 
-## src/050_cluster_006.rs (050_cluster_006.rs)
+## src/110_cluster_006.rs (110_cluster_006.rs)
 
-Module `050_cluster_006`
+Module `110_cluster_006`
 
 - `crate :: cluster_008 :: FunctionInfo`
 - `once_cell :: sync :: Lazy`
@@ -154,40 +176,31 @@ Module `050_cluster_006`
 - `std :: collections :: { BTreeMap , BTreeSet , HashMap , HashSet }`
 - `std :: path :: { Path , PathBuf }`
 
-## src/050_semantic_detector.rs (050_semantic_detector.rs)
+## src/120_semantic_detector.rs (120_semantic_detector.rs)
 
-Module `050_semantic_detector`
+Module `120_semantic_detector`
 
 - `crate :: invariant_types :: *`
 - `crate :: types :: { CodeElement , ElementType }`
 - `crate :: types :: { Language , Visibility }`
 - `regex :: Regex`
-- `std :: collections :: HashSet`
 - `super :: *`
 
-## src/060_layer_core.rs (060_layer_core.rs)
+## src/140_path_detector.rs (140_path_detector.rs)
 
-Module `060_layer_core`
-
-- `crate :: cluster_008 :: structural_layer_value`
-- `std :: collections :: HashMap`
-- `std :: path :: PathBuf`
-
-## src/060_path_detector.rs (060_path_detector.rs)
-
-Module `060_path_detector`
+Module `140_path_detector`
 
 - `crate :: invariant_types :: *`
 - `crate :: scc_compressor :: SccCompression`
 - `petgraph :: Direction`
 - `petgraph :: algo :: all_simple_paths`
 - `petgraph :: graph :: { DiGraph , NodeIndex }`
-- `std :: collections :: { HashMap , HashSet }`
+- `std :: collections :: HashSet`
 - `super :: *`
 
-## src/070_invariant_integrator.rs (070_invariant_integrator.rs)
+## src/150_invariant_integrator.rs (150_invariant_integrator.rs)
 
-Module `070_invariant_integrator`
+Module `150_invariant_integrator`
 
 - `crate :: invariant_types :: *`
 - `crate :: layer_inference :: { detect_layer_violations , infer_layers }`
@@ -201,29 +214,31 @@ Module `070_invariant_integrator`
 - `std :: collections :: HashMap`
 - `super :: *`
 
-## src/070_layer_utilities.rs (070_layer_utilities.rs)
+## src/160_layer_utilities.rs (160_layer_utilities.rs)
 
-Module `070_layer_utilities`
+Module `160_layer_utilities`
 
-- `anyhow :: { Context , Result }`
+- `anyhow :: Result`
 - `clap :: Parser`
-- `crate :: cohesion_analyzer :: FunctionCohesionAnalyzer`
-- `crate :: control_flow :: ControlFlowAnalyzer`
-- `crate :: dependency :: LayerGraph`
-- `crate :: directory_analyzer :: DirectoryAnalyzer`
-- `crate :: dot_exporter :: export_program_cfg_to_path`
-- `crate :: invariant_integrator :: InvariantDetector`
-- `crate :: invariant_reporter`
-- `crate :: julia_parser :: JuliaAnalyzer`
-- `crate :: report :: ReportGenerator`
-- `crate :: rust_parser :: RustAnalyzer`
-- `crate :: types :: { AnalysisResult , FileOrderingResult }`
+- `crate :: cluster_001 :: run_analysis`
+- `crate :: cluster_010 :: gather_rust_files`
+- `crate :: dead_code_actions :: recommend_action`
+- `crate :: dead_code_attribute_parser :: { detect_test_modules , detect_test_symbols }`
+- `crate :: dead_code_call_graph :: { build_call_graph , classify_symbol , is_reachable }`
+- `crate :: dead_code_cli :: { DeadCodeRunConfig , is_test_path , merge_intent_map , reason_for_category }`
+- `crate :: dead_code_confidence :: { assign_confidence , Evidence }`
+- `crate :: dead_code_entrypoints :: { collect_entrypoints , collect_exports , is_public_api }`
+- `crate :: dead_code_intent :: detect_intent_signals`
+- `crate :: dead_code_report :: { build_report , write_outputs , DeadCodeReportMetadata , DeadCodeReportWithMeta , }`
+- `crate :: dead_code_test_boundaries :: TestBoundaries`
+- `crate :: dead_code_types :: { DeadCodeCategory , DeadCodeItem }`
+- `crate :: types :: { CodeElement , ElementType , Language , Visibility }`
+- `std :: collections :: HashMap`
 - `std :: path :: { Path , PathBuf }`
-- `walkdir :: WalkDir`
 
-## src/080_invariant_reporter.rs (080_invariant_reporter.rs)
+## src/170_invariant_reporter.rs (170_invariant_reporter.rs)
 
-Module `080_invariant_reporter`
+Module `170_invariant_reporter`
 
 - `crate :: invariant_types :: *`
 - `crate :: refactor_constraints :: RefactorConstraint`
@@ -233,19 +248,18 @@ Module `080_invariant_reporter`
 - `std :: path :: Path`
 - `super :: *`
 
-## src/082_conscience_graph.rs (082_conscience_graph.rs)
+## src/180_conscience_graph.rs (180_conscience_graph.rs)
 
-Module `082_conscience_graph`
+Module `180_conscience_graph`
 
 - `crate :: invariant_types :: *`
 - `std :: collections :: HashMap`
-- `std :: io :: Write`
 - `std :: path :: Path`
 - `super :: *`
 
-## src/083_action_validator.rs (083_action_validator.rs)
+## src/190_action_validator.rs (190_action_validator.rs)
 
-Module `083_action_validator`
+Module `190_action_validator`
 
 - `crate :: invariant_types :: InvariantStrength`
 - `crate :: refactor_constraints :: RefactorConstraint`
@@ -253,9 +267,9 @@ Module `083_action_validator`
 - `std :: path :: PathBuf`
 - `super :: *`
 
-## src/085_agent_conscience.rs (085_agent_conscience.rs)
+## src/200_agent_conscience.rs (200_agent_conscience.rs)
 
-Module `085_agent_conscience`
+Module `200_agent_conscience`
 
 - `crate :: action_validator :: { validate_action , AgentAction , ConstraintViolation }`
 - `crate :: invariant_types :: { Invariant , InvariantStrength }`
@@ -266,18 +280,30 @@ Module `085_agent_conscience`
 - `std :: path :: { Path , PathBuf }`
 - `super :: *`
 
-## src/090_utilities.rs (090_utilities.rs)
+## src/210_utilities.rs (210_utilities.rs)
 
-Module `090_utilities`
+Module `210_utilities`
 
 - `crate :: report :: { PlanItem , Priority , ActionKind , ClusterPlan }`
 - `crate :: types :: { DirectoryAnalysis , FunctionPlacement , PlacementStatus }`
 - `std :: collections :: { BTreeSet , HashMap }`
 - `std :: path :: { Path , PathBuf }`
 
-## src/100_types.rs (100_types.rs)
+## src/211_dead_code_attribute_parser.rs (211_dead_code_attribute_parser.rs)
 
-Module `100_types`
+Module `211_dead_code_attribute_parser`
+
+- `# [doc = " Attribute parsing for dead code intent markers."] use std :: collections :: { HashMap , HashSet }`
+- `crate :: dead_code_doc_comment_parser :: { extract_doc_markers , item_attrs , item_name , merge_doc_intent , }`
+- `crate :: dead_code_intent :: { check_planned_directory , collect_symbols , merge_intent_sources , planned_directory_intent , DeadCodePolicy , }`
+- `crate :: dead_code_test_boundaries :: has_test_attr`
+- `crate :: dead_code_types :: { IntentMap , IntentMarker , IntentMetadata , IntentSource , IntentTag }`
+- `std :: path :: Path`
+- `syn :: { Attribute , Item }`
+
+## src/220_types.rs (220_types.rs)
+
+Module `220_types`
 
 - `crate :: invariant_types :: InvariantAnalysisResult`
 - `crate :: refactor_constraints :: RefactorConstraint`
@@ -285,9 +311,9 @@ Module `100_types`
 - `std :: collections :: HashMap`
 - `std :: path :: PathBuf`
 
-## src/110_cohesion_analyzer.rs (110_cohesion_analyzer.rs)
+## src/230_cohesion_analyzer.rs (230_cohesion_analyzer.rs)
 
-Module `110_cohesion_analyzer`
+Module `230_cohesion_analyzer`
 
 - `anyhow :: Result`
 - `crate :: cluster_006 :: compute_cohesion_score`
@@ -297,9 +323,9 @@ Module `110_cohesion_analyzer`
 - `std :: collections :: { BTreeMap , HashMap , HashSet }`
 - `std :: path :: PathBuf`
 
-## src/120_directory_analyzer.rs (120_directory_analyzer.rs)
+## src/240_directory_analyzer.rs (240_directory_analyzer.rs)
 
-Module `120_directory_analyzer`
+Module `240_directory_analyzer`
 
 - `anyhow :: Result`
 - `crate :: dependency :: detect_layer`
@@ -308,9 +334,9 @@ Module `120_directory_analyzer`
 - `std :: fs`
 - `std :: path :: { Path , PathBuf }`
 
-## src/130_control_flow.rs (130_control_flow.rs)
+## src/250_control_flow.rs (250_control_flow.rs)
 
-Module `130_control_flow`
+Module `250_control_flow`
 
 - `crate :: types :: *`
 - `crate :: utilities :: compress_path`
@@ -318,9 +344,9 @@ Module `130_control_flow`
 - `petgraph :: graph :: { DiGraph , NodeIndex }`
 - `std :: collections :: HashMap`
 
-## src/140_file_ordering.rs (140_file_ordering.rs)
+## src/260_file_ordering.rs (260_file_ordering.rs)
 
-Module `140_file_ordering`
+Module `260_file_ordering`
 
 - `(crate) use crate :: cluster_001 :: build_entries`
 - `(crate) use crate :: cluster_001 :: detect_cycles`
@@ -336,9 +362,9 @@ Module `140_file_ordering`
 - `std :: path :: PathBuf`
 - `std :: time :: SystemTime`
 
-## src/150_julia_parser.rs (150_julia_parser.rs)
+## src/270_julia_parser.rs (270_julia_parser.rs)
 
-Module `150_julia_parser`
+Module `270_julia_parser`
 
 - `anyhow :: { anyhow , Context , Result }`
 - `crate :: types :: *`
@@ -350,9 +376,9 @@ Module `150_julia_parser`
 - `std :: process :: { Command , Stdio }`
 - `std :: sync :: atomic :: { AtomicBool , Ordering }`
 
-## src/160_rust_parser.rs (160_rust_parser.rs)
+## src/280_rust_parser.rs (280_rust_parser.rs)
 
-Module `160_rust_parser`
+Module `280_rust_parser`
 
 - `anyhow :: { Context , Result }`
 - `crate :: types :: { AnalysisResult , CfgEdge , CfgNode , CodeElement , ElementType , FunctionCfg , Language , ModuleInfo , NodeType , Visibility , }`
@@ -361,9 +387,9 @@ Module `160_rust_parser`
 - `syn :: visit :: Visit`
 - `syn :: { ItemEnum , ItemFn , ItemImpl , ItemMod , ItemStruct , ItemTrait , ItemUse }`
 
-## src/180_report.rs (180_report.rs)
+## src/310_report.rs (310_report.rs)
 
-Module `180_report`
+Module `310_report`
 
 - `anyhow :: Result`
 - `crate :: action_validator :: check_move_allowed`
@@ -374,22 +400,25 @@ Module `180_report`
 - `crate :: layer_core :: { collect_directory_moves , sort_structural_items }`
 - `crate :: refactor_constraints :: RefactorConstraint`
 - `crate :: types :: *`
+- `crate :: types :: { ElementType , Language , Visibility }`
 - `crate :: utilities :: { compress_path , collect_move_items , write_structural_batches , write_cluster_batches }`
 - `std :: cmp :: Ordering`
+- `std :: collections :: HashMap`
 - `std :: collections :: { BTreeMap , BTreeSet , HashMap , HashSet }`
 - `std :: fs`
+- `std :: path :: PathBuf`
 - `std :: path :: { Path , PathBuf }`
 - `walkdir :: WalkDir`
 
-## src/190_main.rs (190_main.rs)
+## src/320_main.rs (320_main.rs)
 
-Module `190_main`
+Module `320_main`
 
 - `anyhow :: Result`
 
-## src/191_agent_cli.rs (191_agent_cli.rs)
+## src/330_agent_cli.rs (330_agent_cli.rs)
 
-Module `191_agent_cli`
+Module `330_agent_cli`
 
 - `anyhow :: Result`
 - `clap :: Parser`
@@ -398,4 +427,241 @@ Module `191_agent_cli`
 - `crate :: invariant_types :: Invariant`
 - `std :: path :: PathBuf`
 - `super :: *`
+
+## src/350_dead_code_types.rs (350_dead_code_types.rs)
+
+Module `350_dead_code_types`
+
+- `serde :: { Deserialize , Serialize }`
+- `std :: collections :: HashMap`
+- `std :: path :: PathBuf`
+
+## src/370_dead_code_doc_comment_parser.rs (370_dead_code_doc_comment_parser.rs)
+
+Module `370_dead_code_doc_comment_parser`
+
+- `crate :: dead_code_types :: { IntentMarker , IntentMap }`
+- `std :: collections :: { HashMap , HashSet }`
+- `syn :: { Attribute , Item , Meta , MetaNameValue }`
+
+## src/380_dead_code_call_graph.rs (380_dead_code_call_graph.rs)
+
+Module `380_dead_code_call_graph`
+
+- `crate :: dead_code_intent :: DeadCodePolicy`
+- `crate :: dead_code_test_boundaries :: TestBoundaries`
+- `crate :: dead_code_types :: { DeadCodeCategory , IntentMap }`
+- `crate :: types :: { CodeElement , ElementType , Language }`
+- `std :: collections :: { HashMap , HashSet , VecDeque }`
+
+## src/390_dead_code_intent.rs (390_dead_code_intent.rs)
+
+Module `390_dead_code_intent`
+
+- `crate :: dead_code_doc_comment_parser :: item_name`
+- `crate :: dead_code_types :: { IntentMap , IntentMarker , IntentMetadata , IntentSource , }`
+- `std :: collections :: HashMap`
+- `std :: path :: { Path , PathBuf }`
+
+## src/400_dead_code_test_boundaries.rs (400_dead_code_test_boundaries.rs)
+
+Module `400_dead_code_test_boundaries`
+
+- `crate :: dead_code_call_graph :: { build_reverse_call_graph , CallGraph }`
+- `std :: collections :: { HashSet , VecDeque }`
+- `std :: path :: PathBuf`
+- `syn :: { Attribute , Item }`
+
+## src/410_dead_code_entrypoints.rs (410_dead_code_entrypoints.rs)
+
+Module `410_dead_code_entrypoints`
+
+- `crate :: dead_code_intent :: DeadCodePolicy`
+- `crate :: types :: { CodeElement , ElementType , Visibility }`
+- `std :: collections :: HashSet`
+- `std :: path :: Path`
+- `walkdir :: WalkDir`
+
+## src/420_dead_code_classifier.rs (420_dead_code_classifier.rs)
+
+Module `420_dead_code_classifier`
+
+- `crate :: dead_code_call_graph :: CallGraph`
+- `std :: collections :: HashSet`
+
+## src/430_dead_code_confidence.rs (430_dead_code_confidence.rs)
+
+Module `430_dead_code_confidence`
+
+- `crate :: dead_code_types :: { ConfidenceLevel , DeadCodeCategory , DeadCodeItem }`
+
+## src/440_dead_code_actions.rs (440_dead_code_actions.rs)
+
+Module `440_dead_code_actions`
+
+- `crate :: dead_code_types :: { ConfidenceLevel , DeadCodeCategory , RecommendedAction }`
+
+## src/450_correction_plan_types.rs (450_correction_plan_types.rs)
+
+Module `450_correction_plan_types`
+
+- `crate :: types :: Visibility`
+- `serde :: { Deserialize , Serialize }`
+- `std :: path :: PathBuf`
+
+## src/460_dead_code_report.rs (460_dead_code_report.rs)
+
+Module `460_dead_code_report`
+
+- `anyhow :: Result`
+- `crate :: dead_code_cli :: DeadCodeRunConfig`
+- `crate :: dead_code_report_split :: { write_plan_markdown , write_summary_markdown }`
+- `crate :: dead_code_types :: { DeadCodeItem , DeadCodeReport , DeadCodeSummary }`
+- `serde :: { Deserialize , Serialize }`
+- `std :: path :: Path`
+
+## src/470_dead_code_filter.rs (470_dead_code_filter.rs)
+
+Module `470_dead_code_filter`
+
+- `crate :: dead_code_report :: DeadCodeReportWithMeta`
+- `crate :: dead_code_types :: { DeadCodeCategory }`
+- `crate :: types :: CodeElement`
+- `std :: collections :: HashSet`
+
+## src/480_verification_policy_types.rs (480_verification_policy_types.rs)
+
+Module `480_verification_policy_types`
+
+- `serde :: { Deserialize , Serialize }`
+- `std :: path :: PathBuf`
+
+## src/490_dead_code_cli.rs (490_dead_code_cli.rs)
+
+Module `490_dead_code_cli`
+
+- `crate :: dead_code_intent :: DeadCodePolicy`
+- `crate :: dead_code_types :: DeadCodeCategory`
+- `std :: collections :: HashMap`
+- `std :: path :: { Path , PathBuf }`
+
+## src/500_quality_delta_types.rs (500_quality_delta_types.rs)
+
+Module `500_quality_delta_types`
+
+- `crate :: correction_plan_types :: ViolationType`
+- `serde :: { Deserialize , Serialize }`
+
+## src/510_dead_code_policy.rs (510_dead_code_policy.rs)
+
+Module `510_dead_code_policy`
+
+- `crate :: dead_code_intent :: DeadCodePolicy`
+- `std :: path :: Path`
+
+## src/520_violation_predictor.rs (520_violation_predictor.rs)
+
+Module `520_violation_predictor`
+
+- `crate :: action_impact_estimator :: { estimate_impact , AnalysisState as ImpactState }`
+- `crate :: correction_intelligence_report :: { augment_path_coherence_strategies , compute_summary , fill_prediction_confidence , CorrectionIntelligenceReport , IntelligenceState , }`
+- `crate :: correction_plan_generator :: generate_correction_plan`
+- `crate :: correction_plan_types :: { RefactorAction , Severity , ViolationPrediction , ViolationType , }`
+- `crate :: invariant_types :: InvariantAnalysisResult`
+- `crate :: rollback_criteria_builder :: build_rollback_criteria`
+- `crate :: types :: { CallGraphNode , CodeElement }`
+- `crate :: verification_scope_planner :: plan_verification_scope`
+- `std :: collections :: { HashMap , HashSet }`
+- `std :: path :: PathBuf`
+
+## src/530_dead_code_report_split.rs (530_dead_code_report_split.rs)
+
+Module `530_dead_code_report_split`
+
+- `crate :: dead_code_report :: DeadCodeReportWithMeta`
+- `crate :: dead_code_types :: { DeadCodeCategory , DeadCodeItem , RecommendedAction }`
+- `std :: path :: Path`
+
+## src/540_tier_classifier.rs (540_tier_classifier.rs)
+
+Module `540_tier_classifier`
+
+- `crate :: correction_plan_types :: { ErrorTier , Severity , ViolationPrediction , ViolationType }`
+
+## src/550_confidence_scorer.rs (550_confidence_scorer.rs)
+
+Module `550_confidence_scorer`
+
+- `crate :: correction_plan_types :: { ViolationPrediction , ViolationType }`
+
+## src/560_correction_plan_generator.rs (560_correction_plan_generator.rs)
+
+Module `560_correction_plan_generator`
+
+- `crate :: correction_plan_types :: { CorrectionPlan , CorrectionStrategy , ErrorTier , RefactorAction , ViolationPrediction , ViolationType , VisibilityPlanOption , }`
+- `crate :: tier_classifier :: classify_tier`
+
+## src/570_verification_scope_planner.rs (570_verification_scope_planner.rs)
+
+Module `570_verification_scope_planner`
+
+- `crate :: correction_plan_types :: { CorrectionPlan , ErrorTier , RefactorAction }`
+- `crate :: verification_policy_types :: { VerificationCheck , VerificationPolicy , VerificationScope , }`
+
+## src/580_rollback_criteria_builder.rs (580_rollback_criteria_builder.rs)
+
+Module `580_rollback_criteria_builder`
+
+- `crate :: correction_plan_types :: { CorrectionPlan , ErrorTier , RefactorAction , ViolationType }`
+- `crate :: quality_delta_types :: { RollbackCondition , RollbackCriteria }`
+
+## src/590_quality_delta_calculator.rs (590_quality_delta_calculator.rs)
+
+Module `590_quality_delta_calculator`
+
+- `crate :: action_impact_estimator :: { AnalysisState , simulate_action }`
+- `crate :: correction_plan_types :: RefactorAction`
+- `crate :: quality_delta_types :: QualityDelta`
+
+## src/600_action_impact_estimator.rs (600_action_impact_estimator.rs)
+
+Module `600_action_impact_estimator`
+
+- `crate :: correction_plan_types :: RefactorAction`
+- `crate :: quality_delta_calculator :: Metrics`
+
+## src/610_correction_plan_serializer.rs (610_correction_plan_serializer.rs)
+
+Module `610_correction_plan_serializer`
+
+- `# [doc = " Serialize correction plans to JSON values."] use std :: path :: Path`
+- `crate :: correction_intelligence_report :: CorrectionIntelligenceReport`
+- `crate :: correction_plan_types :: { CorrectionPlan , CorrectionStrategy }`
+- `crate :: quality_delta_types :: RollbackCriteria`
+- `crate :: verification_policy_emitter :: emit_verification_policy`
+- `crate :: verification_policy_types :: { QualityThresholds , VerificationCheck , VerificationPolicy , VerificationScope }`
+- `serde_json :: { json , Value }`
+
+## src/620_verification_policy_emitter.rs (620_verification_policy_emitter.rs)
+
+Module `620_verification_policy_emitter`
+
+- `crate :: verification_policy_types :: { QualityThresholds , VerificationCheck , VerificationPolicy , VerificationScope , }`
+- `serde_json :: json`
+- `std :: path :: Path`
+
+## src/630_correction_intelligence_report.rs (630_correction_intelligence_report.rs)
+
+Module `630_correction_intelligence_report`
+
+- `crate :: correction_plan_types :: { CorrectionPlan , CorrectionStrategy , ErrorTier , RefactorAction , ViolationPrediction , }`
+- `crate :: invariant_types :: InvariantAnalysisResult`
+- `crate :: quality_delta_calculator :: Metrics`
+- `crate :: quality_delta_types :: { QualityDelta , RollbackCriteria }`
+- `crate :: types :: { AnalysisResult , CallGraphNode , CodeElement }`
+- `regex :: Regex`
+- `serde :: { Deserialize , Serialize }`
+- `std :: collections :: HashMap`
+- `std :: path :: { Path , PathBuf }`
+- `std :: { collections :: HashSet , fs }`
 

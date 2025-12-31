@@ -1,0 +1,251 @@
+warning: unused import: `BTreeMap`
+  --> src/020_cluster_010.rs:13:24
+   |
+13 | use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
+   |                        ^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `crate::cluster_008::structural_layer_value`
+  --> src/060_layer_core.rs:13:5
+   |
+13 | use crate::cluster_008::structural_layer_value;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Context`
+ --> src/070_layer_utilities.rs:4:14
+  |
+4 | use anyhow::{Context, Result};
+  |              ^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/212_dead_code_doc_comment_parser.rs:6:5
+  |
+6 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_attribute_parser::parse_mmsb_latent_attr`
+ --> src/214_dead_code_intent.rs:4:5
+  |
+4 | use crate::dead_code_attribute_parser::parse_mmsb_latent_attr;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `merge_doc_intent` and `scan_doc_comments`
+ --> src/214_dead_code_intent.rs:6:43
+  |
+6 | use crate::dead_code_doc_comment_parser::{merge_doc_intent, scan_doc_comments};
+  |                                           ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `IntentTag`
+ --> src/214_dead_code_intent.rs:8:60
+  |
+8 |     IntentMap, IntentMarker, IntentMetadata, IntentSource, IntentTag,
+  |                                                            ^^^^^^^^^
+
+warning: unused import: `crate::dead_code_attribute_parser::is_cfg_test_item`
+ --> src/215_dead_code_test_boundaries.rs:4:5
+  |
+4 | use crate::dead_code_attribute_parser::is_cfg_test_item;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Path`
+ --> src/215_dead_code_test_boundaries.rs:7:17
+  |
+7 | use std::path::{Path, PathBuf};
+  |                 ^^^^
+
+warning: unused import: `build_reverse_call_graph`
+ --> src/217_dead_code_classifier.rs:4:35
+  |
+4 | use crate::dead_code_call_graph::{build_reverse_call_graph, CallGraph};
+  |                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_intent::DeadCodePolicy`
+ --> src/217_dead_code_classifier.rs:6:5
+  |
+6 | use crate::dead_code_intent::DeadCodePolicy;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_test_boundaries::TestBoundaries`
+ --> src/217_dead_code_classifier.rs:7:5
+  |
+7 | use crate::dead_code_test_boundaries::TestBoundaries;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `DeadCodeCategory` and `IntentMap`
+ --> src/217_dead_code_classifier.rs:8:30
+  |
+8 | use crate::dead_code_types::{DeadCodeCategory, IntentMap};
+  |                              ^^^^^^^^^^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `anyhow::Result`
+ --> src/222_dead_code_cli.rs:4:5
+  |
+4 | use anyhow::Result;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_actions::recommend_action`
+ --> src/222_dead_code_cli.rs:5:5
+  |
+5 | use crate::dead_code_actions::recommend_action;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_call_graph::build_call_graph`
+ --> src/222_dead_code_cli.rs:6:5
+  |
+6 | use crate::dead_code_call_graph::build_call_graph;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `classify_symbol` and `is_reachable`
+ --> src/222_dead_code_cli.rs:7:35
+  |
+7 | use crate::dead_code_classifier::{classify_symbol, is_reachable};
+  |                                   ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^
+
+warning: unused imports: `Evidence` and `assign_confidence`
+ --> src/222_dead_code_cli.rs:8:35
+  |
+8 | use crate::dead_code_confidence::{assign_confidence, Evidence};
+  |                                   ^^^^^^^^^^^^^^^^^  ^^^^^^^^
+
+warning: unused imports: `collect_entrypoints`, `collect_exports`, and `is_public_api`
+ --> src/222_dead_code_cli.rs:9:36
+  |
+9 | use crate::dead_code_entrypoints::{collect_entrypoints, collect_exports, is_public_api};
+  |                                    ^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^
+
+warning: unused imports: `detect_test_modules` and `detect_test_symbols`
+  --> src/222_dead_code_cli.rs:10:41
+   |
+10 | use crate::dead_code_attribute_parser::{detect_test_modules, detect_test_symbols};
+   |                                         ^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `detect_intent_signals`
+  --> src/222_dead_code_cli.rs:11:31
+   |
+11 | use crate::dead_code_intent::{detect_intent_signals, DeadCodePolicy};
+   |                               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `DeadCodeReportMetadata`, `DeadCodeReportWithMeta`, `build_report`, and `write_report`
+  --> src/222_dead_code_cli.rs:12:31
+   |
+12 | use crate::dead_code_report::{build_report, write_report, DeadCodeReportMetadata, DeadCodeReportWithMeta};
+   |                               ^^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_report_split::write_summary_markdown`
+  --> src/222_dead_code_cli.rs:13:5
+   |
+13 | use crate::dead_code_report_split::write_summary_markdown;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::dead_code_test_boundaries::TestBoundaries`
+  --> src/222_dead_code_cli.rs:14:5
+   |
+14 | use crate::dead_code_test_boundaries::TestBoundaries;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `DeadCodeItem`
+  --> src/222_dead_code_cli.rs:15:48
+   |
+15 | use crate::dead_code_types::{DeadCodeCategory, DeadCodeItem};
+   |                                                ^^^^^^^^^^^^
+
+warning: unused import: `crate::cluster_010::gather_rust_files`
+  --> src/222_dead_code_cli.rs:16:5
+   |
+16 | use crate::cluster_010::gather_rust_files;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CodeElement`, `ElementType`, `Language`, and `Visibility`
+  --> src/222_dead_code_cli.rs:17:20
+   |
+17 | use crate::types::{CodeElement, ElementType, Language, Visibility};
+   |                    ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `calculate_quality_delta`
+ --> src/230_action_impact_estimator.rs:5:39
+  |
+5 | use crate::quality_delta_calculator::{calculate_quality_delta, Metrics};
+  |                                       ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::quality_delta_types::QualityDelta`
+ --> src/230_action_impact_estimator.rs:6:5
+  |
+6 | use crate::quality_delta_types::QualityDelta;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::correction_intelligence_report::CorrectionIntelligenceReport`
+ --> src/232_verification_policy_emitter.rs:4:5
+  |
+4 | use crate::correction_intelligence_report::CorrectionIntelligenceReport;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::correction_plan_serializer::serialize_correction_plans`
+ --> src/232_verification_policy_emitter.rs:5:5
+  |
+5 | use crate::correction_plan_serializer::serialize_correction_plans;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `AnalysisState as ImpactState` and `estimate_impact`
+ --> src/233_correction_intelligence_report.rs:4:38
+  |
+4 | use crate::action_impact_estimator::{estimate_impact, AnalysisState as ImpactState};
+  |                                      ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::correction_plan_generator::generate_correction_plan`
+ --> src/233_correction_intelligence_report.rs:5:5
+  |
+5 | use crate::correction_plan_generator::generate_correction_plan;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::correction_plan_serializer::serialize_correction_plan`
+ --> src/233_correction_intelligence_report.rs:6:5
+  |
+6 | use crate::correction_plan_serializer::serialize_correction_plan;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `RefactorAction`
+ --> src/233_correction_intelligence_report.rs:7:63
+  |
+7 | use crate::correction_plan_types::{CorrectionPlan, ErrorTier, RefactorAction, ViolationPrediction};
+  |                                                               ^^^^^^^^^^^^^^
+
+warning: unused import: `crate::rollback_criteria_builder::build_rollback_criteria`
+  --> src/233_correction_intelligence_report.rs:10:5
+   |
+10 | use crate::rollback_criteria_builder::build_rollback_criteria;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::verification_policy_emitter::emit_verification_policy`
+  --> src/233_correction_intelligence_report.rs:11:5
+   |
+11 | use crate::verification_policy_emitter::emit_verification_policy;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::verification_scope_planner::plan_verification_scope`
+  --> src/233_correction_intelligence_report.rs:12:5
+   |
+12 | use crate::verification_scope_planner::plan_verification_scope;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::violation_predictor::predict_violations`
+  --> src/233_correction_intelligence_report.rs:13:5
+   |
+13 | use crate::violation_predictor::predict_violations;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `serde_json::json`
+  --> src/233_correction_intelligence_report.rs:15:5
+   |
+15 | use serde_json::json;
+   |     ^^^^^^^^^^^^^^^^
+
+warning: `mmsb-analyzer` (lib) generated 40 warnings (run `cargo fix --lib -p mmsb-analyzer` to apply 40 suggestions)
+warning: unused import: `structural_cmp`
+  --> src/060_layer_core.rs:14:53
+   |
+14 | pub use crate::cluster_008::{sort_structural_items, structural_cmp};
+   |                                                     ^^^^^^^^^^^^^^
+
+warning: `mmsb-analyzer` (bin "mmsb-analyzer") generated 41 warnings (40 duplicates) (run `cargo fix --bin "mmsb-analyzer" -p mmsb-analyzer` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s

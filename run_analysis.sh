@@ -24,6 +24,8 @@ cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
     --correction-intelligence \
     --correction-json "$OUTPUT_DIR/97_correction_intelligence/correction_intelligence.json" \
     --verification-policy-json "$OUTPUT_DIR/97_correction_intelligence/verification_policy.json" \
+    --correction-path-slice \
+    --correction-visibility-slice \
     "$@" | tee "$ROOT_DIR/report_check.txt"
 
 # 2) Analyze only (regenerate docs, no TODO report)
@@ -41,6 +43,8 @@ cargo run --manifest-path "$ROOT_DIR/xtask/Cargo.toml" -- \
 #     --correction-intelligence \
 #     --correction-json "$OUTPUT_DIR/97_correction_intelligence/correction_intelligence.json" \
 #     --verification-policy-json "$OUTPUT_DIR/97_correction_intelligence/verification_policy.json" \
+#     --correction-path-slice \
+#     --correction-visibility-slice \
 #     "$@" | tee "$ROOT_DIR/report_analyze.txt"
 
 # 3) Report only (parse existing docs, no re-analysis)

@@ -1,0 +1,12 @@
+## Cargo Warnings
+
+Action: address compiler warnings before major refactors.
+Note: captured from cargo check/test outputs.
+
+```text
+Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+  Executable unittests src/340_lib.rs (target/debug/deps/mmsb_analyzer-c07b06d80c15a2f1)
+  Executable unittests src/320_main.rs (target/debug/deps/mmsb_analyzer-53a5352556fc2668)
+```
+

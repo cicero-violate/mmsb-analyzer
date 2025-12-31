@@ -19,6 +19,7 @@ use std::path::{Path, PathBuf};
 use syn::visit::Visit;
 use syn::{ItemUse, UseTree};
 
+use crate::cluster_010::{gather_rust_files, LayerResolver};
 use crate::dependency::{LayerGraph, ReferenceDetail, UnresolvedDependency};
 
 // ============================================================================
@@ -1029,4 +1030,307 @@ mod tests {
     fn test_generates_canonical_names_and_violations() {
         generates_canonical_names_and_violations().unwrap();
     }
+}
+
+pub fn order_julia_files_by_dependency(
+    files: &[PathBuf],
+    root: &Path,
+) -> Result<(Vec<PathBuf>, crate::dependency::LayerGraph)> {
+    use crate::cluster_001::{collect_julia_dependencies, JuliaTarget};
+    use crate::dependency::ReferenceDetail;
+
+    let mut file_layers: HashMap<PathBuf, String> = HashMap::new();
+    let mut nodes: BTreeSet<String> = BTreeSet::new();
+    let mut edges_map: BTreeMap<(String, String), BTreeSet<ReferenceDetail>> = BTreeMap::new();
+    let mut unresolved = Vec::new();
+    let resolver = LayerResolver::build(root)?;
+    let entry_files = crate::cluster_001::julia_entry_paths(root);
+
+    for file in files {
+        let layer = crate::cluster_001::detect_layer(file);
+        nodes.insert(layer.clone());
+        file_layers.insert(file.clone(), layer.clone());
+
+        let references = collect_julia_dependencies(file)
+            .with_context(|| format!("Failed to analyze Julia dependencies for {:?}", file))?;
+        for dep in references {
+            match dep.target {
+                JuliaTarget::Include(include_path) => {
+                    let resolved = if include_path.is_absolute() {
+                        include_path.clone()
+                    } else {
+                        file.parent()
+                            .map(|p| p.join(&include_path))
+                            .unwrap_or(include_path.clone())
+                    };
+
+                    if resolved.exists() {
+                        let target_layer = crate::cluster_001::detect_layer(&resolved);
+                        nodes.insert(target_layer.clone());
+                        if target_layer != layer {
+                            edges_map
+                                .entry((target_layer.clone(), layer.clone()))
+                                .or_default()
+                                .insert(ReferenceDetail {
+                                    file: file.clone(),
+                                    reference: dep.detail.clone(),
+                                });
+                        }
+                    } else {
+                        unresolved.push(crate::dependency::UnresolvedDependency {
+                            file: file.clone(),
+                            reference: dep.detail.clone(),
+                        });
+                    }
+                }
+                JuliaTarget::Module(module) => {
+                    if let Some(target_layer) = resolver.resolve_module(&module) {
+                        nodes.insert(target_layer.clone());
+                        if target_layer != layer {
+                            edges_map
+                                .entry((target_layer.clone(), layer.clone()))
+                                .or_default()
+                                .insert(ReferenceDetail {
+                                    file: file.clone(),
+                                    reference: dep.detail.clone(),
+                                });
+                        }
+                    } else {
+                        unresolved.push(crate::dependency::UnresolvedDependency {
+                            file: file.clone(),
+                            reference: dep.detail.clone(),
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+    crate::cluster_008::build_result(
+        files,
+        file_layers,
+        nodes,
+        edges_map,
+        unresolved,
+        &entry_files,
+    )
+}
+
+pub fn run_analysis(
+    root_path: &Path,
+    output_path: &Path,
+    verbose: bool,
+    skip_julia: bool,
+    dead_code: bool,
+    dead_code_filter: bool,
+    dead_code_json: Option<PathBuf>,
+    dead_code_summary: Option<PathBuf>,
+    dead_code_summary_limit: usize,
+    dead_code_policy: Option<PathBuf>,
+    correction_intelligence: bool,
+    correction_json: Option<PathBuf>,
+    verification_policy_json: Option<PathBuf>,
+    correction_path_slice: bool,
+    correction_path_slice_dir: Option<PathBuf>,
+    correction_visibility_slice: bool,
+    correction_visibility_slice_dir: Option<PathBuf>,
+) -> Result<()> {
+    use crate::control_flow::ControlFlowAnalyzer;
+    use crate::cohesion_analyzer::FunctionCohesionAnalyzer;
+    use crate::dependency::LayerGraph;
+    use crate::directory_analyzer::DirectoryAnalyzer;
+    use crate::dot_exporter::export_program_cfg_to_path;
+    use crate::julia_parser::JuliaAnalyzer;
+    use crate::report::ReportGenerator;
+    use crate::rust_parser::RustAnalyzer;
+    use crate::types::{AnalysisResult, FileOrderingResult};
+
+    let julia_script_path = root_path.join("src/000_main.jl");
+
+    println!("MMSB Intelligence Substrate Analyzer");
+    println!("=====================================\n");
+    println!("Root directory: {:?}", root_path);
+    println!("Output directory: {:?}", output_path);
+    println!("Julia script: {:?}\n", julia_script_path);
+
+    let rust_analyzer = RustAnalyzer::new(root_path.to_string_lossy().to_string());
+    let mut combined_result = AnalysisResult::new();
+
+    println!("Scanning Rust files (dependency-ordered)...");
+    let mut rust_count = 0;
+    let rust_files = gather_rust_files(root_path);
+    let (ordered_rust_files, rust_layer_graph) =
+        crate::dependency::order_rust_files_by_dependency(&rust_files, root_path)
+            .context("Failed to resolve Rust dependency order")?;
+    let rust_file_ordering =
+        crate::dependency::analyze_file_ordering(&rust_files, None)
+            .context("Failed to analyze Rust file ordering")?;
+    let julia_file_ordering = FileOrderingResult {
+        ordered_files: Vec::new(),
+        violations: Vec::new(),
+        layer_violations: Vec::new(),
+        ordered_directories: Vec::new(),
+        cycles: Vec::new(),
+    };
+
+    for path in ordered_rust_files {
+        if verbose {
+            println!("  Analyzing: {:?}", path);
+        }
+
+        match rust_analyzer.analyze_file(&path) {
+            Ok(result) => {
+                rust_count += 1;
+                combined_result.merge(result);
+            }
+            Err(e) => {
+                eprintln!("Warning: Failed to analyze {:?}: {}", path, e);
+            }
+        }
+    }
+
+    println!("  Analyzed {} Rust files\n", rust_count);
+
+    let mut julia_count = 0;
+    let mut julia_layer_graph = LayerGraph {
+        ordered_layers: Vec::new(),
+        edges: Vec::new(),
+        cycles: Vec::new(),
+        unresolved: Vec::new(),
+    };
+    if !skip_julia {
+        println!("Scanning Julia files (dependency-ordered)...");
+        let julia_files = gather_julia_files(root_path);
+        let (ordered_julia_files, jlg) =
+            crate::dependency::order_julia_files_by_dependency(&julia_files, root_path)
+                .context("Failed to resolve Julia dependency order")?;
+        julia_layer_graph = jlg;
+
+        if julia_script_path.exists() {
+            let julia_analyzer = JuliaAnalyzer::new(
+                root_path.to_path_buf(),
+                julia_script_path.clone(),
+                output_path.join("30_cfg/dots"),
+            );
+
+            for path in ordered_julia_files {
+                if verbose {
+                    println!("  Analyzing: {:?}", path);
+                }
+
+                match julia_analyzer.analyze_file(&path) {
+                    Ok(result) => {
+                        julia_count += 1;
+                        combined_result.merge(result);
+                    }
+                    Err(e) => {
+                        eprintln!("Warning: Failed to analyze {:?}: {}", path, e);
+                    }
+                }
+            }
+        } else {
+            println!("  Skipping Julia analysis (script not found)");
+        }
+
+        println!("  Analyzed {} Julia files\n", julia_count);
+    }
+
+    if dead_code || dead_code_filter || dead_code_json.is_some() || dead_code_summary.is_some() {
+        let policy = if let Some(policy_path) = dead_code_policy {
+            Some(
+                crate::dead_code_policy::load_policy(&policy_path)
+                    .context("Failed to load dead code policy")?,
+            )
+        } else {
+            None
+        };
+        let config = crate::dead_code_cli::DeadCodeRunConfig {
+            root: root_path.to_path_buf(),
+            output_dir: output_path.to_path_buf(),
+            policy,
+            write_json: dead_code_json,
+            write_summary: dead_code_summary,
+            summary_limit: dead_code_summary_limit,
+        };
+        let report = crate::dead_code_cli::run_dead_code_pipeline(&combined_result.elements, &config)
+            .context("Dead code analysis failed")?;
+        if dead_code_filter {
+            combined_result.elements =
+                crate::dead_code_filter::filter_dead_code_elements(&combined_result.elements, &report);
+        }
+    }
+
+    println!("Building call graph...");
+    let mut cf_analyzer = ControlFlowAnalyzer::new();
+    cf_analyzer.build_call_graph(&combined_result);
+
+    // NEW: Invariant detection
+    use crate::invariant_integrator::InvariantDetector;
+    println!("Detecting invariants...");
+    let invariants_result = {
+        let invariant_detector = InvariantDetector::new(
+            &combined_result,
+            &combined_result.call_graph,
+        );
+        invariant_detector.detect_all()
+    };
+    let constraints = {
+        let invariant_detector = InvariantDetector::new(
+            &combined_result,
+            &combined_result.call_graph,
+        );
+        invariant_detector.generate_constraints(&invariants_result)
+    };
+    combined_result.invariants = invariants_result;
+    combined_result.constraints = constraints;
+
+    println!("Analyzing function cohesion...");
+    let cohesion_analyzer = FunctionCohesionAnalyzer::new();
+    let placements = cohesion_analyzer.analyze(&combined_result)?;
+    let clusters = cohesion_analyzer.detect_clusters(&combined_result)?;
+
+    println!("Analyzing directory structure...");
+    let dir_analyzer = DirectoryAnalyzer::new(root_path.to_path_buf());
+    let dir_analysis = dir_analyzer.analyze()?;
+
+    println!("\nGenerating reports...");
+    let report_gen = ReportGenerator::new(output_path.to_string_lossy().to_string());
+    report_gen.generate_all(
+        &combined_result,
+        &cf_analyzer,
+        &rust_layer_graph,
+        &julia_layer_graph,
+        &rust_file_ordering,
+        &julia_file_ordering,
+        &placements,
+        &clusters,
+        &dir_analysis,
+        root_path,
+        correction_intelligence,
+        correction_json,
+        verification_policy_json,
+        correction_path_slice,
+        correction_path_slice_dir,
+        correction_visibility_slice,
+        correction_visibility_slice_dir,
+    )
+    .context("Failed to generate reports")?;
+
+    println!("\nExporting program CFG...");
+    export_program_cfg_to_path(&combined_result, &cf_analyzer.call_edges(), output_path)?;
+
+    println!("\nGenerating invariant report...");
+    use crate::invariant_reporter;
+    invariant_reporter::generate_invariant_report(&combined_result.invariants, output_path)
+        .context("Failed to generate invariant report")?;
+    invariant_reporter::export_constraints_json(&combined_result.constraints, output_path)
+        .context("Failed to export constraints")?;
+
+    println!("\n✓ Analysis complete!");
+    println!("  Total elements: {}", combined_result.elements.len());
+    println!("  Rust files: {}", rust_count);
+    println!("  Julia files: {}", julia_count);
+    println!("  Output: {}\n", output_path.display());
+
+    Ok(())
 }

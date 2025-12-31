@@ -8,29 +8,28 @@ Output directory: "/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/serve
 Julia script: "/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/src/000_main.jl"
 
 Scanning Rust files (dependency-ordered)...
-  Analyzed 35 Rust files
+  Analyzed 65 Rust files
 
 Building call graph...
-  Call graph progress: 50/236 functions
-  Call graph progress: 100/236 functions
-  Call graph progress: 150/236 functions
-  Call graph progress: 200/236 functions
-  Call graph progress: 236/236 functions
+  Call graph progress: 50/188 functions
+  Call graph progress: 100/188 functions
+  Call graph progress: 150/188 functions
+  Call graph progress: 188/188 functions
 Detecting invariants...
 🔍 Detecting invariants...
   ├─ Detecting structural invariants (graph-based)...
      Found 0 structural invariants (from call graph)
   ├─ Enhanced structural detection (call graph from analysis)...
-     Found 1007 enhanced structural invariants
+     Found 735 enhanced structural invariants
   ├─ Detecting semantic invariants...
-     Found 201 semantic invariants
+     Found 200 semantic invariants
   ├─ Detecting path-intersection invariants...
      Found 0 path-intersection invariants
   ├─ Inferring layers from call graph...
      Inferred 0 layer assignments
   └─ Checking for violations...
 
-✅ Invariants: 1208 (proven: 997, empirical: 190, heuristic: 21)
+✅ Invariants: 935 (proven: 717, empirical: 196, heuristic: 22)
 ✅ Violations: 0
 Analyzing function cohesion...
   Louvain pass 1...
@@ -45,16 +44,22 @@ Generating reports...
   Report: call_graph
   Report: cfg
   Report: module_dependencies
+  Report: module_map_mismatch
+  Report: test_topology
+  Report: warning_hygiene
   Report: function_analysis
   Report: layer_dependencies
   Report: file_ordering
   Report: cohesion_analysis
   Report: refactoring_plan
+  Report: correction_intelligence_path_coherence
+  Report: correction_intelligence_visibility
+✅ Constraint enforcement: 16 moves allowed, 1 blocked by invariants
 Baseline deltas:
   directory_cohesion: 1.00 -> 1.00 (delta +0.00)
   ordering_correctness: 100.0% -> 100.0% (delta +0.0%)
-  avg_function_cohesion: 0.77 -> 0.76 (delta -0.01)
-  rename_ops_needed: 0 -> 34 (delta +34)
+  avg_function_cohesion: 0.77 -> 0.68 (delta -0.09)
+  rename_ops_needed: 0 -> 62 (delta +62)
   function_relocations: 20 -> 17 (delta -3)
   Report: file_organization
 
@@ -68,8 +73,8 @@ Generating invariant report...
 📄 Constraints written to: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs/96_constraints/refactor_constraints.json
 
 ✓ Analysis complete!
-  Total elements: 443
-  Rust files: 35
+  Total elements: 501
+  Rust files: 65
   Julia files: 0
   Output: /home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer/docs
 
@@ -77,101 +82,161 @@ REFACTORING TODO LIST
 
 SUMMARY:
   Phase 1 (Correctness blockers): 0
-  Phase 2 (Cluster extractions): 24
-  Phase 3 (Structural constraints): 20
-  Phase 4 (Cohesion improvements): 7
-  Phase 5 (Ordering & renames): 34
+  Phase 2 (Cluster extractions): 69
+  Phase 3 (Structural constraints): 0
+  Phase 4 (Cohesion improvements): 16
+  Phase 5 (Ordering & renames): 62
 
 PHASE 2: CLUSTER EXTRACTION
-  1. Create cluster file `src/070_layer_utilities.rs` with 4 functions (cohesion 1.00)
-  2. Create cluster file `src/010_cluster_008.rs` with 2 functions (cohesion 0.78)
-  3. Create cluster file `src/000_cluster_001.rs` with 2 functions (cohesion 0.48)
-  4. Create cluster file `src/083_action_validator.rs` with 2 functions (cohesion 0.40)
-  5. Create cluster file `src/010_cluster_008.rs` with 6 functions (cohesion 0.14)
-  6. Create cluster file `src/000_cluster_001.rs` with 2 functions (cohesion 0.12)
-  7. Move `gather_julia_files` from `src/000_cluster_001.rs`
-  8. Move `generate_constraints` from `src/005_refactor_constraints.rs`
-  9. Move `resolve_source_root` from `src/020_cluster_010.rs`
-  10. Move `export_program_cfg_to_path` from `src/030_cluster_011.rs`
-  11. Move `test_detect_layer_violations_none` from `src/020_layer_inference.rs`
-  12. Move `layer_prefix_value` from `src/050_cluster_006.rs`
-  13. Move `build_module_map` from `src/030_cluster_011.rs`
-  14. Move `build_file_dag` from `src/030_cluster_011.rs`
-  15. Move `test_check_move_allowed_blocking` from `src/005_refactor_constraints.rs`
-  16. Move `test_check_move_allowed_non_blocking` from `src/005_refactor_constraints.rs`
-  17. Move `layer_constrained_sort` from `src/000_cluster_001.rs`
-  18. Move `topo_sort_within` from `src/000_cluster_001.rs`
-  19. Move `infer_layers` from `src/020_layer_inference.rs`
-  20. Move `detect_layer_violations` from `src/020_layer_inference.rs`
-  21. Move `test_layer_inference_simple_dag` from `src/020_layer_inference.rs`
-  22. Move `test_layer_inference_diamond` from `src/020_layer_inference.rs`
-  23. Move `build_directory_dag` from `src/030_cluster_011.rs`
-  24. Move `build_file_dependency_graph` from `src/030_cluster_011.rs`
-
-PHASE 3: STRUCTURAL CONSTRAINTS
-  1. `order_julia_files_by_dependency` from `src/020_cluster_010.rs` to `src/000_cluster_001.rs`: layer violation 020_cluster_010.rs -> 000_cluster_001.rs
-  2. `run_analysis` from `src/070_layer_utilities.rs` to `src/000_cluster_001.rs`: layer violation 070_layer_utilities.rs -> 000_cluster_001.rs
-  3. `test_check_move_allowed` from `src/083_action_validator.rs` to `src/005_refactor_constraints.rs`: layer violation 083_action_validator.rs -> 005_refactor_constraints.rs
-  4. `sort_structural_items` from `src/060_layer_core.rs` to `src/010_cluster_008.rs`: layer violation 060_layer_core.rs -> 010_cluster_008.rs
-  5. `structural_cmp` from `src/060_layer_core.rs` to `src/010_cluster_008.rs`: layer violation 060_layer_core.rs -> 010_cluster_008.rs
-  6. `test_detect_layer_violations_none` from `src/020_layer_inference.rs` to `src/010_cluster_008.rs`: layer violation 020_layer_inference.rs -> 010_cluster_008.rs
-  7. `gather_rust_files` from `src/070_layer_utilities.rs` to `src/020_cluster_010.rs`: layer violation 070_layer_utilities.rs -> 020_cluster_010.rs
-  8. `test_query_allowed_actions` from `src/085_agent_conscience.rs` to `src/082_conscience_graph.rs`: layer violation 085_agent_conscience.rs -> 082_conscience_graph.rs
-  9. `test_conscience_allows_valid_action` from `src/085_agent_conscience.rs` to `src/082_conscience_graph.rs`: layer violation 085_agent_conscience.rs -> 082_conscience_graph.rs
-  10. `test_conscience_blocks_invalid_move` from `src/085_agent_conscience.rs` to `src/082_conscience_graph.rs`: layer violation 085_agent_conscience.rs -> 082_conscience_graph.rs
-  11. Move `order_julia_files_by_dependency` from `src/020_cluster_010.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  12. Move `run_analysis` from `src/070_layer_utilities.rs` (impact 0, benefit/cost 0.25, touches 4 files; no external callers)
-  13. Move `test_check_move_allowed` from `src/083_action_validator.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  14. Move `sort_structural_items` from `src/060_layer_core.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  15. Move `structural_cmp` from `src/060_layer_core.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  16. Move `test_detect_layer_violations_none` from `src/020_layer_inference.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  17. Move `gather_rust_files` from `src/070_layer_utilities.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  18. Move `test_query_allowed_actions` from `src/085_agent_conscience.rs` (impact 0, benefit/cost 0.50, touches 2 files; no external callers)
-  19. Move `test_conscience_allows_valid_action` from `src/085_agent_conscience.rs` (impact 0, benefit/cost 0.33, touches 3 files; no external callers)
-  20. Move `test_conscience_blocks_invalid_move` from `src/085_agent_conscience.rs` (impact 0, benefit/cost 0.33, touches 3 files; no external callers)
+  1. Create cluster file `src/560_correction_plan_generator.rs` with 23 functions (cohesion 1.00)
+  2. Create cluster file `src/610_correction_plan_serializer.rs` with 2 functions (cohesion 1.00)
+  3. Create cluster file `src/410_dead_code_entrypoints.rs` with 15 functions (cohesion 0.73)
+  4. Create cluster file `src/380_dead_code_call_graph.rs` with 4 functions (cohesion 0.67)
+  5. Create cluster file `src/380_dead_code_call_graph.rs` with 5 functions (cohesion 0.60)
+  6. Create cluster file `src/211_dead_code_attribute_parser.rs` with 4 functions (cohesion 0.56)
+  7. Create cluster file `src/211_dead_code_attribute_parser.rs` with 3 functions (cohesion 0.45)
+  8. Create cluster file `src/390_dead_code_intent.rs` with 2 functions (cohesion 0.40)
+  9. Create cluster file `src/010_cluster_008.rs` with 2 functions (cohesion 0.07)
+  10. Move `predict_violations` from `src/520_violation_predictor.rs`
+  11. Move `find_callers` from `src/520_violation_predictor.rs`
+  12. Move `find_reference_files` from `src/520_violation_predictor.rs`
+  13. Move `find_element_file` from `src/520_violation_predictor.rs`
+  14. Move `symbol_exists` from `src/520_violation_predictor.rs`
+  15. Move `move_violates_invariant` from `src/520_violation_predictor.rs`
+  16. Move `generate_intelligence_report` from `src/520_violation_predictor.rs`
+  17. Move `plan_verification_scope` from `src/570_verification_scope_planner.rs`
+  18. Move `affected_files` from `src/570_verification_scope_planner.rs`
+  19. Move `action_module` from `src/570_verification_scope_planner.rs`
+  20. Move `estimate_verification_time` from `src/570_verification_scope_planner.rs`
+  21. Move `build_rollback_criteria` from `src/580_rollback_criteria_builder.rs`
+  22. Move `extract_critical_tests` from `src/580_rollback_criteria_builder.rs`
+  23. Move `calculate_quality_delta` from `src/590_quality_delta_calculator.rs`
+  24. Move `estimate_impact` from `src/590_quality_delta_calculator.rs`
+  25. Move `simulate_action` from `src/600_action_impact_estimator.rs`
+  26. Move `filter_path_coherence_report` from `src/630_correction_intelligence_report.rs`
+  27. Move `filter_visibility_report` from `src/630_correction_intelligence_report.rs`
+  28. Move `augment_path_coherence_strategies` from `src/630_correction_intelligence_report.rs`
+  29. Move `module_name_from_path` from `src/630_correction_intelligence_report.rs`
+  30. Move `compute_summary` from `src/630_correction_intelligence_report.rs`
+  31. Move `fill_prediction_confidence` from `src/630_correction_intelligence_report.rs`
+  32. Move `default_confidence` from `src/630_correction_intelligence_report.rs`
+  33. Move `emit_verification_policy` from `src/620_verification_policy_emitter.rs`
+  34. Move `write_intelligence_outputs` from `src/630_correction_intelligence_report.rs`
+  35. Move `gather_julia_files` from `src/000_cluster_001.rs`
+  36. Move `run_dead_code_pipeline` from `src/160_layer_utilities.rs`
+  37. Move `detect_test_modules` from `src/211_dead_code_attribute_parser.rs`
+  38. Move `detect_test_symbols` from `src/211_dead_code_attribute_parser.rs`
+  39. Move `is_reachable` from `src/380_dead_code_call_graph.rs`
+  40. Move `classify_symbol` from `src/380_dead_code_call_graph.rs`
+  41. Move `is_test_only` from `src/380_dead_code_call_graph.rs`
+  42. Move `has_test_attr` from `src/400_dead_code_test_boundaries.rs`
+  43. Move `is_reachable` from `src/420_dead_code_classifier.rs`
+  44. Move `assign_confidence` from `src/430_dead_code_confidence.rs`
+  45. Move `recommend_action` from `src/440_dead_code_actions.rs`
+  46. Move `build_report` from `src/460_dead_code_report.rs`
+  47. Move `merge_intent_map` from `src/490_dead_code_cli.rs`
+  48. Move `reason_for_category` from `src/490_dead_code_cli.rs`
+  49. Move `is_test_path` from `src/490_dead_code_cli.rs`
+  50. Move `run_analysis` from `src/000_cluster_001.rs`
+  51. Move `generate_constraints` from `src/030_refactor_constraints.rs`
+  52. Move `export_program_cfg_to_path` from `src/070_cluster_011.rs`
+  53. Move `main` from `src/160_layer_utilities.rs`
+  54. Move `gather_rust_files` from `src/020_cluster_010.rs`
+  55. Move `resolve_source_root` from `src/160_layer_utilities.rs`
+  56. Move `allow_analysis_dir` from `src/160_layer_utilities.rs`
+  57. Move `is_cfg_test_item` from `src/211_dead_code_attribute_parser.rs`
+  58. Move `find_test_callers` from `src/400_dead_code_test_boundaries.rs`
+  59. Move `extract_doc_markers` from `src/370_dead_code_doc_comment_parser.rs`
+  60. Move `item_name` from `src/370_dead_code_doc_comment_parser.rs`
+  61. Move `collect_symbols` from `src/390_dead_code_intent.rs`
+  62. Move `item_attrs` from `src/400_dead_code_test_boundaries.rs`
+  63. Move `detect_latent_markers` from `src/370_dead_code_doc_comment_parser.rs`
+  64. Move `item_attrs` from `src/370_dead_code_doc_comment_parser.rs`
+  65. Move `planned_directory_intent` from `src/390_dead_code_intent.rs`
+  66. Move `detect_intent_signals` from `src/211_dead_code_attribute_parser.rs`
+  67. Move `merge_doc_intent` from `src/370_dead_code_doc_comment_parser.rs`
+  68. Move `layer_constrained_sort` from `src/000_cluster_001.rs`
+  69. Move `topo_sort_within` from `src/000_cluster_001.rs`
 
 PHASE 4: COHESION IMPROVEMENTS
-  1. `detect_layer_violations` from `src/010_cluster_008.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
-  2. `test_strength_emoji` from `src/082_conscience_graph.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
-  3. `build_directory_entry_map` from `src/000_cluster_001.rs` to `-`: cohesion 0.49 below threshold 0.60 (impact 0.11)
-  4. `cluster_target_path` from `src/010_cluster_008.rs` to `-`: cohesion 0.43 below threshold 0.60 (impact 0.17)
-  5. `layer_constrained_sort` from `src/000_cluster_001.rs` to `-`: cohesion 0.57 below threshold 0.60 (impact 0.03)
-  6. `test_check_move_allowed_blocking` from `src/005_refactor_constraints.rs` to `-`: cohesion 0.50 below threshold 0.60 (impact 0.10)
-  7. `test_check_move_allowed_non_blocking` from `src/005_refactor_constraints.rs` to `-`: cohesion 0.50 below threshold 0.60 (impact 0.10)
+  1. `scan_doc_comments` from `src/211_dead_code_attribute_parser.rs` to `-`: cohesion 0.10 below threshold 0.60 (impact 0.50)
+  2. `detect_intent_signals` from `src/211_dead_code_attribute_parser.rs` to `-`: cohesion 0.30 below threshold 0.60 (impact 0.30)
+  3. `estimate_impact` from `src/590_quality_delta_calculator.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
+  4. `generate_intelligence_report` from `src/520_violation_predictor.rs` to `-`: cohesion 0.16 below threshold 0.60 (impact 0.44)
+  5. `parse_mmsb_latent_attr` from `src/211_dead_code_attribute_parser.rs` to `-`: cohesion 0.23 below threshold 0.60 (impact 0.37)
+  6. `run_analysis` from `src/000_cluster_001.rs` to `-`: cohesion 0.20 below threshold 0.60 (impact 0.40)
+  7. `scan_file_attributes` from `src/211_dead_code_attribute_parser.rs` to `-`: cohesion 0.23 below threshold 0.60 (impact 0.37)
+  8. `scan_intent_tags` from `src/211_dead_code_attribute_parser.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
+  9. `write_intelligence_outputs_at` from `src/610_correction_plan_serializer.rs` to `-`: cohesion 0.35 below threshold 0.60 (impact 0.25)
+  10. `build_directory_entry_map` from `src/000_cluster_001.rs` to `-`: cohesion 0.49 below threshold 0.60 (impact 0.11)
+  11. `classify_symbol` from `src/380_dead_code_call_graph.rs` to `-`: cohesion 0.43 below threshold 0.60 (impact 0.17)
+  12. `cluster_target_path` from `src/010_cluster_008.rs` to `-`: cohesion 0.43 below threshold 0.60 (impact 0.17)
+  13. `is_cfg_test_item` from `src/211_dead_code_attribute_parser.rs` to `-`: cohesion 0.40 below threshold 0.60 (impact 0.20)
+  14. `order_julia_files_by_dependency` from `src/000_cluster_001.rs` to `-`: cohesion 0.43 below threshold 0.60 (impact 0.17)
+  15. `write_outputs` from `src/460_dead_code_report.rs` to `-`: cohesion 0.42 below threshold 0.60 (impact 0.18)
+  16. `layer_constrained_sort` from `src/000_cluster_001.rs` to `-`: cohesion 0.57 below threshold 0.60 (impact 0.03)
 
 PHASE 5: ORDERING & RENAMES
-  1. [Rust] `MMSB/tools/mmsb-analyzer/src/010_cluster_008.rs` -> `MMSB/tools/mmsb-analyzer/src/030_cluster_008.rs`
-  2. [Rust] `MMSB/tools/mmsb-analyzer/src/020_cluster_010.rs` -> `MMSB/tools/mmsb-analyzer/src/050_cluster_010.rs`
-  3. [Rust] `MMSB/tools/mmsb-analyzer/src/030_cluster_011.rs` -> `MMSB/tools/mmsb-analyzer/src/070_cluster_011.rs`
-  4. [Rust] `MMSB/tools/mmsb-analyzer/src/040_structural_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/100_structural_detector.rs`
-  5. [Rust] `MMSB/tools/mmsb-analyzer/src/050_semantic_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/120_semantic_detector.rs`
-  6. [Rust] `MMSB/tools/mmsb-analyzer/src/070_invariant_integrator.rs` -> `MMSB/tools/mmsb-analyzer/src/150_invariant_integrator.rs`
-  7. [Rust] `MMSB/tools/mmsb-analyzer/src/070_layer_utilities.rs` -> `MMSB/tools/mmsb-analyzer/src/160_layer_utilities.rs`
-  8. [Rust] `MMSB/tools/mmsb-analyzer/src/090_utilities.rs` -> `MMSB/tools/mmsb-analyzer/src/220_utilities.rs`
-  9. [Rust] `MMSB/tools/mmsb-analyzer/src/190_main.rs` -> `MMSB/tools/mmsb-analyzer/src/320_main.rs`
-  10. [Rust] `MMSB/tools/mmsb-analyzer/src/000_invariant_types.rs` -> `MMSB/tools/mmsb-analyzer/src/010_invariant_types.rs`
-  11. [Rust] `MMSB/tools/mmsb-analyzer/src/005_refactor_constraints.rs` -> `MMSB/tools/mmsb-analyzer/src/020_refactor_constraints.rs`
-  12. [Rust] `MMSB/tools/mmsb-analyzer/src/010_scc_compressor.rs` -> `MMSB/tools/mmsb-analyzer/src/040_scc_compressor.rs`
-  13. [Rust] `MMSB/tools/mmsb-analyzer/src/020_layer_inference.rs` -> `MMSB/tools/mmsb-analyzer/src/060_layer_inference.rs`
-  14. [Rust] `MMSB/tools/mmsb-analyzer/src/030_fixpoint_solver.rs` -> `MMSB/tools/mmsb-analyzer/src/080_fixpoint_solver.rs`
-  15. [Rust] `MMSB/tools/mmsb-analyzer/src/040_dependency.rs` -> `MMSB/tools/mmsb-analyzer/src/090_dependency.rs`
-  16. [Rust] `MMSB/tools/mmsb-analyzer/src/050_cluster_006.rs` -> `MMSB/tools/mmsb-analyzer/src/110_cluster_006.rs`
-  17. [Rust] `MMSB/tools/mmsb-analyzer/src/060_layer_core.rs` -> `MMSB/tools/mmsb-analyzer/src/130_layer_core.rs`
-  18. [Rust] `MMSB/tools/mmsb-analyzer/src/060_path_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/140_path_detector.rs`
-  19. [Rust] `MMSB/tools/mmsb-analyzer/src/080_file_gathering.rs` -> `MMSB/tools/mmsb-analyzer/src/170_file_gathering.rs`
-  20. [Rust] `MMSB/tools/mmsb-analyzer/src/080_invariant_reporter.rs` -> `MMSB/tools/mmsb-analyzer/src/180_invariant_reporter.rs`
-  21. [Rust] `MMSB/tools/mmsb-analyzer/src/082_conscience_graph.rs` -> `MMSB/tools/mmsb-analyzer/src/190_conscience_graph.rs`
-  22. [Rust] `MMSB/tools/mmsb-analyzer/src/083_action_validator.rs` -> `MMSB/tools/mmsb-analyzer/src/200_action_validator.rs`
-  23. [Rust] `MMSB/tools/mmsb-analyzer/src/085_agent_conscience.rs` -> `MMSB/tools/mmsb-analyzer/src/210_agent_conscience.rs`
-  24. [Rust] `MMSB/tools/mmsb-analyzer/src/100_types.rs` -> `MMSB/tools/mmsb-analyzer/src/230_types.rs`
-  25. [Rust] `MMSB/tools/mmsb-analyzer/src/110_cohesion_analyzer.rs` -> `MMSB/tools/mmsb-analyzer/src/240_cohesion_analyzer.rs`
-  26. [Rust] `MMSB/tools/mmsb-analyzer/src/120_directory_analyzer.rs` -> `MMSB/tools/mmsb-analyzer/src/250_directory_analyzer.rs`
-  27. [Rust] `MMSB/tools/mmsb-analyzer/src/130_control_flow.rs` -> `MMSB/tools/mmsb-analyzer/src/260_control_flow.rs`
-  28. [Rust] `MMSB/tools/mmsb-analyzer/src/140_file_ordering.rs` -> `MMSB/tools/mmsb-analyzer/src/270_file_ordering.rs`
-  29. [Rust] `MMSB/tools/mmsb-analyzer/src/150_julia_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/280_julia_parser.rs`
-  30. [Rust] `MMSB/tools/mmsb-analyzer/src/160_rust_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/290_rust_parser.rs`
-  31. [Rust] `MMSB/tools/mmsb-analyzer/src/170_dot_exporter.rs` -> `MMSB/tools/mmsb-analyzer/src/300_dot_exporter.rs`
-  32. [Rust] `MMSB/tools/mmsb-analyzer/src/180_report.rs` -> `MMSB/tools/mmsb-analyzer/src/310_report.rs`
-  33. [Rust] `MMSB/tools/mmsb-analyzer/src/191_agent_cli.rs` -> `MMSB/tools/mmsb-analyzer/src/330_agent_cli.rs`
-  34. [Rust] `MMSB/tools/mmsb-analyzer/src/200_lib.rs` -> `MMSB/tools/mmsb-analyzer/src/340_lib.rs`
+  1. [Rust] `MMSB/tools/mmsb-analyzer/src/050_cluster_010.rs` -> `MMSB/tools/mmsb-analyzer/src/060_cluster_010.rs`
+  2. [Rust] `MMSB/tools/mmsb-analyzer/src/070_cluster_011.rs` -> `MMSB/tools/mmsb-analyzer/src/080_cluster_011.rs`
+  3. [Rust] `MMSB/tools/mmsb-analyzer/src/100_structural_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/110_structural_detector.rs`
+  4. [Rust] `MMSB/tools/mmsb-analyzer/src/120_semantic_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/130_semantic_detector.rs`
+  5. [Rust] `MMSB/tools/mmsb-analyzer/src/150_invariant_integrator.rs` -> `MMSB/tools/mmsb-analyzer/src/160_invariant_integrator.rs`
+  6. [Rust] `MMSB/tools/mmsb-analyzer/src/160_layer_utilities.rs` -> `MMSB/tools/mmsb-analyzer/src/170_layer_utilities.rs`
+  7. [Rust] `MMSB/tools/mmsb-analyzer/src/210_utilities.rs` -> `MMSB/tools/mmsb-analyzer/src/220_utilities.rs`
+  8. [Rust] `MMSB/tools/mmsb-analyzer/src/211_dead_code_attribute_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/230_dead_code_attribute_parser.rs`
+  9. [Rust] `MMSB/tools/mmsb-analyzer/src/320_main.rs` -> `MMSB/tools/mmsb-analyzer/src/340_main.rs`
+  10. [Rust] `MMSB/tools/mmsb-analyzer/src/340_lib.rs` -> `MMSB/tools/mmsb-analyzer/src/360_lib.rs`
+  11. [Rust] `MMSB/tools/mmsb-analyzer/src/380_dead_code_call_graph.rs` -> `MMSB/tools/mmsb-analyzer/src/390_dead_code_call_graph.rs`
+  12. [Rust] `MMSB/tools/mmsb-analyzer/src/460_dead_code_report.rs` -> `MMSB/tools/mmsb-analyzer/src/470_dead_code_report.rs`
+  13. [Rust] `MMSB/tools/mmsb-analyzer/src/520_violation_predictor.rs` -> `MMSB/tools/mmsb-analyzer/src/530_violation_predictor.rs`
+  14. [Rust] `MMSB/tools/mmsb-analyzer/src/590_quality_delta_calculator.rs` -> `MMSB/tools/mmsb-analyzer/src/600_quality_delta_calculator.rs`
+  15. [Rust] `MMSB/tools/mmsb-analyzer/src/610_correction_plan_serializer.rs` -> `MMSB/tools/mmsb-analyzer/src/620_correction_plan_serializer.rs`
+  16. [Rust] `MMSB/tools/mmsb-analyzer/src/020_invariant_types.rs` -> `MMSB/tools/mmsb-analyzer/src/030_invariant_types.rs`
+  17. [Rust] `MMSB/tools/mmsb-analyzer/src/030_refactor_constraints.rs` -> `MMSB/tools/mmsb-analyzer/src/040_refactor_constraints.rs`
+  18. [Rust] `MMSB/tools/mmsb-analyzer/src/040_scc_compressor.rs` -> `MMSB/tools/mmsb-analyzer/src/050_scc_compressor.rs`
+  19. [Rust] `MMSB/tools/mmsb-analyzer/src/060_layer_inference.rs` -> `MMSB/tools/mmsb-analyzer/src/070_layer_inference.rs`
+  20. [Rust] `MMSB/tools/mmsb-analyzer/src/080_fixpoint_solver.rs` -> `MMSB/tools/mmsb-analyzer/src/090_fixpoint_solver.rs`
+  21. [Rust] `MMSB/tools/mmsb-analyzer/src/090_dependency.rs` -> `MMSB/tools/mmsb-analyzer/src/100_dependency.rs`
+  22. [Rust] `MMSB/tools/mmsb-analyzer/src/110_cluster_006.rs` -> `MMSB/tools/mmsb-analyzer/src/120_cluster_006.rs`
+  23. [Rust] `MMSB/tools/mmsb-analyzer/src/130_layer_core.rs` -> `MMSB/tools/mmsb-analyzer/src/140_layer_core.rs`
+  24. [Rust] `MMSB/tools/mmsb-analyzer/src/140_path_detector.rs` -> `MMSB/tools/mmsb-analyzer/src/150_path_detector.rs`
+  25. [Rust] `MMSB/tools/mmsb-analyzer/src/170_invariant_reporter.rs` -> `MMSB/tools/mmsb-analyzer/src/180_invariant_reporter.rs`
+  26. [Rust] `MMSB/tools/mmsb-analyzer/src/180_conscience_graph.rs` -> `MMSB/tools/mmsb-analyzer/src/190_conscience_graph.rs`
+  27. [Rust] `MMSB/tools/mmsb-analyzer/src/190_action_validator.rs` -> `MMSB/tools/mmsb-analyzer/src/200_action_validator.rs`
+  28. [Rust] `MMSB/tools/mmsb-analyzer/src/200_agent_conscience.rs` -> `MMSB/tools/mmsb-analyzer/src/210_agent_conscience.rs`
+  29. [Rust] `MMSB/tools/mmsb-analyzer/src/220_types.rs` -> `MMSB/tools/mmsb-analyzer/src/240_types.rs`
+  30. [Rust] `MMSB/tools/mmsb-analyzer/src/230_cohesion_analyzer.rs` -> `MMSB/tools/mmsb-analyzer/src/250_cohesion_analyzer.rs`
+  31. [Rust] `MMSB/tools/mmsb-analyzer/src/240_directory_analyzer.rs` -> `MMSB/tools/mmsb-analyzer/src/260_directory_analyzer.rs`
+  32. [Rust] `MMSB/tools/mmsb-analyzer/src/250_control_flow.rs` -> `MMSB/tools/mmsb-analyzer/src/270_control_flow.rs`
+  33. [Rust] `MMSB/tools/mmsb-analyzer/src/260_file_ordering.rs` -> `MMSB/tools/mmsb-analyzer/src/280_file_ordering.rs`
+  34. [Rust] `MMSB/tools/mmsb-analyzer/src/270_julia_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/290_julia_parser.rs`
+  35. [Rust] `MMSB/tools/mmsb-analyzer/src/280_rust_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/300_rust_parser.rs`
+  36. [Rust] `MMSB/tools/mmsb-analyzer/src/290_dot_exporter.rs` -> `MMSB/tools/mmsb-analyzer/src/310_dot_exporter.rs`
+  37. [Rust] `MMSB/tools/mmsb-analyzer/src/300_file_gathering.rs` -> `MMSB/tools/mmsb-analyzer/src/320_file_gathering.rs`
+  38. [Rust] `MMSB/tools/mmsb-analyzer/src/310_report.rs` -> `MMSB/tools/mmsb-analyzer/src/330_report.rs`
+  39. [Rust] `MMSB/tools/mmsb-analyzer/src/330_agent_cli.rs` -> `MMSB/tools/mmsb-analyzer/src/350_agent_cli.rs`
+  40. [Rust] `MMSB/tools/mmsb-analyzer/src/350_dead_code_types.rs` -> `MMSB/tools/mmsb-analyzer/src/370_dead_code_types.rs`
+  41. [Rust] `MMSB/tools/mmsb-analyzer/src/370_dead_code_doc_comment_parser.rs` -> `MMSB/tools/mmsb-analyzer/src/380_dead_code_doc_comment_parser.rs`
+  42. [Rust] `MMSB/tools/mmsb-analyzer/src/390_dead_code_intent.rs` -> `MMSB/tools/mmsb-analyzer/src/400_dead_code_intent.rs`
+  43. [Rust] `MMSB/tools/mmsb-analyzer/src/400_dead_code_test_boundaries.rs` -> `MMSB/tools/mmsb-analyzer/src/410_dead_code_test_boundaries.rs`
+  44. [Rust] `MMSB/tools/mmsb-analyzer/src/410_dead_code_entrypoints.rs` -> `MMSB/tools/mmsb-analyzer/src/420_dead_code_entrypoints.rs`
+  45. [Rust] `MMSB/tools/mmsb-analyzer/src/420_dead_code_classifier.rs` -> `MMSB/tools/mmsb-analyzer/src/430_dead_code_classifier.rs`
+  46. [Rust] `MMSB/tools/mmsb-analyzer/src/430_dead_code_confidence.rs` -> `MMSB/tools/mmsb-analyzer/src/440_dead_code_confidence.rs`
+  47. [Rust] `MMSB/tools/mmsb-analyzer/src/440_dead_code_actions.rs` -> `MMSB/tools/mmsb-analyzer/src/450_dead_code_actions.rs`
+  48. [Rust] `MMSB/tools/mmsb-analyzer/src/450_correction_plan_types.rs` -> `MMSB/tools/mmsb-analyzer/src/460_correction_plan_types.rs`
+  49. [Rust] `MMSB/tools/mmsb-analyzer/src/470_dead_code_filter.rs` -> `MMSB/tools/mmsb-analyzer/src/480_dead_code_filter.rs`
+  50. [Rust] `MMSB/tools/mmsb-analyzer/src/480_verification_policy_types.rs` -> `MMSB/tools/mmsb-analyzer/src/490_verification_policy_types.rs`
+  51. [Rust] `MMSB/tools/mmsb-analyzer/src/490_dead_code_cli.rs` -> `MMSB/tools/mmsb-analyzer/src/500_dead_code_cli.rs`
+  52. [Rust] `MMSB/tools/mmsb-analyzer/src/500_quality_delta_types.rs` -> `MMSB/tools/mmsb-analyzer/src/510_quality_delta_types.rs`
+  53. [Rust] `MMSB/tools/mmsb-analyzer/src/510_dead_code_policy.rs` -> `MMSB/tools/mmsb-analyzer/src/520_dead_code_policy.rs`
+  54. [Rust] `MMSB/tools/mmsb-analyzer/src/530_dead_code_report_split.rs` -> `MMSB/tools/mmsb-analyzer/src/540_dead_code_report_split.rs`
+  55. [Rust] `MMSB/tools/mmsb-analyzer/src/540_tier_classifier.rs` -> `MMSB/tools/mmsb-analyzer/src/550_tier_classifier.rs`
+  56. [Rust] `MMSB/tools/mmsb-analyzer/src/550_confidence_scorer.rs` -> `MMSB/tools/mmsb-analyzer/src/560_confidence_scorer.rs`
+  57. [Rust] `MMSB/tools/mmsb-analyzer/src/560_correction_plan_generator.rs` -> `MMSB/tools/mmsb-analyzer/src/570_correction_plan_generator.rs`
+  58. [Rust] `MMSB/tools/mmsb-analyzer/src/570_verification_scope_planner.rs` -> `MMSB/tools/mmsb-analyzer/src/580_verification_scope_planner.rs`
+  59. [Rust] `MMSB/tools/mmsb-analyzer/src/580_rollback_criteria_builder.rs` -> `MMSB/tools/mmsb-analyzer/src/590_rollback_criteria_builder.rs`
+  60. [Rust] `MMSB/tools/mmsb-analyzer/src/600_action_impact_estimator.rs` -> `MMSB/tools/mmsb-analyzer/src/610_action_impact_estimator.rs`
+  61. [Rust] `MMSB/tools/mmsb-analyzer/src/620_verification_policy_emitter.rs` -> `MMSB/tools/mmsb-analyzer/src/630_verification_policy_emitter.rs`
+  62. [Rust] `MMSB/tools/mmsb-analyzer/src/630_correction_intelligence_report.rs` -> `MMSB/tools/mmsb-analyzer/src/640_correction_intelligence_report.rs`
 

@@ -190,21 +190,6 @@
   - `collect_naming_warnings`
   - `Ok`
 
-#### `collect_roots_from_crate`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `collect_roots_from_crate`
-  - `insert`
-  - `collect_roots_from_crate`
-  - `collect_roots_from_crate`
-  - `insert`
-  - `to_string`
-  - `insert`
-  - `to_string`
-
 #### `collect_rust_dependencies`
 
 - **File:** src/000_cluster_001.rs:0
@@ -291,32 +276,6 @@
   - `push`
   - `clone`
 
-#### `detects_cycles`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `temp_dir`
-  - `create_dir_all`
-  - `join`
-  - `join`
-  - `write`
-  - `write`
-  - `analyze_file_ordering`
-  - `clone`
-  - `clone`
-  - `Some`
-  - `Ok`
-
-#### `escape_dot`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `replace`
-  - `replace`
-  - `replace`
-
 #### `export_complete_program_dot`
 
 - **File:** src/000_cluster_001.rs:0
@@ -379,56 +338,6 @@
   - `unwrap`
   - `std::fs::write`
   - `Ok`
-
-## Layer: 005_refactor_constraints.rs
-
-### Rust Functions
-
-#### `check_move_allowed`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `target`
-  - `is_blocking`
-  - `Err`
-  - `Err`
-  - `Ok`
-
-#### `from_invariant`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `Some`
-  - `clone`
-  - `Some`
-  - `clone`
-  - `Some`
-  - `clone`
-  - `to_string`
-  - `Some`
-  - `clone`
-  - `Some`
-  - `clone`
-  - `to_string`
-  - `Some`
-  - `clone`
-  - `clone`
-  - `Some`
-  - `clone`
-  - `to_string`
-  - `Some`
-  - `clone`
-  - `to_string`
-  - `Some`
-  - `clone`
-  - `Vec::new`
-  - `Some`
-  - `clone`
-  - `collect`
-  - `cloned`
-  - `iter`
 
 ## Layer: 010_cluster_008.rs
 
@@ -613,36 +522,13 @@
   - `Some`
   - `map`
 
-#### `detect_layer_violations`
-
-- **File:** src/010_cluster_008.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `Vec::new`
-  - `edge_references`
-  - `source`
-  - `target`
-  - `unwrap_or_else`
-  - `cloned`
-  - `get`
-  - `to_string`
-  - `unwrap_or_else`
-  - `cloned`
-  - `get`
-  - `to_string`
-  - `layer_prefix_value`
-  - `layer_prefix_value`
-  - `push`
-  - `clone`
-  - `clone`
-
-## Layer: 020_cluster_010.rs
+## Layer: 050_cluster_010.rs
 
 ### Rust Functions
 
 #### `build_dependency_map`
 
-- **File:** src/020_cluster_010.rs:0
+- **File:** src/050_cluster_010.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `HashMap::new`
@@ -654,7 +540,7 @@
 
 #### `build_module_root_map`
 
-- **File:** src/020_cluster_010.rs:0
+- **File:** src/050_cluster_010.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `join`
@@ -682,7 +568,7 @@
 
 #### `contains_tools`
 
-- **File:** src/020_cluster_010.rs:0
+- **File:** src/050_cluster_010.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `any`
@@ -691,7 +577,7 @@
 
 #### `extract_dependencies`
 
-- **File:** src/020_cluster_010.rs:0
+- **File:** src/050_cluster_010.rs:0
 - **Visibility:** Crate
 - **Calls:**
   - `unwrap_or`
@@ -705,7 +591,7 @@
 
 #### `extract_julia_dependencies`
 
-- **File:** src/020_cluster_010.rs:0
+- **File:** src/050_cluster_010.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `Lazy::new`
@@ -774,7 +660,7 @@
 
 #### `extract_rust_dependencies`
 
-- **File:** src/020_cluster_010.rs:0
+- **File:** src/050_cluster_010.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `crate::dependency::collect_roots`
@@ -794,32 +680,13 @@
   - `push`
   - `Ok`
 
-## Layer: 020_layer_inference.rs
-
-### Rust Functions
-
-#### `detect_layer_violations`
-
-- **File:** src/020_layer_inference.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `Vec::new`
-  - `edge_references`
-  - `source`
-  - `target`
-  - `get`
-  - `get`
-  - `push`
-  - `clone`
-  - `clone`
-
-## Layer: 030_cluster_011.rs
+## Layer: 070_cluster_011.rs
 
 ### Rust Functions
 
 #### `build_directory_dag`
 
-- **File:** src/030_cluster_011.rs:0
+- **File:** src/070_cluster_011.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `collect`
@@ -846,7 +713,7 @@
 
 #### `build_file_dag`
 
-- **File:** src/030_cluster_011.rs:0
+- **File:** src/070_cluster_011.rs:0
 - **Visibility:** Crate
 - **Calls:**
   - `DiGraph::new`
@@ -861,7 +728,7 @@
 
 #### `build_file_dependency_graph`
 
-- **File:** src/030_cluster_011.rs:0
+- **File:** src/070_cluster_011.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `collect`
@@ -874,7 +741,7 @@
 
 #### `build_module_map`
 
-- **File:** src/030_cluster_011.rs:0
+- **File:** src/070_cluster_011.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `HashMap::new`
@@ -895,7 +762,7 @@
 
 #### `export_program_cfg_to_path`
 
-- **File:** src/030_cluster_011.rs:0
+- **File:** src/070_cluster_011.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `HashMap::new`
@@ -928,13 +795,13 @@
   - `std::process::Command::new`
   - `Ok`
 
-## Layer: 040_dependency.rs
+## Layer: 090_dependency.rs
 
 ### Rust Functions
 
 #### `collect_roots`
 
-- **File:** src/040_dependency.rs:0
+- **File:** src/090_dependency.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `to_string`
@@ -947,13 +814,13 @@
   - `insert`
   - `to_string`
 
-## Layer: 050_cluster_006.rs
+## Layer: 110_cluster_006.rs
 
 ### Rust Functions
 
 #### `collect_directory_moves`
 
-- **File:** src/050_cluster_006.rs:0
+- **File:** src/110_cluster_006.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `Vec::new`
@@ -979,7 +846,7 @@
 
 #### `common_root`
 
-- **File:** src/050_cluster_006.rs:0
+- **File:** src/110_cluster_006.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `iter`
@@ -999,7 +866,7 @@
 
 #### `compute_cohesion_score`
 
-- **File:** src/050_cluster_006.rs:0
+- **File:** src/110_cluster_006.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `unwrap_or_else`
@@ -1013,13 +880,13 @@
   - `crate::cluster_008::layer_adheres`
   - `clamp`
 
-## Layer: 070_layer_utilities.rs
+## Layer: 160_layer_utilities.rs
 
 ### Rust Functions
 
 #### `allow_analysis_dir`
 
-- **File:** src/070_layer_utilities.rs:0
+- **File:** src/160_layer_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `unwrap_or`
@@ -1035,13 +902,13 @@
   - `as_os_str`
   - `starts_with`
 
-## Layer: 080_invariant_reporter.rs
+## Layer: 170_invariant_reporter.rs
 
 ### Rust Functions
 
 #### `export_constraints_json`
 
-- **File:** src/080_invariant_reporter.rs:0
+- **File:** src/170_invariant_reporter.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `join`
@@ -1055,7 +922,7 @@
 
 #### `export_json`
 
-- **File:** src/080_invariant_reporter.rs:0
+- **File:** src/170_invariant_reporter.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `join`
@@ -1065,30 +932,13 @@
   - `fs::write`
   - `Ok`
 
-## Layer: 083_action_validator.rs
+## Layer: 190_action_validator.rs
 
 ### Rust Functions
 
-#### `check_move_allowed`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `to_string`
-  - `clone`
-  - `clone`
-  - `validate_action`
-  - `Ok`
-  - `collect`
-  - `map`
-  - `iter`
-  - `clone`
-  - `Err`
-  - `join`
-
 #### `extract_layer`
 
-- **File:** src/083_action_validator.rs:0
+- **File:** src/190_action_validator.rs:0
 - **Visibility:** Private
 - **Calls:**
   - `and_then`
@@ -1101,13 +951,13 @@
   - `ok`
   - `parse`
 
-## Layer: 090_utilities.rs
+## Layer: 210_utilities.rs
 
 ### Rust Functions
 
 #### `collect_directory_files`
 
-- **File:** src/090_utilities.rs:0
+- **File:** src/210_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `extend`
@@ -1117,7 +967,7 @@
 
 #### `collect_move_items`
 
-- **File:** src/090_utilities.rs:0
+- **File:** src/210_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `Vec::new`
@@ -1157,7 +1007,7 @@
 
 #### `compress_path`
 
-- **File:** src/090_utilities.rs:0
+- **File:** src/210_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `find`
@@ -1168,7 +1018,7 @@
 
 #### `compute_move_metrics`
 
-- **File:** src/090_utilities.rs:0
+- **File:** src/210_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `sum`
@@ -1191,436 +1041,104 @@
   - `max`
   - `len`
 
-## Layer: 110_cohesion_analyzer.rs
+## Layer: 211_dead_code_attribute_parser.rs
 
 ### Rust Functions
 
-#### `build_call_analysis`
+#### `collect_latent_attrs`
 
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `BTreeMap::new`
-  - `or_insert`
-  - `entry`
-  - `PathBuf::from`
-  - `BTreeMap::new`
-  - `or_insert`
-  - `entry`
-  - `PathBuf::from`
-  - `compute_type_coupling`
-  - `collect`
-  - `into_iter`
-  - `collect`
-  - `into_iter`
-
-#### `build_call_edges`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `collect_functions`
-  - `build_name_map`
-  - `enumerate`
-  - `iter`
-  - `get`
-  - `or_insert`
-  - `entry`
-  - `or_insert`
-  - `entry`
-
-#### `build_function_layers`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `HashMap::new`
-  - `or_insert_with`
-  - `entry`
-  - `clone`
-  - `clone`
-
-#### `build_name_map`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `HashMap::new`
-  - `enumerate`
-  - `iter`
-  - `push`
-  - `or_default`
-  - `entry`
-  - `clone`
-
-#### `build_type_maps`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `HashMap::new`
-  - `HashSet::new`
-  - `clone`
-  - `insert`
-  - `clone`
-  - `insert`
-  - `or_default`
-  - `entry`
-  - `clone`
-
-#### `build_undirected_graph`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `len`
-  - `HashMap::new`
-  - `enumerate`
-  - `iter`
-  - `or_insert`
-  - `entry`
-  - `push`
-  - `push`
-
-#### `collect_functions`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `collect`
-  - `map`
-  - `filter`
-  - `iter`
-  - `clone`
-  - `clone`
-  - `clone`
-  - `clone`
-  - `clone`
-
-#### `compute_cluster_cohesion`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `collect`
-  - `copied`
-  - `iter`
-  - `get`
-  - `contains`
-
-#### `compute_type_coupling`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `extract_identifiers`
-  - `get`
-  - `contains`
-  - `contains`
-
-#### `determine_status`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `sum`
-  - `map`
-  - `iter`
-  - `to_string`
-
-#### `extract_identifiers`
-
-- **File:** src/110_cohesion_analyzer.rs:0
+- **File:** src/211_dead_code_attribute_parser.rs:0
 - **Visibility:** Private
 - **Calls:**
   - `Vec::new`
-  - `String::new`
-  - `chars`
-  - `is_ascii_alphanumeric`
-  - `push`
-  - `is_empty`
-  - `push`
-  - `clone`
-  - `clear`
-  - `is_empty`
-  - `push`
-
-## Layer: 150_julia_parser.rs
-
-### Rust Functions
-
-#### `extract_calls_from_lines`
-
-- **File:** src/150_julia_parser.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `join`
-  - `extract_calls_from_text`
-
-#### `extract_calls_from_text`
-
-- **File:** src/150_julia_parser.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Vec::new`
-  - `captures_iter`
-  - `get`
-  - `as_str`
-  - `is_reserved`
-  - `push`
-  - `to_string`
-  - `sort`
-  - `dedup`
-
-#### `find_julia_project_dir`
-
-- **File:** src/150_julia_parser.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `parent`
-  - `exists`
-  - `join`
-  - `to_path_buf`
-  - `parent`
-  - `to_path_buf`
-  - `unwrap_or_else`
-  - `parent`
-  - `Path::new`
-
-## Layer: 160_rust_parser.rs
-
-### Rust Functions
-
-#### `expr_snippet`
-
-- **File:** src/160_rust_parser.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `truncate_label`
-  - `to_string`
-
-## Layer: 180_report.rs
-
-### Rust Functions
-
-#### `baseline_deltas`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Vec::new`
-  - `get`
-  - `push`
-  - `get`
-  - `push`
-  - `get`
-  - `push`
-  - `get`
-  - `push`
-  - `get`
-  - `push`
-
-#### `cluster_priority`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-
-#### `collect_cluster_items`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `collect`
-  - `map`
-  - `iter`
-  - `cluster_priority`
-  - `Vec::new`
-  - `Some`
-  - `clone`
-  - `Vec::new`
-  - `len`
-
-#### `collect_directories`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Generics:** 'a
-- **Calls:**
-  - `push`
-  - `collect_directories`
-
-#### `collect_rename_items`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `BTreeSet::new`
-  - `insert`
-  - `clone`
-  - `collect`
-  - `map`
-  - `filter`
-  - `iter`
-  - `clone`
-  - `unwrap_or_else`
-  - `map`
-  - `parent`
-  - `join`
-  - `PathBuf::from`
-  - `contains`
-  - `Vec::new`
-  - `Some`
-  - `clone`
-  - `Some`
-  - `clone`
-  - `Vec::new`
-
-#### `collect_size_warnings`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `len`
-  - `push`
-  - `fs::read_to_string`
-  - `count`
-  - `lines`
-  - `push`
-  - `collect_size_warnings`
-
-#### `collect_symbol_references`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `HashMap::new`
-  - `join`
-  - `filter_map`
-  - `into_iter`
-  - `WalkDir::new`
-  - `ok`
+  - `is_ident`
   - `path`
-  - `is_file`
-  - `and_then`
-  - `extension`
-  - `to_str`
+  - `parse_nested_meta`
+  - `is_ident`
+  - `is_ident`
+  - `is_ident`
+  - `is_ident`
+  - `is_ident`
+  - `is_ident`
+  - `value`
+  - `parse`
   - `Some`
-  - `fs::read_to_string`
-  - `lines`
-  - `contains`
-  - `parse_use_symbols`
-  - `insert`
-  - `or_insert_with`
-  - `entry`
-  - `to_path_buf`
-  - `contains`
-  - `scan_crate_paths`
-  - `insert`
-  - `or_insert_with`
-  - `entry`
-  - `to_path_buf`
-
-#### `collect_utility_candidates`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `BTreeSet::new`
-  - `len`
-  - `insert`
-  - `collect`
-  - `into_iter`
-
-#### `compute_directory_cohesion`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `map`
-  - `parent`
-  - `to_path_buf`
-  - `unwrap_or`
-  - `and_then`
-  - `as_ref`
-  - `map`
-  - `parent`
-
-#### `compute_ordering_correctness`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `len`
-  - `saturating_sub`
-  - `len`
-  - `len`
-
-#### `directory_moves_to_plan`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `collect`
-  - `map`
-  - `into_iter`
-  - `Vec::new`
+  - `value`
+  - `is_ident`
+  - `value`
+  - `parse`
+  - `marker_from_str`
+  - `value`
+  - `Ok`
+  - `parse_args`
   - `Some`
-  - `clone`
-  - `Some`
-  - `clone`
-  - `Vec::new`
+  - `value`
+  - `push`
 
-#### `display_path`
+#### `detect_intent_signals`
 
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
+- **File:** src/211_dead_code_attribute_parser.rs:0
+- **Visibility:** Public
 - **Calls:**
-  - `unwrap_or`
-  - `strip_prefix`
-  - `to_string`
-  - `to_string_lossy`
+  - `parse_mmsb_latent_attr`
+  - `scan_doc_comments`
+  - `merge_doc_intent`
+  - `planned_directory_intent`
+  - `merge_intent_sources`
 
-#### `filter_orphaned`
+#### `detect_test_modules`
 
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Generics:** 'a
+- **File:** src/211_dead_code_attribute_parser.rs:0
+- **Visibility:** Public
 - **Calls:**
-  - `collect_symbol_references`
   - `unwrap_or_default`
-  - `map`
-  - `as_deref`
-  - `load_cargo_warnings`
-  - `Vec::new`
-  - `Vec::new`
-  - `filter`
-  - `iter`
-  - `is_entrypoint_main`
-  - `is_public_function`
-  - `referenced_elsewhere`
-  - `is_dead_code_candidate`
-  - `push`
-  - `push`
+  - `std::fs::read_to_string`
+  - `syn::parse_file`
+  - `HashSet::new`
+  - `HashSet::new`
+  - `is_cfg_test_item`
+  - `insert`
+  - `to_string`
 
-#### `function_bucket_label`
+#### `detect_test_symbols`
 
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
+- **File:** src/211_dead_code_attribute_parser.rs:0
+- **Visibility:** Public
 - **Calls:**
-  - `unwrap_or`
-  - `map`
-  - `find`
-  - `chars`
-  - `is_ascii_alphabetic`
-  - `to_ascii_uppercase`
+  - `unwrap_or_default`
+  - `std::fs::read_to_string`
+  - `syn::parse_file`
+  - `HashSet::new`
+  - `HashSet::new`
+  - `has_test_attr`
+  - `insert`
+  - `to_string`
+  - `is_cfg_test_item`
+  - `insert`
+  - `to_string`
+  - `insert`
+  - `to_string`
 
-## Layer: 191_agent_cli.rs
+#### `extract_attribute_value`
+
+- **File:** src/211_dead_code_attribute_parser.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `parse_nested_meta`
+  - `is_ident`
+  - `value`
+  - `parse`
+  - `Some`
+  - `value`
+  - `Ok`
+
+## Layer: 330_agent_cli.rs
 
 ### Rust Functions
 
 #### `check_action`
 
-- **File:** src/191_agent_cli.rs:0
+- **File:** src/330_agent_cli.rs:0
 - **Visibility:** Private
 - **Calls:**
   - `std::fs::read_to_string`
@@ -1630,4 +1148,638 @@
   - `check_action`
   - `serde_json::to_string_pretty`
   - `std::process::exit`
+
+## Layer: 370_dead_code_doc_comment_parser.rs
+
+### Rust Functions
+
+#### `detect_latent_markers`
+
+- **File:** src/370_dead_code_doc_comment_parser.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `IntentMarker::from_comment`
+
+#### `extract_doc_markers`
+
+- **File:** src/370_dead_code_doc_comment_parser.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `Vec::new`
+  - `is_ident`
+  - `path`
+  - `detect_latent_markers`
+  - `value`
+  - `push`
+
+## Layer: 380_dead_code_call_graph.rs
+
+### Rust Functions
+
+#### `build_call_graph`
+
+- **File:** src/380_dead_code_call_graph.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `HashMap::new`
+  - `or_default`
+  - `entry`
+  - `clone`
+  - `extend`
+  - `cloned`
+  - `iter`
+
+#### `build_reverse_call_graph`
+
+- **File:** src/380_dead_code_call_graph.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `HashMap::new`
+  - `push`
+  - `or_default`
+  - `entry`
+  - `clone`
+  - `clone`
+
+#### `classify_symbol`
+
+- **File:** src/380_dead_code_call_graph.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `contains_key`
+  - `is_test_only`
+  - `is_reachable`
+
+#### `compute_reachability`
+
+- **File:** src/380_dead_code_call_graph.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `HashSet::new`
+  - `collect`
+  - `cloned`
+  - `iter`
+  - `pop_front`
+  - `insert`
+  - `clone`
+  - `get`
+  - `contains`
+  - `push_back`
+  - `clone`
+
+## Layer: 390_dead_code_intent.rs
+
+### Rust Functions
+
+#### `check_planned_directory`
+
+- **File:** src/390_dead_code_intent.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `starts_with`
+
+#### `collect_symbols`
+
+- **File:** src/390_dead_code_intent.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `unwrap_or_default`
+  - `std::fs::read_to_string`
+  - `syn::parse_file`
+  - `Vec::new`
+  - `collect`
+  - `filter_map`
+  - `iter`
+
+## Layer: 400_dead_code_test_boundaries.rs
+
+### Rust Functions
+
+#### `find_test_callers`
+
+- **File:** src/400_dead_code_test_boundaries.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `is_empty`
+  - `Vec::new`
+  - `build_reverse_call_graph`
+  - `Vec::new`
+  - `HashSet::new`
+  - `collect`
+  - `into_iter`
+  - `unwrap_or_default`
+  - `cloned`
+  - `get`
+  - `pop_front`
+  - `insert`
+  - `clone`
+  - `contains`
+  - `push`
+  - `clone`
+  - `get`
+  - `contains`
+  - `push_back`
+  - `clone`
+
+## Layer: 410_dead_code_entrypoints.rs
+
+### Rust Functions
+
+#### `collect_entrypoints`
+
+- **File:** src/410_dead_code_entrypoints.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `HashSet::new`
+  - `insert`
+  - `clone`
+  - `insert`
+  - `clone`
+  - `treat_public_as_entrypoint`
+  - `insert`
+  - `clone`
+
+#### `collect_exports`
+
+- **File:** src/410_dead_code_entrypoints.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `HashSet::new`
+  - `join`
+  - `filter_map`
+  - `into_iter`
+  - `WalkDir::new`
+  - `path`
+  - `is_file`
+  - `and_then`
+  - `extension`
+  - `to_str`
+  - `Some`
+  - `unwrap_or_default`
+  - `std::fs::read_to_string`
+  - `syn::parse_file`
+  - `collect_use_tree_idents`
+  - `insert`
+  - `to_string`
+
+#### `collect_use_tree_idents`
+
+- **File:** src/410_dead_code_entrypoints.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `insert`
+  - `to_string`
+  - `insert`
+  - `to_string`
+  - `collect_use_tree_idents`
+  - `collect_use_tree_idents`
+  - `insert`
+  - `to_string`
+
+## Layer: 430_dead_code_confidence.rs
+
+### Rust Functions
+
+#### `assign_confidence`
+
+- **File:** src/430_dead_code_confidence.rs:0
+- **Visibility:** Public
+
+## Layer: 460_dead_code_report.rs
+
+### Rust Functions
+
+#### `build_basic_report`
+
+- **File:** src/460_dead_code_report.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `DeadCodeSummary::from_items`
+
+#### `build_report`
+
+- **File:** src/460_dead_code_report.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `DeadCodeSummary::from_items`
+
+## Layer: 470_dead_code_filter.rs
+
+### Rust Functions
+
+#### `collect_excluded_symbols`
+
+- **File:** src/470_dead_code_filter.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `collect`
+  - `map`
+  - `filter`
+  - `iter`
+  - `should_exclude_from_analysis`
+  - `clone`
+
+#### `filter_dead_code_elements`
+
+- **File:** src/470_dead_code_filter.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `collect_excluded_symbols`
+  - `collect`
+  - `cloned`
+  - `filter`
+  - `iter`
+  - `contains`
+
+## Layer: 520_violation_predictor.rs
+
+### Rust Functions
+
+#### `find_callers`
+
+- **File:** src/520_violation_predictor.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `HashSet::new`
+  - `get`
+  - `find_element_file`
+  - `insert`
+  - `collect`
+  - `into_iter`
+
+#### `find_element_file`
+
+- **File:** src/520_violation_predictor.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `map`
+  - `find`
+  - `iter`
+  - `PathBuf::from`
+
+#### `find_reference_files`
+
+- **File:** src/520_violation_predictor.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `HashSet::new`
+  - `any`
+  - `iter`
+  - `find_element_file`
+  - `insert`
+  - `collect`
+  - `into_iter`
+
+## Layer: 540_tier_classifier.rs
+
+### Rust Functions
+
+#### `classify_tier`
+
+- **File:** src/540_tier_classifier.rs:0
+- **Visibility:** Public
+
+## Layer: 550_confidence_scorer.rs
+
+### Rust Functions
+
+#### `compute_confidence`
+
+- **File:** src/550_confidence_scorer.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `min`
+
+## Layer: 560_correction_plan_generator.rs
+
+### Rust Functions
+
+#### `action_function`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `Some`
+  - `clone`
+
+#### `action_module_path`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+  - `to_string`
+
+#### `action_refs`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `Some`
+  - `clone`
+  - `clone`
+  - `Some`
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+
+#### `action_symbol`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `Some`
+  - `clone`
+  - `Some`
+  - `clone`
+  - `Some`
+  - `clone`
+
+#### `action_target_layer`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `clone`
+
+#### `action_visibility`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `Some`
+  - `clone`
+  - `clone`
+  - `clone`
+  - `clone`
+  - `clone`
+
+#### `average_confidence`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `is_empty`
+  - `sum`
+  - `map`
+  - `iter`
+  - `len`
+
+#### `estimate_fix_time`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Private
+
+## Layer: 570_verification_scope_planner.rs
+
+### Rust Functions
+
+#### `action_module`
+
+- **File:** src/570_verification_scope_planner.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+  - `to_string`
+  - `display`
+
+#### `affected_files`
+
+- **File:** src/570_verification_scope_planner.rs:0
+- **Visibility:** Private
+
+#### `estimate_verification_time`
+
+- **File:** src/570_verification_scope_planner.rs:0
+- **Visibility:** Private
+
+## Layer: 580_rollback_criteria_builder.rs
+
+### Rust Functions
+
+#### `build_rollback_criteria`
+
+- **File:** src/580_rollback_criteria_builder.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `push`
+  - `push`
+  - `push`
+  - `extract_critical_tests`
+  - `push`
+  - `clone`
+
+#### `extract_critical_tests`
+
+- **File:** src/580_rollback_criteria_builder.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `Vec::new`
+
+## Layer: 590_quality_delta_calculator.rs
+
+### Rust Functions
+
+#### `calculate_quality_delta`
+
+- **File:** src/590_quality_delta_calculator.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `to_string`
+  - `to_string`
+  - `to_string`
+  - `action_id`
+
+#### `estimate_impact`
+
+- **File:** src/590_quality_delta_calculator.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `simulate_action`
+  - `calculate_quality_delta`
+
+## Layer: 620_verification_policy_emitter.rs
+
+### Rust Functions
+
+#### `emit_verification_policy`
+
+- **File:** src/620_verification_policy_emitter.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `std::fs::write`
+  - `serde_json::to_string_pretty`
+  - `Ok`
+
+## Layer: 630_correction_intelligence_report.rs
+
+### Rust Functions
+
+#### `augment_path_coherence_strategies`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `module_name_from_path`
+  - `module_name_from_path`
+  - `unwrap_or`
+  - `and_then`
+  - `file_name`
+  - `to_str`
+  - `unwrap_or`
+  - `and_then`
+  - `file_name`
+  - `to_str`
+  - `ok`
+  - `Regex::new`
+  - `ok`
+  - `Regex::new`
+  - `is_empty`
+  - `is_empty`
+  - `ok`
+  - `Regex::new`
+  - `Vec::new`
+  - `HashSet::new`
+  - `crate::cluster_010::gather_rust_files`
+  - `fs::read_to_string`
+  - `lines`
+  - `is_match`
+  - `replace`
+  - `clone`
+  - `to_string`
+  - `clone`
+  - `insert`
+  - `clone`
+  - `push`
+  - `is_match`
+  - `replace`
+  - `clone`
+  - `to_string`
+  - `clone`
+  - `insert`
+  - `clone`
+  - `push`
+  - `is_match`
+  - `contains`
+  - `replace`
+  - `clone`
+  - `to_string`
+  - `clone`
+  - `insert`
+  - `clone`
+  - `push`
+  - `sort_by`
+  - `then_with`
+  - `then_with`
+  - `cmp`
+  - `cmp`
+  - `cmp`
+  - `push`
+
+#### `build_state`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Public
+- **Generics:** 'a
+- **Calls:**
+  - `to_path_buf`
+
+#### `compute_summary`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `len`
+  - `is_empty`
+  - `len`
+
+#### `default_confidence`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Private
+
+#### `fill_prediction_confidence`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `default_confidence`
+
+#### `filter_path_coherence_report`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `Vec::new`
+  - `Vec::new`
+  - `Vec::new`
+  - `Vec::new`
+  - `enumerate`
+  - `iter`
+  - `trim_start`
+  - `starts_with`
+  - `starts_with`
+  - `starts_with`
+  - `starts_with`
+  - `starts_with`
+  - `push`
+  - `clone`
+  - `get`
+  - `push`
+  - `clone`
+  - `get`
+  - `push`
+  - `clone`
+  - `get`
+  - `push`
+  - `clone`
+  - `compute_summary`
+  - `clone`
+  - `clone`
+  - `clone`
+  - `len`
+
+#### `filter_visibility_report`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `Vec::new`
+  - `Vec::new`
+  - `Vec::new`
+  - `Vec::new`
+  - `enumerate`
+  - `iter`
+  - `starts_with`
+  - `push`
+  - `clone`
+  - `get`
+  - `push`
+  - `clone`
+  - `get`
+  - `push`
+  - `clone`
+  - `get`
+  - `push`
+  - `clone`
+  - `compute_summary`
+  - `clone`
+  - `clone`
+  - `clone`
+  - `len`
 

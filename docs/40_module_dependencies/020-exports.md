@@ -1,8 +1,15 @@
 # Module Exports
 
-## src/040_dependency.rs (040_dependency.rs)
+## src/050_cluster_010.rs (050_cluster_010.rs)
 
-Module `040_dependency`
+Module `050_cluster_010`
+
+- `crate :: cluster_001 :: order_julia_files_by_dependency`
+- `moved_gather_rust_files :: gather_rust_files`
+
+## src/090_dependency.rs (090_dependency.rs)
+
+Module `090_dependency`
 
 - `# [allow (unused_imports)] pub use crate :: cluster_001 :: { detect_layer , julia_entry_paths , order_rust_files_by_dependency }`
 - `# [allow (unused_imports)] pub use crate :: cluster_010 :: { extract_julia_dependencies , extract_rust_dependencies }`
@@ -12,38 +19,39 @@ Module `040_dependency`
 - `crate :: cluster_011 :: build_module_map`
 - `crate :: cluster_011 :: { build_directory_dag , build_file_dependency_graph }`
 
-## src/060_layer_core.rs (060_layer_core.rs)
+## src/130_layer_core.rs (130_layer_core.rs)
 
-Module `060_layer_core`
+Module `130_layer_core`
 
 - `# [allow (unused_imports)] pub use crate :: cluster_001 :: { layer_constrained_sort , topo_sort_within }`
 - `# [allow (unused_imports)] pub use crate :: cluster_006 :: { layer_prefix_value , order_directories , collect_directory_moves , }`
 - `# [allow (unused_imports)] pub use crate :: cluster_008 :: detect_layer_violations`
+- `crate :: cluster_008 :: sort_structural_items`
 
-## src/070_layer_utilities.rs (070_layer_utilities.rs)
+## src/160_layer_utilities.rs (160_layer_utilities.rs)
 
-Module `070_layer_utilities`
+Module `160_layer_utilities`
 
 - `# [allow (unused_imports)] pub use crate :: cluster_001 :: { build_file_layers , detect_layer , gather_julia_files , julia_entry_paths }`
 - `# [allow (unused_imports)] pub use crate :: cluster_010 :: contains_tools`
 
-## src/140_file_ordering.rs (140_file_ordering.rs)
+## src/260_file_ordering.rs (260_file_ordering.rs)
 
-Module `140_file_ordering`
+Module `260_file_ordering`
 
 - `crate :: cluster_001 :: { ordered_by_name , topological_sort }`
 - `crate :: cluster_010 :: build_dependency_map`
 
-## src/170_dot_exporter.rs (170_dot_exporter.rs)
+## src/290_dot_exporter.rs (290_dot_exporter.rs)
 
-Module `170_dot_exporter`
+Module `290_dot_exporter`
 
 - `# [allow (unused_imports)] pub use crate :: cluster_001 :: export_complete_program_dot`
 - `crate :: cluster_011 :: export_program_cfg_to_path`
 
-## src/200_lib.rs (200_lib.rs)
+## src/340_lib.rs (340_lib.rs)
 
-Module `200_lib`
+Module `340_lib`
 
 - `action_validator :: { AgentAction , ConstraintViolation , ViolationSeverity }`
 - `agent_conscience :: { ActionPermission , AgentConscience }`
@@ -60,4 +68,29 @@ Module `200_lib`
 - `report :: ReportGenerator`
 - `rust_parser :: RustAnalyzer`
 - `types :: AnalysisResult`
+
+## src/390_dead_code_intent.rs (390_dead_code_intent.rs)
+
+Module `390_dead_code_intent`
+
+- `crate :: dead_code_attribute_parser :: detect_intent_signals`
+
+## src/490_dead_code_cli.rs (490_dead_code_cli.rs)
+
+Module `490_dead_code_cli`
+
+- `crate :: layer_utilities :: run_dead_code_pipeline`
+
+## src/600_action_impact_estimator.rs (600_action_impact_estimator.rs)
+
+Module `600_action_impact_estimator`
+
+- `crate :: quality_delta_calculator :: estimate_impact`
+
+## src/630_correction_intelligence_report.rs (630_correction_intelligence_report.rs)
+
+Module `630_correction_intelligence_report`
+
+- `crate :: correction_plan_serializer :: write_intelligence_outputs_at`
+- `crate :: violation_predictor :: generate_intelligence_report`
 

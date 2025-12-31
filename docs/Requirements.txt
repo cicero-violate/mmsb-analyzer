@@ -48,14 +48,14 @@
 - [x] FR5.10: Include cargo warning output in refactoring plan
 - [x] FR5.11: Support report configuration via docs/analyzer_config.toml
 - [x] FR5.12: Support baseline metrics file with regression warnings
-- [ ] FR5.13: Generate JSON-formatted dead code analysis report
-- [ ] FR5.14: Export dead code report separately from refactoring plan
-- [ ] FR5.13: Detect duplicated functions and list them as warnings
-- [ ] FR5.14: Weight edges using call-graph impact when ordering moves
-- [ ] FR5.15: Add cost/benefit scores (reduces N violations vs touches M files)
-- [ ] FR5.16: Treat utility/shared helpers as roots for plan ordering
-- [ ] FR5.17: Formalize refactors as invariants, transformation rules, and verification gates
-- [ ] FR5.18: Support phase-by-phase re-analysis (apply Phase 2 -> re-analyze -> regenerate Phase 3)
+- [x] FR5.13: Generate JSON-formatted dead code analysis report
+- [x] FR5.14: Export dead code report separately from refactoring plan
+- [ ] FR5.15: Detect duplicated functions and list them as warnings
+- [ ] FR5.16: Weight edges using call-graph impact when ordering moves
+- [ ] FR5.17: Add cost/benefit scores (reduces N violations vs touches M files)
+- [ ] FR5.18: Treat utility/shared helpers as roots for plan ordering
+- [ ] FR5.19: Formalize refactors as invariants, transformation rules, and verification gates
+- [ ] FR5.20: Support phase-by-phase re-analysis (apply Phase 2 -> re-analyze -> regenerate Phase 3)
 
 ### FR6: Metrics and Validation
 - [x] FR6.1: Calculate directory cohesion score
@@ -92,21 +92,72 @@
 - [x] FR9.4: Capture cargo warnings into docs/cargo_warnings.txt
 
 ### FR10: Dead Code Analysis
-- [ ] FR10.1: Classify code into Unreachable (U), Reachable-but-Unused (R), Test-Only (T), Latent/Planned (H)
-- [ ] FR10.2: Construct explicit call graph from AST for reachability analysis
-- [ ] FR10.3: Parse #[mmsb_latent(...)] attributes to detect intent-tagged code
-- [ ] FR10.4: Parse doc comments for @latent, @planned, @future markers
-- [ ] FR10.5: Support directory-based intent detection (e.g., src/planned/)
-- [ ] FR10.6: Detect #[cfg(test)] and test module boundaries for Test-Only classification
-- [ ] FR10.7: Assign confidence levels (call_graph, test_reference, intent_tag, heuristic)
-- [ ] FR10.8: Generate graduated action recommendations (delete_safe, quarantine, relocate_tests, keep, manual_review)
-- [ ] FR10.9: Export structured JSON report with summary and per-item details
-- [ ] FR10.10: Provide CLI flags --dead-code and --dead-code-json for analysis control
-- [ ] FR10.11: Filter dead code from cohesion/cluster/layer analysis pipeline
-- [ ] FR10.12: Never delete or mark latent code (H category) as dead
-- [ ] FR10.13: Preserve all code with explicit intent signals
-- [ ] FR10.14: Support policy files for aging rules and protection scopes
+- [x] FR10.1: Classify code into Unreachable (U), Reachable-but-Unused (R), Test-Only (T), Latent/Planned (H)
+- [x] FR10.2: Construct explicit call graph from AST for reachability analysis
+- [x] FR10.3: Parse #[mmsb_latent(...)] attributes to detect intent-tagged code
+- [x] FR10.4: Parse doc comments for @latent, @planned, @future markers
+- [x] FR10.5: Support directory-based intent detection (e.g., src/planned/)
+- [x] FR10.6: Detect #[cfg(test)] and test module boundaries for Test-Only classification
+- [x] FR10.7: Assign confidence levels (call_graph, test_reference, intent_tag, heuristic)
+- [x] FR10.8: Generate graduated action recommendations (delete_safe, quarantine, relocate_tests, keep, manual_review)
+- [x] FR10.9: Export structured JSON report with summary and per-item details
+- [x] FR10.10: Provide CLI flags --dead-code and --dead-code-json for analysis control
+- [x] FR10.11: Filter dead code from cohesion/cluster/layer analysis pipeline
+- [x] FR10.12: Never delete or mark latent code (H category) as dead
+- [x] FR10.13: Preserve all code with explicit intent signals
+- [x] FR10.14: Support policy files for aging rules and protection scopes
 - [ ] FR10.15: Integrate with test coverage data when available (optional)
+- [x] FR10.16: Resolve entrypoints and exports (pub use, public modules) for reachability seeding
+- [x] FR10.17: Treat public API symbols as reachable unless explicitly tagged as dead
+- [ ] FR10.18: Maintain an entrypoint attribute registry (main/test/proc_macro/no_mangle)
+- [x] FR10.19: Require delete_safe to be non-public + call_graph confidence
+- [x] FR10.20: Generate summary + full dead code reports (noise-reduced + complete)
+
+### Dead Code Module Map (Planned)
+- `src/210_dead_code_types.rs` (data types)
+- `src/211_dead_code_attribute_parser.rs` (attributes)
+- `src/212_dead_code_doc_comment_parser.rs` (doc comments)
+- `src/213_dead_code_call_graph.rs` (call graph + reachability)
+- `src/214_dead_code_intent.rs` (intent aggregation)
+- `src/215_dead_code_test_boundaries.rs` (test-only detection)
+- `src/216_dead_code_entrypoints.rs` (entrypoints + exports)
+- `src/217_dead_code_classifier.rs` (category classifier)
+- `src/218_dead_code_confidence.rs` (confidence scorer)
+- `src/219_dead_code_actions.rs` (action recommender)
+- `src/220_dead_code_report.rs` (JSON report generator)
+- `src/221_dead_code_filter.rs` (pipeline filter)
+- `src/222_dead_code_cli.rs` (CLI integration)
+- `src/223_dead_code_policy.rs` (policy file support)
+- `src/224_dead_code_report_split.rs` (summary vs full report)
+
+### FR11: Correction Intelligence (Analyzer → Executor)
+- [x] FR11.1: Define correction plan, verification policy, and quality delta types
+- [x] FR11.2: Predict violations from refactor actions
+- [x] FR11.3: Classify error tiers and confidence scores
+- [x] FR11.4: Generate correction plans and verification policies
+- [x] FR11.5: Build rollback criteria for each action
+- [x] FR11.6: Compute quality deltas for predicted actions
+- [x] FR11.7: Emit correction_intelligence.json (versioned)
+- [x] FR11.8: Emit verification_policy.json
+- [x] FR11.9: Append correction intelligence summary to refactoring plan
+- [x] FR11.10: Keep analyzer pure (no execution or mutations)
+- [x] FR11.11: Publish correction_intelligence.schema.json for executor validation
+
+### Correction Intelligence Module Map (Planned)
+- `src/220_correction_plan_types.rs` (types + actions)
+- `src/221_verification_policy_types.rs` (verification policy)
+- `src/222_quality_delta_types.rs` (quality delta + rollback)
+- `src/223_violation_predictor.rs` (prediction)
+- `src/224_tier_classifier.rs` (tier classification)
+- `src/225_confidence_scorer.rs` (confidence)
+- `src/226_correction_plan_generator.rs` (plan generation)
+- `src/227_verification_scope_planner.rs` (verification scope)
+- `src/228_rollback_criteria_builder.rs` (rollback rules)
+- `src/229_quality_delta_calculator.rs` (delta calculation)
+- `src/230_action_impact_estimator.rs` (impact estimation)
+- `src/231_correction_plan_serializer.rs` (serializer)
+- `src/232_verification_policy_emitter.rs` (policy emitter)
+- `src/233_correction_intelligence_report.rs` (report generator)
 
 ## Non-Functional Requirements
 
@@ -119,6 +170,7 @@
 - NFR2.1: Correctly identify 95%+ of dependency relationships
 - NFR2.2: Minimize false positive relocation suggestions (<10%)
 - NFR2.3: Handle both Rust and Julia idioms correctly
+- NFR2.4: Zero false positives for delete_safe on public API symbols
 
 ### NFR3: Usability
 - [x] NFR3.1: Reports must be human-readable markdown
@@ -159,6 +211,8 @@
 - DR2.4: Metrics and statistics
 - DR2.5: Markdown reports
 - DR2.6: DOT/Mermaid graph files
+- DR2.7: Dead code JSON report and summary markdown
+- DR2.8: Correction intelligence schema JSON
 
 ### DR3: Intermediate Data
 - DR3.1: Dependency graph per directory
@@ -182,6 +236,15 @@
 - C3.1: Full support for Rust syntax via syn crate
 - C3.2: Full support for Julia via external script or regex fallback
 - C3.3: Handle language-specific module systems
+
+## Most Intelligent Course of Action
+
+1. Define reachability roots first (entrypoints + exports + policy).
+2. Implement intent + test-boundary detection before classification.
+3. Enforce delete_safe guardrails (non-public + call_graph only).
+4. Emit dead code reports separately and keep them out of refactor inputs.
+5. Gate downstream analysis after dead-code filtering.
+6. Validate with integration tests focused on public API and macro entrypoints.
 
 ## Success Criteria
 

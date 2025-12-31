@@ -38,23 +38,6 @@
   - `join`
   - `into_path`
 
-#### `generates_canonical_names_and_violations`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `temp_dir`
-  - `create_dir_all`
-  - `join`
-  - `join`
-  - `write`
-  - `write`
-  - `analyze_file_ordering`
-  - `clone`
-  - `clone`
-  - `Some`
-  - `Ok`
-
 #### `julia_entry_paths`
 
 - **File:** src/000_cluster_001.rs:0
@@ -88,19 +71,6 @@
   - `topo_sort_within`
   - `extend`
   - `Ok`
-
-## Layer: 005_refactor_constraints.rs
-
-### Rust Functions
-
-#### `generate_constraints`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `collect`
-  - `filter_map`
-  - `iter`
 
 ## Layer: 010_cluster_008.rs
 
@@ -179,141 +149,13 @@
   - `insert`
   - `clone`
 
-## Layer: 020_layer_inference.rs
-
-### Rust Functions
-
-#### `infer_layers`
-
-- **File:** src/020_layer_inference.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `HashMap::new`
-  - `HashMap::new`
-  - `node_indices`
-  - `count`
-  - `neighbors_directed`
-  - `insert`
-  - `node_indices`
-  - `contains_key`
-  - `collect`
-  - `neighbors_directed`
-  - `all`
-  - `iter`
-  - `contains_key`
-  - `is_empty`
-  - `unwrap_or`
-  - `copied`
-  - `max`
-  - `filter_map`
-  - `iter`
-  - `get`
-  - `insert`
-  - `unwrap_or`
-  - `copied`
-  - `max`
-  - `values`
-  - `node_indices`
-  - `contains_key`
-  - `insert`
-  - `clone`
-  - `collect`
-  - `map`
-  - `neighbors_directed`
-  - `clone`
-  - `is_empty`
-  - `max`
-  - `filter_map`
-  - `iter`
-  - `copied`
-  - `and_then`
-  - `find`
-  - `node_indices`
-  - `get`
-  - `insert`
-  - `clone`
-
-## Layer: 050_cluster_006.rs
-
-### Rust Functions
-
-#### `generate_canonical_name`
-
-- **File:** src/050_cluster_006.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `unwrap_or`
-  - `and_then`
-  - `file_stem`
-  - `to_str`
-  - `unwrap_or`
-  - `and_then`
-  - `extension`
-  - `to_str`
-  - `strip_numeric_prefix`
-  - `is_empty`
-
-#### `layer_prefix_value`
-
-- **File:** src/050_cluster_006.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `chars`
-  - `String::new`
-  - `next`
-  - `is_ascii_digit`
-  - `push`
-  - `is_empty`
-  - `ok`
-  - `parse`
-
-## Layer: 050_semantic_detector.rs
-
-### Rust Functions
-
-#### `make_function`
-
-- **File:** src/050_semantic_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `Vec::new`
-  - `to_string`
-
-## Layer: 070_invariant_integrator.rs
-
-### Rust Functions
-
-#### `make_simple_analysis`
-
-- **File:** src/070_invariant_integrator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `AnalysisResult::new`
-  - `add_element`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `Vec::new`
-  - `to_string`
-  - `Vec::new`
-  - `HashMap::new`
-  - `insert`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `Vec::new`
-  - `Vec::new`
-
-## Layer: 070_layer_utilities.rs
+## Layer: 020_cluster_010.rs
 
 ### Rust Functions
 
 #### `gather_rust_files`
 
-- **File:** src/070_layer_utilities.rs:0
+- **File:** src/020_cluster_010.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `resolve_source_root`
@@ -345,9 +187,60 @@
   - `join`
   - `into_path`
 
+## Layer: 030_refactor_constraints.rs
+
+### Rust Functions
+
+#### `generate_constraints`
+
+- **File:** src/030_refactor_constraints.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `collect`
+  - `filter_map`
+  - `iter`
+
+## Layer: 110_cluster_006.rs
+
+### Rust Functions
+
+#### `generate_canonical_name`
+
+- **File:** src/110_cluster_006.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `unwrap_or`
+  - `and_then`
+  - `file_stem`
+  - `to_str`
+  - `unwrap_or`
+  - `and_then`
+  - `extension`
+  - `to_str`
+  - `strip_numeric_prefix`
+  - `is_empty`
+
+#### `layer_prefix_value`
+
+- **File:** src/110_cluster_006.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `chars`
+  - `String::new`
+  - `next`
+  - `is_ascii_digit`
+  - `push`
+  - `is_empty`
+  - `ok`
+  - `parse`
+
+## Layer: 160_layer_utilities.rs
+
+### Rust Functions
+
 #### `main`
 
-- **File:** src/070_layer_utilities.rs:0
+- **File:** src/160_layer_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `Args::parse`
@@ -367,113 +260,13 @@
   - `canonicalize`
   - `run_analysis`
 
-## Layer: 080_invariant_reporter.rs
-
-### Rust Functions
-
-#### `generate_invariant_report`
-
-- **File:** src/080_invariant_reporter.rs:0
-- **Visibility:** Public
-- **Calls:**
-  - `join`
-  - `fs::create_dir_all`
-  - `join`
-  - `String::new`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `collect`
-  - `filter`
-  - `iter`
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `collect`
-  - `filter`
-  - `iter`
-  - `is_empty`
-  - `push_str`
-  - `take`
-  - `iter`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `len`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `collect`
-  - `filter`
-  - `iter`
-  - `is_empty`
-  - `push_str`
-  - `take`
-  - `iter`
-  - `push_str`
-  - `len`
-  - `push_str`
-  - `push_str`
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `collect`
-  - `filter`
-  - `iter`
-  - `sort_by_key`
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `collect`
-  - `iter`
-  - `sort_by_key`
-  - `take`
-  - `iter`
-  - `push_str`
-  - `len`
-  - `push_str`
-  - `push_str`
-  - `fs::write`
-  - `export_json`
-  - `join`
-  - `crate::conscience_graph::generate_conscience_map`
-  - `Ok`
-
-## Layer: 082_conscience_graph.rs
+## Layer: 180_conscience_graph.rs
 
 ### Rust Functions
 
 #### `generate_conscience_map`
 
-- **File:** src/082_conscience_graph.rs:0
+- **File:** src/180_conscience_graph.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `String::new`
@@ -527,234 +320,44 @@
   - `std::fs::write`
   - `Ok`
 
-#### `generate_conscience_stats`
+## Layer: 211_dead_code_attribute_parser.rs
 
-- **File:** src/082_conscience_graph.rs:0
+### Rust Functions
+
+#### `is_cfg_test_item`
+
+- **File:** src/211_dead_code_attribute_parser.rs:0
 - **Visibility:** Public
 - **Calls:**
-  - `HashMap::new`
-  - `push`
-  - `or_default`
-  - `entry`
-  - `clone`
-  - `len`
-  - `count`
-  - `filter`
-  - `values`
   - `any`
   - `iter`
-  - `is_blocking`
-  - `count`
-  - `filter`
-  - `iter`
-  - `count`
-  - `filter`
-  - `iter`
-  - `count`
-  - `filter`
-  - `iter`
-  - `len`
-  - `count`
-  - `filter`
-  - `iter`
-  - `is_blocking`
+  - `item_attrs`
+  - `is_ident`
+  - `path`
+  - `parse_nested_meta`
+  - `is_ident`
+  - `Ok`
+  - `is_ident`
+  - `parse_nested_meta`
+  - `is_ident`
+  - `Ok`
+  - `Ok`
 
-#### `kind_name`
+#### `marker_from_str`
 
-- **File:** src/082_conscience_graph.rs:0
+- **File:** src/211_dead_code_attribute_parser.rs:0
 - **Visibility:** Private
 - **Calls:**
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
+  - `as_str`
+  - `to_ascii_lowercase`
 
-#### `make_test_invariant`
-
-- **File:** src/082_conscience_graph.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Invariant::new`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-
-## Layer: 083_action_validator.rs
-
-### Rust Functions
-
-#### `matches_function`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `target`
-
-## Layer: 085_agent_conscience.rs
-
-### Rust Functions
-
-#### `make_test_invariant`
-
-- **File:** src/085_agent_conscience.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Invariant::new`
-  - `to_string`
-  - `InvariantKind::Structural`
-
-## Layer: 110_cohesion_analyzer.rs
-
-### Rust Functions
-
-#### `louvain_communities`
-
-- **File:** src/110_cohesion_analyzer.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `len`
-  - `Vec::new`
-  - `build_undirected_graph`
-  - `collect`
-  - `collect`
-  - `clone`
-  - `HashMap::new`
-  - `or_insert`
-  - `entry`
-  - `saturating_sub`
-
-## Layer: 120_directory_analyzer.rs
-
-### Rust Functions
-
-#### `is_source_file`
-
-- **File:** src/120_directory_analyzer.rs:0
-- **Visibility:** Private
-
-## Layer: 150_julia_parser.rs
-
-### Rust Functions
-
-#### `is_reserved`
-
-- **File:** src/150_julia_parser.rs:0
-- **Visibility:** Private
-
-## Layer: 180_report.rs
-
-### Rust Functions
-
-#### `group_key_cmp`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `cmp`
-
-#### `is_dead_code_candidate`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `get`
-  - `is_empty`
-  - `any`
-  - `iter`
-  - `path_matches`
-
-#### `is_entrypoint_main`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `ends_with`
-  - `Path::new`
-
-#### `is_public_function`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `fs::read_to_string`
-  - `lines`
-  - `find`
-  - `trim_start`
-  - `Some`
-  - `starts_with`
-
-#### `language_label`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-
-#### `load_baseline_metrics`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `join`
-  - `Path::new`
-  - `fs::read_to_string`
-  - `HashMap::new`
-  - `lines`
-  - `trim`
-  - `is_empty`
-  - `starts_with`
-  - `split_once`
-  - `to_string`
-  - `trim`
-  - `trim`
-  - `parse`
-  - `insert`
-  - `Some`
-
-#### `load_cargo_warnings`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `join`
-  - `Path::new`
-  - `exists`
-  - `ok`
-  - `fs::read_to_string`
-
-#### `load_report_config`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `join`
-  - `Path::new`
-  - `ReportConfig::defaults`
-  - `fs::read_to_string`
-  - `lines`
-  - `trim`
-  - `is_empty`
-  - `starts_with`
-  - `split_once`
-  - `trim`
-  - `trim_matches`
-  - `trim`
-  - `parse`
-  - `parse`
-  - `is_empty`
-  - `to_string`
-  - `parse`
-
-## Layer: 190_main.rs
+## Layer: 320_main.rs
 
 ### Rust Functions
 
 #### `main`
 
-- **File:** src/190_main.rs:0
+- **File:** src/320_main.rs:0
 - **Visibility:** Private
 - **Calls:**
   - `collect`
@@ -763,13 +366,13 @@
   - `agent_cli::run_agent_cli`
   - `crate::layer_utilities::main`
 
-## Layer: 191_agent_cli.rs
+## Layer: 330_agent_cli.rs
 
 ### Rust Functions
 
 #### `list_invariants`
 
-- **File:** src/191_agent_cli.rs:0
+- **File:** src/330_agent_cli.rs:0
 - **Visibility:** Private
 - **Calls:**
   - `load_invariants`
@@ -783,10 +386,283 @@
 
 #### `load_invariants`
 
-- **File:** src/191_agent_cli.rs:0
+- **File:** src/330_agent_cli.rs:0
 - **Visibility:** Private
 - **Calls:**
   - `std::fs::read_to_string`
   - `Ok`
   - `serde_json::from_str`
+
+## Layer: 370_dead_code_doc_comment_parser.rs
+
+### Rust Functions
+
+#### `item_attrs`
+
+- **File:** src/370_dead_code_doc_comment_parser.rs:0
+- **Visibility:** Crate
+
+#### `item_name`
+
+- **File:** src/370_dead_code_doc_comment_parser.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `Some`
+  - `to_string`
+  - `Some`
+  - `to_string`
+  - `Some`
+  - `to_string`
+  - `Some`
+  - `to_string`
+  - `Some`
+  - `to_string`
+
+#### `merge_doc_intent`
+
+- **File:** src/370_dead_code_doc_comment_parser.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `IntentMap::new`
+  - `HashSet::new`
+  - `insert`
+  - `push`
+  - `or_default`
+  - `entry`
+  - `clone`
+
+## Layer: 380_dead_code_call_graph.rs
+
+### Rust Functions
+
+#### `is_reachable`
+
+- **File:** src/380_dead_code_call_graph.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `is_empty`
+  - `contains`
+  - `compute_reachability`
+
+#### `is_test_only`
+
+- **File:** src/380_dead_code_call_graph.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `contains`
+  - `build_reverse_call_graph`
+  - `get`
+  - `is_empty`
+  - `all`
+  - `iter`
+  - `contains`
+
+## Layer: 390_dead_code_intent.rs
+
+### Rust Functions
+
+#### `merge_intent_sources`
+
+- **File:** src/390_dead_code_intent.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `IntentMap::new`
+  - `extend`
+  - `or_default`
+  - `entry`
+  - `extend`
+  - `or_default`
+  - `entry`
+  - `extend`
+  - `or_default`
+  - `entry`
+
+## Layer: 400_dead_code_test_boundaries.rs
+
+### Rust Functions
+
+#### `has_test_attr`
+
+- **File:** src/400_dead_code_test_boundaries.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `any`
+  - `iter`
+  - `path`
+  - `is_ident`
+  - `map`
+  - `last`
+  - `to_string`
+
+#### `item_attrs`
+
+- **File:** src/400_dead_code_test_boundaries.rs:0
+- **Visibility:** Private
+
+## Layer: 410_dead_code_entrypoints.rs
+
+### Rust Functions
+
+#### `is_public_api`
+
+- **File:** src/410_dead_code_entrypoints.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `contains`
+
+## Layer: 420_dead_code_classifier.rs
+
+### Rust Functions
+
+#### `is_reachable`
+
+- **File:** src/420_dead_code_classifier.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `is_empty`
+  - `crate::dead_code_call_graph::compute_reachability`
+  - `contains`
+
+## Layer: 490_dead_code_cli.rs
+
+### Rust Functions
+
+#### `is_test_path`
+
+- **File:** src/490_dead_code_cli.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `any`
+  - `components`
+  - `unwrap_or`
+  - `to_str`
+  - `as_os_str`
+
+#### `merge_intent_map`
+
+- **File:** src/490_dead_code_cli.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `extend`
+  - `or_default`
+  - `entry`
+
+## Layer: 510_dead_code_policy.rs
+
+### Rust Functions
+
+#### `load_policy`
+
+- **File:** src/510_dead_code_policy.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `std::fs::read_to_string`
+  - `Ok`
+  - `parse_policy`
+  - `unwrap_or`
+  - `parent`
+
+## Layer: 520_violation_predictor.rs
+
+### Rust Functions
+
+#### `generate_intelligence_report`
+
+- **File:** src/520_violation_predictor.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `Vec::new`
+  - `Vec::new`
+  - `Vec::new`
+  - `Vec::new`
+  - `predict_violations`
+  - `fill_prediction_confidence`
+  - `generate_correction_plan`
+  - `augment_path_coherence_strategies`
+  - `plan_verification_scope`
+  - `build_rollback_criteria`
+  - `estimate_impact`
+  - `clone`
+  - `push`
+  - `push`
+  - `push`
+  - `push`
+  - `compute_summary`
+  - `to_string`
+  - `to_rfc3339`
+  - `chrono::Utc::now`
+  - `clone`
+  - `len`
+
+#### `move_violates_invariant`
+
+- **File:** src/520_violation_predictor.rs:0
+- **Visibility:** Private
+
+## Layer: 560_correction_plan_generator.rs
+
+### Rust Functions
+
+#### `generate_correction_plan`
+
+- **File:** src/560_correction_plan_generator.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `Vec::new`
+  - `action_symbol`
+  - `push`
+  - `action_module_path`
+  - `action_refs`
+  - `push`
+  - `action_refs`
+  - `push`
+  - `clone`
+  - `clone`
+  - `clone`
+  - `action_symbol`
+  - `push`
+  - `to_string`
+  - `action_target_layer`
+  - `action_function`
+  - `push`
+  - `action_function`
+  - `action_target_layer`
+  - `push`
+  - `action_visibility`
+  - `starts_with`
+  - `push`
+  - `to_string`
+  - `push`
+  - `push`
+  - `unwrap_or`
+  - `max`
+  - `map`
+  - `iter`
+  - `action_id`
+  - `to_vec`
+  - `average_confidence`
+  - `estimate_fix_time`
+  - `len`
+
+## Layer: 630_correction_intelligence_report.rs
+
+### Rust Functions
+
+#### `module_name_from_path`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `and_then`
+  - `file_stem`
+  - `to_str`
+  - `to_string`
+  - `and_then`
+  - `and_then`
+  - `parent`
+  - `file_name`
+  - `to_str`
+  - `to_string`
+  - `Some`
+  - `crate::cluster_010::normalize_module_name`
 

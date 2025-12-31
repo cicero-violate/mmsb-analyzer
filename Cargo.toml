@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-path = "src/200_lib.rs"
+path = "src/340_lib.rs"
 
 [[bin]]
 name = "mmsb-analyzer"
-path = "src/190_main.rs"
+path = "src/320_main.rs"
 
 [features]
 default = []

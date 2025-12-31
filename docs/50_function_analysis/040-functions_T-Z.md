@@ -4,54 +4,6 @@
 
 ### Rust Functions
 
-#### `temp_dir`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `std::env::temp_dir`
-  - `push`
-
-#### `test_detects_cycles`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `unwrap`
-  - `detects_cycles`
-
-#### `test_generates_canonical_names_and_violations`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `unwrap`
-  - `generates_canonical_names_and_violations`
-
-#### `topo_sort_orders_dependencies`
-
-- **File:** src/000_cluster_001.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `temp_dir`
-  - `create_dir_all`
-  - `join`
-  - `join`
-  - `join`
-  - `write`
-  - `write`
-  - `write`
-  - `analyze_file_ordering`
-  - `clone`
-  - `clone`
-  - `clone`
-  - `Some`
-  - `collect`
-  - `map`
-  - `iter`
-  - `clone`
-  - `Ok`
-
 #### `topo_sort_within`
 
 - **File:** src/000_cluster_001.rs:0
@@ -110,92 +62,6 @@
   - `Err`
   - `Ok`
 
-## Layer: 000_invariant_types.rs
-
-### Rust Functions
-
-#### `test_confidence_from_strength`
-
-- **File:** src/000_invariant_types.rs:0
-- **Visibility:** Private
-
-#### `test_is_blocking`
-
-- **File:** src/000_invariant_types.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Invariant::new`
-  - `to_string`
-  - `to_string`
-  - `InvariantKind::Structural`
-  - `to_string`
-  - `Invariant::new`
-  - `to_string`
-  - `to_string`
-  - `InvariantKind::Semantic`
-  - `to_string`
-
-#### `test_stats_calculation`
-
-- **File:** src/000_invariant_types.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `InvariantAnalysisResult::new`
-  - `add_invariant`
-  - `Invariant::new`
-  - `to_string`
-  - `to_string`
-  - `InvariantKind::Structural`
-  - `to_string`
-  - `add_invariant`
-  - `Invariant::new`
-  - `to_string`
-  - `to_string`
-  - `InvariantKind::Semantic`
-  - `to_string`
-  - `update_totals`
-
-## Layer: 005_refactor_constraints.rs
-
-### Rust Functions
-
-#### `test_check_move_allowed_blocking`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `check_move_allowed`
-
-#### `test_check_move_allowed_non_blocking`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `check_move_allowed`
-
-#### `test_constraint_is_blocking`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `to_string`
-
-#### `test_from_invariant_layer_fixed`
-
-- **File:** src/005_refactor_constraints.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Invariant::new`
-  - `to_string`
-  - `to_string`
-  - `InvariantKind::Structural`
-  - `to_string`
-  - `unwrap`
-  - `from_invariant`
-
 ## Layer: 010_cluster_008.rs
 
 ### Rust Functions
@@ -240,492 +106,13 @@
   - `extend`
   - `Vec::new`
 
-## Layer: 010_scc_compressor.rs
+## Layer: 190_action_validator.rs
 
 ### Rust Functions
-
-#### `test_scc_compression_cycle`
-
-- **File:** src/010_scc_compressor.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `SccCompression::new`
-
-#### `test_scc_compression_dag`
-
-- **File:** src/010_scc_compressor.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `SccCompression::new`
-
-#### `test_scc_compression_mixed`
-
-- **File:** src/010_scc_compressor.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `SccCompression::new`
-
-## Layer: 020_layer_inference.rs
-
-### Rust Functions
-
-#### `test_detect_layer_violations_none`
-
-- **File:** src/020_layer_inference.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `infer_layers`
-  - `detect_layer_violations`
-
-#### `test_layer_inference_diamond`
-
-- **File:** src/020_layer_inference.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `infer_layers`
-
-#### `test_layer_inference_simple_dag`
-
-- **File:** src/020_layer_inference.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `infer_layers`
-
-## Layer: 030_fixpoint_solver.rs
-
-### Rust Functions
-
-#### `test_fixpoint_convergence`
-
-- **File:** src/030_fixpoint_solver.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `HashMap::new`
-  - `insert`
-  - `to_string`
-  - `SymbolicAbstraction::new`
-  - `insert`
-  - `to_string`
-  - `SymbolicAbstraction::new`
-  - `propagate_to_fixpoint`
-
-#### `test_fixpoint_simple`
-
-- **File:** src/030_fixpoint_solver.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `HashMap::new`
-  - `SymbolicAbstraction::new`
-  - `insert`
-  - `to_string`
-  - `insert`
-  - `to_string`
-  - `insert`
-  - `to_string`
-  - `SymbolicAbstraction::new`
-  - `insert`
-  - `to_string`
-  - `SymbolicAbstraction::new`
-  - `propagate_to_fixpoint`
-
-#### `test_symbolic_abstraction_merge`
-
-- **File:** src/030_fixpoint_solver.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `SymbolicAbstraction::new`
-  - `Some`
-  - `to_string`
-  - `insert`
-  - `to_string`
-  - `Some`
-  - `SymbolicAbstraction::new`
-  - `insert`
-  - `to_string`
-  - `Some`
-  - `merge`
-
-## Layer: 040_structural_detector.rs
-
-### Rust Functions
-
-#### `test_all_structural_invariants_proven`
-
-- **File:** src/040_structural_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `StructuralDetector::new`
-  - `detect_all`
-  - `count`
-  - `filter`
-  - `iter`
-
-#### `test_detect_degree_stable`
-
-- **File:** src/040_structural_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `StructuralDetector::new`
-  - `detect_degree_stable`
-  - `unwrap`
-  - `find`
-  - `iter`
-
-#### `test_detect_leaf_root`
-
-- **File:** src/040_structural_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `StructuralDetector::new`
-  - `detect_leaf_root`
-  - `collect`
-  - `filter`
-  - `iter`
-  - `collect`
-  - `filter`
-  - `iter`
-
-## Layer: 050_semantic_detector.rs
-
-### Rust Functions
-
-#### `test_detect_idempotent_heuristic`
-
-- **File:** src/050_semantic_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `SemanticDetector::new`
-  - `detect_idempotent`
-
-#### `test_detect_pure_function_heuristic`
-
-- **File:** src/050_semantic_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `SemanticDetector::new`
-  - `detect_pure_function`
-
-#### `test_detect_type_stable`
-
-- **File:** src/050_semantic_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `SemanticDetector::new`
-  - `detect_type_stable`
-
-#### `test_no_pure_for_mutable`
-
-- **File:** src/050_semantic_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `SemanticDetector::new`
-  - `detect_pure_function`
-  - `count`
-  - `filter`
-  - `iter`
-
-## Layer: 060_path_detector.rs
-
-### Rust Functions
-
-#### `test_extract_facts_from_path`
-
-- **File:** src/060_path_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `PathDetector::new`
-  - `extract_facts_from_path`
-
-#### `test_path_detector_diamond`
-
-- **File:** src/060_path_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `add_edge`
-  - `PathDetector::new`
-  - `detect_all`
-  - `collect`
-  - `filter`
-  - `iter`
-  - `is_empty`
-
-#### `test_path_detector_simple`
-
-- **File:** src/060_path_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `add_edge`
-  - `PathDetector::new`
-  - `detect_all`
-
-#### `test_path_stats`
-
-- **File:** src/060_path_detector.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `DiGraph::new`
-  - `add_node`
-  - `to_string`
-  - `add_node`
-  - `to_string`
-  - `add_edge`
-  - `PathDetector::new`
-  - `get_stats`
-
-## Layer: 070_invariant_integrator.rs
-
-### Rust Functions
-
-#### `test_detect_all`
-
-- **File:** src/070_invariant_integrator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `make_simple_analysis`
-  - `InvariantDetector::new`
-  - `detect_all`
-
-#### `test_invariant_detector_creation`
-
-- **File:** src/070_invariant_integrator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `make_simple_analysis`
-  - `InvariantDetector::new`
-
-## Layer: 080_invariant_reporter.rs
-
-### Rust Functions
-
-#### `test_generate_report`
-
-- **File:** src/080_invariant_reporter.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `Vec::new`
-  - `HashMap::new`
-  - `join`
-  - `std::env::temp_dir`
-  - `unwrap`
-  - `fs::create_dir_all`
-  - `generate_invariant_report`
-  - `fs::remove_dir_all`
-
-## Layer: 082_conscience_graph.rs
-
-### Rust Functions
-
-#### `test_generate_stats`
-
-- **File:** src/082_conscience_graph.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `generate_conscience_stats`
-
-#### `test_strength_emoji`
-
-- **File:** src/082_conscience_graph.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `make_test_invariant`
-  - `InvariantKind::Structural`
-  - `make_test_invariant`
-  - `InvariantKind::Semantic`
-  - `to_string`
-  - `make_test_invariant`
-  - `InvariantKind::Semantic`
-
-## Layer: 083_action_validator.rs
-
-### Rust Functions
-
-#### `test_check_move_allowed`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `check_move_allowed`
-  - `PathBuf::from`
-  - `PathBuf::from`
-
-#### `test_extract_layer`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-
-#### `test_validate_allowed_action`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `PathBuf::from`
-  - `PathBuf::from`
-  - `validate_action`
-
-#### `test_validate_layer_fixed_constraint`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `PathBuf::from`
-  - `PathBuf::from`
-  - `validate_action`
-
-#### `test_validate_no_move_constraint`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `PathBuf::from`
-  - `PathBuf::from`
-  - `validate_action`
-  - `unwrap_err`
-
-#### `test_validate_preserve_signature`
-
-- **File:** src/083_action_validator.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `to_string`
-  - `to_string`
-  - `to_string`
-  - `PathBuf::from`
-  - `validate_action`
 
 #### `validate_action`
 
-- **File:** src/083_action_validator.rs:0
+- **File:** src/190_action_validator.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `Vec::new`
@@ -742,58 +129,13 @@
   - `Ok`
   - `Err`
 
-## Layer: 085_agent_conscience.rs
-
-### Rust Functions
-
-#### `test_conscience_allows_valid_action`
-
-- **File:** src/085_agent_conscience.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `make_test_invariant`
-  - `AgentConscience::new`
-  - `to_string`
-  - `PathBuf::from`
-  - `PathBuf::from`
-  - `check_action`
-
-#### `test_conscience_blocks_invalid_move`
-
-- **File:** src/085_agent_conscience.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `make_test_invariant`
-  - `AgentConscience::new`
-  - `to_string`
-  - `PathBuf::from`
-  - `PathBuf::from`
-  - `check_action`
-
-#### `test_conscience_stats`
-
-- **File:** src/085_agent_conscience.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `AgentConscience::new`
-  - `stats`
-
-#### `test_query_allowed_actions`
-
-- **File:** src/085_agent_conscience.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `make_test_invariant`
-  - `AgentConscience::new`
-  - `query_allowed_actions`
-
-## Layer: 090_utilities.rs
+## Layer: 210_utilities.rs
 
 ### Rust Functions
 
 #### `write_cluster_batches`
 
-- **File:** src/090_utilities.rs:0
+- **File:** src/210_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `is_empty`
@@ -825,7 +167,7 @@
 
 #### `write_structural_batches`
 
-- **File:** src/090_utilities.rs:0
+- **File:** src/210_utilities.rs:0
 - **Visibility:** Public
 - **Calls:**
   - `is_empty`
@@ -882,103 +224,143 @@
   - `push_str`
   - `push`
 
-## Layer: 160_rust_parser.rs
+## Layer: 410_dead_code_entrypoints.rs
 
 ### Rust Functions
 
-#### `truncate_label`
+#### `treat_public_as_entrypoint`
 
-- **File:** src/160_rust_parser.rs:0
+- **File:** src/410_dead_code_entrypoints.rs:0
 - **Visibility:** Private
 - **Calls:**
+  - `unwrap_or`
+  - `map`
+
+## Layer: 460_dead_code_report.rs
+
+### Rust Functions
+
+#### `write_outputs`
+
+- **File:** src/460_dead_code_report.rs:0
+- **Visibility:** Crate
+- **Calls:**
+  - `unwrap_or_else`
+  - `clone`
   - `join`
-  - `collect`
-  - `split_whitespace`
+  - `parent`
+  - `std::fs::create_dir_all`
+  - `write_report`
+  - `unwrap_or_else`
+  - `clone`
+  - `join`
+  - `parent`
+  - `std::fs::create_dir_all`
+  - `write_summary_markdown`
+  - `unwrap_or_else`
+  - `map`
+  - `parent`
+  - `to_path_buf`
+  - `clone`
+  - `join`
+  - `write_plan_markdown`
+  - `Ok`
+
+#### `write_report`
+
+- **File:** src/460_dead_code_report.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `serde_json::to_string_pretty`
+  - `std::fs::write`
+
+## Layer: 530_dead_code_report_split.rs
+
+### Rust Functions
+
+#### `top_items`
+
+- **File:** src/530_dead_code_report_split.rs:0
+- **Visibility:** Private
+- **Calls:**
+  - `to_vec`
+  - `sort_by_key`
   - `len`
   - `truncate`
-  - `push_str`
 
-## Layer: 180_report.rs
+#### `write_plan_markdown`
 
-### Rust Functions
-
-#### `visibility_label`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-
-#### `write_baseline_metrics`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
+- **File:** src/530_dead_code_report_split.rs:0
+- **Visibility:** Public
 - **Calls:**
-  - `join`
-  - `Path::new`
-  - `exists`
-  - `fs::write`
-
-#### `write_cluster_tips`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `is_empty`
+  - `String::new`
   - `push_str`
   - `push_str`
   - `push_str`
   - `push_str`
-  - `push_str`
-  - `push_str`
-
-#### `write_priority_section`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `push_str`
-  - `push_str`
+  - `top_items`
   - `push_str`
   - `is_empty`
   - `push_str`
-  - `Vec::new`
+  - `plan_options`
   - `push_str`
-  - `is_empty`
   - `push`
-  - `clone`
-  - `push`
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-
-#### `write_structural_tips`
-
-- **File:** src/180_report.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `is_empty`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-  - `push_str`
-
-## Layer: 191_agent_cli.rs
-
-### Rust Functions
-
-#### `test_load_invariants_empty`
-
-- **File:** src/191_agent_cli.rs:0
-- **Visibility:** Private
-- **Calls:**
-  - `join`
-  - `std::env::temp_dir`
-  - `unwrap`
   - `std::fs::write`
-  - `load_invariants`
-  - `std::fs::remove_file`
+
+#### `write_summary_markdown`
+
+- **File:** src/530_dead_code_report_split.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `String::new`
+  - `push_str`
+  - `push_str`
+  - `push_str`
+  - `push_str`
+  - `top_items`
+  - `push_str`
+  - `is_empty`
+  - `push_str`
+  - `push_str`
+  - `push`
+  - `std::fs::write`
+
+## Layer: 610_correction_plan_serializer.rs
+
+### Rust Functions
+
+#### `write_intelligence_outputs_at`
+
+- **File:** src/610_correction_plan_serializer.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `std::fs::create_dir_all`
+  - `unwrap_or_else`
+  - `map`
+  - `to_path_buf`
+  - `join`
+  - `parent`
+  - `std::fs::create_dir_all`
+  - `serialize_correction_plans`
+  - `std::fs::write`
+  - `serde_json::to_string_pretty`
+  - `unwrap_or_else`
+  - `map`
+  - `to_path_buf`
+  - `join`
+  - `parent`
+  - `std::fs::create_dir_all`
+  - `emit_verification_policy`
+  - `Ok`
+
+## Layer: 630_correction_intelligence_report.rs
+
+### Rust Functions
+
+#### `write_intelligence_outputs`
+
+- **File:** src/630_correction_intelligence_report.rs:0
+- **Visibility:** Public
+- **Calls:**
+  - `write_intelligence_outputs_at`
 

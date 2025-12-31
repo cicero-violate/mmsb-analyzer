@@ -749,6 +749,41 @@ flowchart TD
     naming_score_for_file_73 --> naming_score_for_file_74
 ```
 
+## Function: `order_julia_files_by_dependency`
+
+- File: src/000_cluster_001.rs
+- Branches: 0
+- Loops: 0
+- Nodes: 12
+- Edges: 11
+
+```mermaid
+flowchart TD
+    order_julia_files_by_dependency_0["ENTRY"]
+    order_julia_files_by_dependency_1["use"]
+    order_julia_files_by_dependency_2["use"]
+    order_julia_files_by_dependency_3["let mut file_layers : HashMap < PathBuf , String > = HashMap :: new ()"]
+    order_julia_files_by_dependency_4["let mut nodes : BTreeSet < String > = BTreeSet :: new ()"]
+    order_julia_files_by_dependency_5["let mut edges_map : BTreeMap < (String , String) , BTreeSet < ReferenceDetail > > = BTreeMap :: new ()"]
+    order_julia_files_by_dependency_6["let mut unresolved = Vec :: new ()"]
+    order_julia_files_by_dependency_7["let resolver = LayerResolver :: build (root) ?"]
+    order_julia_files_by_dependency_8["let entry_files = crate :: cluster_001 :: julia_entry_paths (root)"]
+    order_julia_files_by_dependency_9["for file in files { let layer = crate :: cluster_001 :: detect_layer (file) ;..."]
+    order_julia_files_by_dependency_10["crate :: cluster_008 :: build_result (files , file_layers , nodes , edges_map..."]
+    order_julia_files_by_dependency_11["EXIT"]
+    order_julia_files_by_dependency_0 --> order_julia_files_by_dependency_1
+    order_julia_files_by_dependency_1 --> order_julia_files_by_dependency_2
+    order_julia_files_by_dependency_2 --> order_julia_files_by_dependency_3
+    order_julia_files_by_dependency_3 --> order_julia_files_by_dependency_4
+    order_julia_files_by_dependency_4 --> order_julia_files_by_dependency_5
+    order_julia_files_by_dependency_5 --> order_julia_files_by_dependency_6
+    order_julia_files_by_dependency_6 --> order_julia_files_by_dependency_7
+    order_julia_files_by_dependency_7 --> order_julia_files_by_dependency_8
+    order_julia_files_by_dependency_8 --> order_julia_files_by_dependency_9
+    order_julia_files_by_dependency_9 --> order_julia_files_by_dependency_10
+    order_julia_files_by_dependency_10 --> order_julia_files_by_dependency_11
+```
+
 ## Function: `order_rust_files_by_dependency`
 
 - File: src/000_cluster_001.rs
@@ -799,6 +834,197 @@ flowchart TD
     ordered_by_name_1 --> ordered_by_name_2
     ordered_by_name_2 --> ordered_by_name_3
     ordered_by_name_3 --> ordered_by_name_4
+```
+
+## Function: `run_analysis`
+
+- File: src/000_cluster_001.rs
+- Branches: 4
+- Loops: 0
+- Nodes: 88
+- Edges: 91
+
+```mermaid
+flowchart TD
+    run_analysis_0["ENTRY"]
+    run_analysis_1["use"]
+    run_analysis_2["use"]
+    run_analysis_3["use"]
+    run_analysis_4["use"]
+    run_analysis_5["use"]
+    run_analysis_6["use"]
+    run_analysis_7["use"]
+    run_analysis_8["use"]
+    run_analysis_9["use"]
+    run_analysis_10["let julia_script_path = root_path . join ('src/000_main.jl')"]
+    run_analysis_11["macro println"]
+    run_analysis_12["macro println"]
+    run_analysis_13["macro println"]
+    run_analysis_14["macro println"]
+    run_analysis_15["macro println"]
+    run_analysis_16["let rust_analyzer = RustAnalyzer :: new (root_path . to_string_lossy () . to_string ())"]
+    run_analysis_17["let mut combined_result = AnalysisResult :: new ()"]
+    run_analysis_18["macro println"]
+    run_analysis_19["let mut rust_count = 0"]
+    run_analysis_20["let rust_files = gather_rust_files (root_path)"]
+    run_analysis_21["let (ordered_rust_files , rust_layer_graph) = crate :: dependency :: order_rust_files_by_dependency (& rust_files , root_pa..."]
+    run_analysis_22["let rust_file_ordering = crate :: dependency :: analyze_file_ordering (& rust_files , None) . context ..."]
+    run_analysis_23["let julia_file_ordering = FileOrderingResult { ordered_files : Vec :: new () , violations : Vec :: new ..."]
+    run_analysis_24["for path in ordered_rust_files { if verbose { println ! (' Analyzing: {:?}' ,..."]
+    run_analysis_25["macro println"]
+    run_analysis_26["let mut julia_count = 0"]
+    run_analysis_27["let mut julia_layer_graph = LayerGraph { ordered_layers : Vec :: new () , edges : Vec :: new () , cycles ..."]
+    run_analysis_28["if ! skip_julia"]
+    run_analysis_29["THEN BB"]
+    run_analysis_30["macro println"]
+    run_analysis_31["let julia_files = gather_julia_files (root_path)"]
+    run_analysis_32["let (ordered_julia_files , jlg) = crate :: dependency :: order_julia_files_by_dependency (& julia_files , root_..."]
+    run_analysis_33["julia_layer_graph = jlg"]
+    run_analysis_34["if julia_script_path . exists ()"]
+    run_analysis_35["THEN BB"]
+    run_analysis_36["let julia_analyzer = JuliaAnalyzer :: new (root_path . to_path_buf () , julia_script_path . clone ..."]
+    run_analysis_37["for path in ordered_julia_files { if verbose { println ! (' Analyzing: {:?}' ..."]
+    run_analysis_38["ELSE BB"]
+    run_analysis_39["{ println ! (' Skipping Julia analysis (script not found)') ; }"]
+    run_analysis_40["IF JOIN"]
+    run_analysis_41["macro println"]
+    run_analysis_42["EMPTY ELSE"]
+    run_analysis_43["IF JOIN"]
+    run_analysis_44["if dead_code || dead_code_filter || dead_code_json . is_some () || dead_code_..."]
+    run_analysis_45["THEN BB"]
+    run_analysis_46["let policy = if let Some (policy_path) = dead_code_policy { Some (crate :: dead_code_polic..."]
+    run_analysis_47["let config = crate :: dead_code_cli :: DeadCodeRunConfig { root : root_path . to_path_buf ..."]
+    run_analysis_48["let report = crate :: dead_code_cli :: run_dead_code_pipeline (& combined_result . element..."]
+    run_analysis_49["if dead_code_filter"]
+    run_analysis_50["THEN BB"]
+    run_analysis_51["combined_result . elements = crate :: dead_code_filter :: filter_dead_code_el..."]
+    run_analysis_52["EMPTY ELSE"]
+    run_analysis_53["IF JOIN"]
+    run_analysis_54["EMPTY ELSE"]
+    run_analysis_55["IF JOIN"]
+    run_analysis_56["macro println"]
+    run_analysis_57["let mut cf_analyzer = ControlFlowAnalyzer :: new ()"]
+    run_analysis_58["cf_analyzer . build_call_graph (& combined_result)"]
+    run_analysis_59["use"]
+    run_analysis_60["macro println"]
+    run_analysis_61["let invariants_result = { let invariant_detector = InvariantDetector :: new (& combined_result , & co..."]
+    run_analysis_62["let constraints = { let invariant_detector = InvariantDetector :: new (& combined_result , & co..."]
+    run_analysis_63["combined_result . invariants = invariants_result"]
+    run_analysis_64["combined_result . constraints = constraints"]
+    run_analysis_65["macro println"]
+    run_analysis_66["let cohesion_analyzer = FunctionCohesionAnalyzer :: new ()"]
+    run_analysis_67["let placements = cohesion_analyzer . analyze (& combined_result) ?"]
+    run_analysis_68["let clusters = cohesion_analyzer . detect_clusters (& combined_result) ?"]
+    run_analysis_69["macro println"]
+    run_analysis_70["let dir_analyzer = DirectoryAnalyzer :: new (root_path . to_path_buf ())"]
+    run_analysis_71["let dir_analysis = dir_analyzer . analyze () ?"]
+    run_analysis_72["macro println"]
+    run_analysis_73["let report_gen = ReportGenerator :: new (output_path . to_string_lossy () . to_string ())"]
+    run_analysis_74["report_gen . generate_all (& combined_result , & cf_analyzer , & rust_layer_g..."]
+    run_analysis_75["macro println"]
+    run_analysis_76["export_program_cfg_to_path (& combined_result , & cf_analyzer . call_edges ()..."]
+    run_analysis_77["macro println"]
+    run_analysis_78["use"]
+    run_analysis_79["invariant_reporter :: generate_invariant_report (& combined_result . invarian..."]
+    run_analysis_80["invariant_reporter :: export_constraints_json (& combined_result . constraint..."]
+    run_analysis_81["macro println"]
+    run_analysis_82["macro println"]
+    run_analysis_83["macro println"]
+    run_analysis_84["macro println"]
+    run_analysis_85["macro println"]
+    run_analysis_86["Ok (())"]
+    run_analysis_87["EXIT"]
+    run_analysis_0 --> run_analysis_1
+    run_analysis_1 --> run_analysis_2
+    run_analysis_2 --> run_analysis_3
+    run_analysis_3 --> run_analysis_4
+    run_analysis_4 --> run_analysis_5
+    run_analysis_5 --> run_analysis_6
+    run_analysis_6 --> run_analysis_7
+    run_analysis_7 --> run_analysis_8
+    run_analysis_8 --> run_analysis_9
+    run_analysis_9 --> run_analysis_10
+    run_analysis_10 --> run_analysis_11
+    run_analysis_11 --> run_analysis_12
+    run_analysis_12 --> run_analysis_13
+    run_analysis_13 --> run_analysis_14
+    run_analysis_14 --> run_analysis_15
+    run_analysis_15 --> run_analysis_16
+    run_analysis_16 --> run_analysis_17
+    run_analysis_17 --> run_analysis_18
+    run_analysis_18 --> run_analysis_19
+    run_analysis_19 --> run_analysis_20
+    run_analysis_20 --> run_analysis_21
+    run_analysis_21 --> run_analysis_22
+    run_analysis_22 --> run_analysis_23
+    run_analysis_23 --> run_analysis_24
+    run_analysis_24 --> run_analysis_25
+    run_analysis_25 --> run_analysis_26
+    run_analysis_26 --> run_analysis_27
+    run_analysis_27 --> run_analysis_28
+    run_analysis_28 --> run_analysis_29
+    run_analysis_29 --> run_analysis_30
+    run_analysis_30 --> run_analysis_31
+    run_analysis_31 --> run_analysis_32
+    run_analysis_32 --> run_analysis_33
+    run_analysis_33 --> run_analysis_34
+    run_analysis_34 --> run_analysis_35
+    run_analysis_35 --> run_analysis_36
+    run_analysis_36 --> run_analysis_37
+    run_analysis_34 --> run_analysis_38
+    run_analysis_38 --> run_analysis_39
+    run_analysis_37 --> run_analysis_40
+    run_analysis_39 --> run_analysis_40
+    run_analysis_40 --> run_analysis_41
+    run_analysis_28 --> run_analysis_42
+    run_analysis_41 --> run_analysis_43
+    run_analysis_42 --> run_analysis_43
+    run_analysis_43 --> run_analysis_44
+    run_analysis_44 --> run_analysis_45
+    run_analysis_45 --> run_analysis_46
+    run_analysis_46 --> run_analysis_47
+    run_analysis_47 --> run_analysis_48
+    run_analysis_48 --> run_analysis_49
+    run_analysis_49 --> run_analysis_50
+    run_analysis_50 --> run_analysis_51
+    run_analysis_49 --> run_analysis_52
+    run_analysis_51 --> run_analysis_53
+    run_analysis_52 --> run_analysis_53
+    run_analysis_44 --> run_analysis_54
+    run_analysis_53 --> run_analysis_55
+    run_analysis_54 --> run_analysis_55
+    run_analysis_55 --> run_analysis_56
+    run_analysis_56 --> run_analysis_57
+    run_analysis_57 --> run_analysis_58
+    run_analysis_58 --> run_analysis_59
+    run_analysis_59 --> run_analysis_60
+    run_analysis_60 --> run_analysis_61
+    run_analysis_61 --> run_analysis_62
+    run_analysis_62 --> run_analysis_63
+    run_analysis_63 --> run_analysis_64
+    run_analysis_64 --> run_analysis_65
+    run_analysis_65 --> run_analysis_66
+    run_analysis_66 --> run_analysis_67
+    run_analysis_67 --> run_analysis_68
+    run_analysis_68 --> run_analysis_69
+    run_analysis_69 --> run_analysis_70
+    run_analysis_70 --> run_analysis_71
+    run_analysis_71 --> run_analysis_72
+    run_analysis_72 --> run_analysis_73
+    run_analysis_73 --> run_analysis_74
+    run_analysis_74 --> run_analysis_75
+    run_analysis_75 --> run_analysis_76
+    run_analysis_76 --> run_analysis_77
+    run_analysis_77 --> run_analysis_78
+    run_analysis_78 --> run_analysis_79
+    run_analysis_79 --> run_analysis_80
+    run_analysis_80 --> run_analysis_81
+    run_analysis_81 --> run_analysis_82
+    run_analysis_82 --> run_analysis_83
+    run_analysis_83 --> run_analysis_84
+    run_analysis_84 --> run_analysis_85
+    run_analysis_85 --> run_analysis_86
+    run_analysis_86 --> run_analysis_87
 ```
 
 ## Function: `rust_entry_paths`
