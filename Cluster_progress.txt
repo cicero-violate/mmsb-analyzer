@@ -1,34 +1,37 @@
 Cluster Progress
 ================
 
-| Cluster                                           | Status         | Notes                                                                  |
-| ---                                               | ---            | ---                                                                    |
-| Path / Module Coherence                           | Completed      | UpdatePath + #[path] UpdateCaller applied, idempotent, verified.       |
-| Path / Module Coherence: Detection Slice          | Completed      | Rename-driven UpdatePath/UpdateCaller slice generated and stable.      |
-| Path / Module Coherence: Apply Gate               | Completed      | --apply-path-coherence gated execution with idempotent skips.          |
-| EnsureImports                                     | Completed      | Report + apply path exists and works; used in prior slices.            |
+| Cluster                                           | Status         | Notes                                                                    |
+| ---                                               | ---            | ---                                                                      |
+| Invariants/Constraints: Execution Enforcement     | Pending        | Constraints used in reports; executor does not enforce yet.              |
+| Visibility: Detection Slice                       | Completed      | Zero-caller public functions emitted as review-only.                     |
+| Visibility: Planning/Policy                       | Completed      | VisibilityPlan emitted with review_only default in slice.                |
+| Visibility                                        | Partial        | Review-only slice for zero-caller public functions generated.            |
+| Module Map Mismatch (mod/use drift beyond rename) | Completed      | Detection-only report run; no mismatches detected.                       |
+| Module Map Mismatch: Planning/Policy              | Completed      | Review-only policy implied; no issues emitted.                           |
+| Test Topology (cfg/test placement)                | Completed      | Detection-only report run; no issues detected.                           |
+| Orphaned / Dead Code: Planning/Policy             | Completed      | Review-only plans emitted in dead_code_plans.md.                         |
+| Orphaned / Dead Code Reporting                    | Completed      | Review-only law; no auto-delete.                                         |
+| Warning Hygiene                                   | Completed      | Detection-only report run; warnings summarized.                          |
+| Warning Hygiene: Remaining Fixes                  | Completed      | Cleanup complete; cargo warnings cleared.                                |
+| Path / Module Coherence: Detection Slice          | Completed      | Rename-driven UpdatePath/UpdateCaller slice generated and stable.        |
+| Path / Module Coherence: Apply Gate               | Completed      | --apply-path-coherence gated execution with idempotent skips.            |
+| Path / Module Coherence                           | Completed      | UpdatePath + #[path] UpdateCaller applied, idempotent, verified.         |
+| EnsureImports                                     | Completed      | Report + apply path exists and works; used in prior slices.              |
+| MoveToLayer: Planning/Policy                      | Completed      | Dependency planning + permanent block for known level-3 case.            |
+| MoveToLayer: Planning Depth-2                     | Completed      | Nested dependency planning with depth-2 boundary.                        |
+| MoveToLayer: Consent Gate                         | Completed      | Level-2 execution requires explicit opt-in.                              |
+| MoveToLayer: Apply Gate                           | Partial        | Apply-capable with allowlist; blocked for level-3 bundles.               |
 | MoveToLayer                                       | Partial        | Allowlisted moves only; gather_rust_files moved with shim; others gated. |
-| MoveToLayer: Planning/Policy                      | Completed      | Dependency planning + permanent block for known level-3 case.          |
-| MoveToLayer: Planning Depth-2                     | Completed      | Nested dependency planning with depth-2 boundary.                      |
-| MoveToLayer: Consent Gate                         | Completed      | Level-2 execution requires explicit opt-in.                            |
-| MoveToLayer: Apply Gate                           | Partial        | Apply-capable with allowlist; blocked for level-3 bundles.             |
-| Orphaned / Dead Code Reporting                    | Completed      | Review-only law; no auto-delete.                                       |
-| Orphaned / Dead Code: Planning/Policy             | Completed      | Review-only plans emitted in dead_code_plans.md.                       |
-| Visibility                                        | Partial        | Review-only slice for zero-caller public functions generated.          |
-| Visibility: Detection Slice                       | Completed      | Zero-caller public functions emitted as review-only.                   |
-| Visibility: Planning/Policy                       | Completed      | VisibilityPlan emitted with review_only default in slice.              |
-| Visibility: Apply Gate                            | Pending        | Executor supports AdjustVisibility report-only; apply not enabled.     |
-| Module Map Mismatch (mod/use drift beyond rename) | Completed      | Detection-only report run; no mismatches detected.                     |
-| Module Map Mismatch: Planning/Policy              | Completed      | Review-only policy implied; no issues emitted.                         |
-| Test Topology (cfg/test placement)                | Completed      | Detection-only report run; no issues detected.                         |
-| Warning Hygiene                                   | Completed      | Detection-only report run; warnings summarized.                        |
-| MoveToLayer: Execution Expansion                  | Partial        | gather_rust_files executed; next allowlist case still pending.         |
-| MoveToLayer: Level-3 Policy                       | Pending        | Permanent block unless explicit override is introduced.                |
-| Visibility: Apply Implementation                  | Pending        | AdjustVisibility apply not implemented in executor.                    |
-| ReExport: Apply Implementation                    | Pending        | ReExport apply not implemented in executor.                            |
-| Warning Hygiene: Remaining Fixes                  | Completed      | Cleanup complete; cargo warnings cleared.                              |
-| Refactor Process: Full Ordered Apply              | Not Actionable | Requires broad allowlist + apply support for non-MoveToLayer actions.  |
-| Refactor Process: Visibility Apply                | Not Actionable | Policy is review-only; executor apply not enabled.                     |
-| Refactor Process: Dead Code Deletion              | Not Actionable | Review-only law; no auto-delete.                                       |
-| Refactor Process: Module Map Apply                | Not Actionable | Review-only policy; detection-only.                                    |
-| Refactor Process: Test Topology Apply             | Not Actionable | Review-only policy; detection-only.                                    |
+| MoveToLayer: Execution Expansion                  | Partial        | gather_rust_files executed; next allowlist case still pending.           |
+| MoveToLayer: Level-3 Policy                       | Pending        | Permanent block unless explicit override is introduced.                  |
+| Phase 2: Cluster Extraction (Phase 2)             | Pending        | Automate in guarded batches; apply-only with allowlist + cargo test.     |
+| Phase 5: Ordering & Renames (Phase 5)             | Pending        | Automate after path-coherence verified; rename + update paths + verify.  |
+| Visibility: Apply Gate                            | Pending        | Executor supports AdjustVisibility report-only; apply not enabled.       |
+| Visibility: Apply Implementation                  | Pending        | AdjustVisibility apply not implemented in executor.                      |
+| ReExport: Apply Implementation                    | Pending        | ReExport apply not implemented in executor.                              |
+| Refactor Process: Full Ordered Apply              | Not Actionable | Requires broad allowlist + apply support for non-MoveToLayer actions.    |
+| Refactor Process: Visibility Apply                | Not Actionable | Policy is review-only; executor apply not enabled.                       |
+| Refactor Process: Dead Code Deletion              | Not Actionable | Review-only law; no auto-delete.                                         |
+| Refactor Process: Module Map Apply                | Not Actionable | Review-only policy; detection-only.                                      |
+| Refactor Process: Test Topology Apply             | Not Actionable | Review-only policy; detection-only.                                      |
