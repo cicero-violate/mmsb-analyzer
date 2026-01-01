@@ -6,10 +6,8 @@ Note: use the batches below to keep changes small.
 - Create cluster file `src/560_correction_plan_generator.rs` with 23 functions (cohesion 1.00)
 - Create cluster file `src/610_correction_plan_serializer.rs` with 2 functions (cohesion 1.00)
 - Create cluster file `src/410_dead_code_entrypoints.rs` with 15 functions (cohesion 0.73)
-- Create cluster file `src/380_dead_code_call_graph.rs` with 4 functions (cohesion 0.67)
-- Create cluster file `src/380_dead_code_call_graph.rs` with 5 functions (cohesion 0.60)
-- Create cluster file `src/211_dead_code_attribute_parser.rs` with 4 functions (cohesion 0.56)
-- Create cluster file `src/211_dead_code_attribute_parser.rs` with 3 functions (cohesion 0.45)
+- Create cluster file `src/380_dead_code_call_graph.rs` with 9 functions (cohesion 0.67 + 0.60)
+- Create cluster file `src/211_dead_code_attribute_parser.rs` with 7 functions (cohesion 0.56 + 0.45)
 - Create cluster file `src/390_dead_code_intent.rs` with 2 functions (cohesion 0.40)
 - Create cluster file `src/010_cluster_008.rs` with 2 functions (cohesion 0.07)
 
@@ -18,8 +16,6 @@ touch "src/560_correction_plan_generator.rs"
 touch "src/610_correction_plan_serializer.rs"
 touch "src/410_dead_code_entrypoints.rs"
 touch "src/380_dead_code_call_graph.rs"
-touch "src/380_dead_code_call_graph.rs"
-touch "src/211_dead_code_attribute_parser.rs"
 touch "src/211_dead_code_attribute_parser.rs"
 touch "src/390_dead_code_intent.rs"
 touch "src/010_cluster_008.rs"
@@ -317,4 +313,65 @@ rg -n "layer_constrained_sort" "/home/cicero-arch-omen/ai_sandbox/codex-agent/co
 rg -n "topo_sort_within" "src/000_cluster_001.rs"
 rg -n "topo_sort_within" "/home/cicero-arch-omen/ai_sandbox/codex-agent/codex_sse/server-tools/MMSB/tools/mmsb-analyzer"
 ```
+
+### Phase 2 Completion Checklist
+
+Action: verify all criteria are met before proceeding to Phase 3.
+Note: this ensures cluster extraction maintains correctness.
+
+- [ ] All 9 batches executed successfully
+- [ ] All verification gates passed (`cargo test` after each batch)
+- [ ] All 7 cluster files created and populated:
+  - [ ] `src/560_correction_plan_generator.rs` (23 functions)
+  - [ ] `src/610_correction_plan_serializer.rs` (2 functions)
+  - [ ] `src/410_dead_code_entrypoints.rs` (15 functions)
+  - [ ] `src/380_dead_code_call_graph.rs` (9 functions)
+  - [ ] `src/211_dead_code_attribute_parser.rs` (7 functions)
+  - [ ] `src/390_dead_code_intent.rs` (2 functions)
+  - [ ] `src/010_cluster_008.rs` (2 functions)
+- [ ] All module declarations updated in `lib.rs` and/or `main.rs`
+- [ ] No compiler errors or warnings introduced
+- [ ] All tests passing: `cargo test --all`
+- [ ] Code builds successfully: `cargo build --release`
+
+### Phase 2 Success Metrics
+
+Action: measure these metrics to validate cluster extraction quality.
+Note: use these as benchmarks for cluster cohesion improvements.
+
+- **Functions extracted**: 60 total across 7 cluster files
+- **Average cluster cohesion**: 0.61 (weighted by function count)
+- **High-cohesion clusters** (≥0.60): 4 clusters, 49 functions (82%)
+- **Medium-cohesion clusters** (0.40-0.59): 3 clusters, 9 functions (15%)
+- **Low-cohesion clusters** (<0.40): 1 cluster, 2 functions (3%)
+
+### Next Steps
+
+Action: proceed to Phase 3 after completing Phase 2.
+Note: see `03_phase1_correctness.md` and `05_phase3_structural.md` for details.
+
+1. **Phase 3: Structural Constraints** - Resolve any layer violations introduced during cluster extraction
+2. **Phase 4: Cohesion Improvements** - Optional refinement of cluster boundaries
+3. **Phase 5: Ordering & Renames** - Final file naming and ordering adjustments
+
+### Troubleshooting
+
+Action: use these tips if you encounter issues during Phase 2.
+Note: common problems and their solutions.
+
+**Problem**: `cargo test` fails after a batch
+- **Solution**: Review the import statements in moved functions and their callers
+- **Tip**: Use `cargo check` for faster iteration during import fixes
+
+**Problem**: Cannot find function definition with `rg`
+- **Solution**: The function may have already been moved in a previous batch
+- **Tip**: Search the entire repository to locate the current position
+
+**Problem**: Circular dependencies after moving functions
+- **Solution**: Check the cluster cohesion scores; may need to reorder batches
+- **Tip**: Move lower-layer dependencies first, then higher-layer consumers
+
+**Problem**: Module not found errors
+- **Solution**: Ensure new cluster modules are declared in `lib.rs` or `main.rs`
+- **Tip**: Use `pub mod <module_name>;` declarations in the appropriate parent module
 
